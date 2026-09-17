@@ -31,8 +31,18 @@ export async function ownedProject(userId: string, projectId: string) {
   return project;
 }
 
+/**
+ * 写操作专用：管理员把项目改成「已冻结」后，源站必须真的拦住。
+ * 不拦的话，「冻结」就只是后台列表里的一个汉字，用户照样挂素材、挂任务、提脚本。
+ */
+export async function writableProject(userId: string, projectId: string) {
+  const project = await ownedProject(userId, projectId);
+  if (project.status === "已冻结") throw new Error("PROJECT_FROZEN");
+  return project;
+}
+
 export async function linkProjectAsset(userId: string, projectId: string, assetId: string) {
-  await ownedProject(userId, projectId);
+  await writableProject(userId, projectId);
   const asset = await dbOne<{ id: string }>("SELECT id FROM uploaded_assets WHERE id = ? AND user_id = ? LIMIT 1", [assetId, userId]);
   if (!asset) throw new Error("ASSET_NOT_FOUND");
   await dbRun("INSERT INTO project_assets (project_id, asset_id, created_at) VALUES (?, ?, ?) ON CONFLICT (project_id, asset_id) DO NOTHING", [projectId, assetId, timestamp()]);
@@ -74,7 +84,7 @@ export async function listProjectAssets(userId: string, projectId: string) {
 }
 
 export async function linkProjectTask(userId: string, projectId: string, taskId: string) {
-  await ownedProject(userId, projectId);
+  await writableProject(userId, projectId);
   const task = await dbOne<{ id: string }>("SELECT id FROM video_tasks WHERE id = ? AND user_id = ? LIMIT 1", [taskId, userId]);
   if (!task) throw new Error("VIDEO_TASK_NOT_FOUND");
   await dbRun("INSERT INTO project_task_links (project_id, task_id, created_at) VALUES (?, ?, ?) ON CONFLICT (project_id, task_id) DO NOTHING", [projectId, taskId, timestamp()]);
@@ -99,7 +109,7 @@ export async function createScriptWorkflowRequest(input: {
   sourceText: string;
   requirements: string;
 }) {
-  await ownedProject(input.userId, input.projectId);
+  await writableProject(input.userId, input.projectId);
   const sourceText = input.sourceText.trim().slice(0, 120000);
   const requirements = input.requirements.trim().slice(0, 4000);
   if (sourceText.length < 1) throw new Error("SCRIPT_SOURCE_REQUIRED");

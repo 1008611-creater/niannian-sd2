@@ -26,6 +26,6 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     return NextResponse.json({ request: { id: result.id, status: result.status, createdAt: result.created_at, updatedAt: result.updated_at } }, { status: 202 });
   } catch (error) {
     const code = error instanceof Error ? error.message : "SHORT_DRAMA_CREATE_FAILED";
-    return NextResponse.json({ error: code }, { status: code === "PROJECT_NOT_FOUND" ? 404 : code === "SCRIPT_SOURCE_REQUIRED" ? 400 : 503 });
+    return NextResponse.json({ error: code }, { status: code === "PROJECT_NOT_FOUND" ? 404 : code === "SCRIPT_SOURCE_REQUIRED" ? 400 : code === "PROJECT_FROZEN" ? 409 : 503 });
   }
 }

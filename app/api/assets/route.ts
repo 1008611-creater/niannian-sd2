@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { authCookie, sessionFromToken, validRequestOrigin } from "@/lib/auth";
 import { getOwnedReusableAssetPreview, listReusableImageAssets, saveUploadedAsset, setOwnedReusableAssetHidden, validAssetRole, validReferenceIntent } from "@/lib/video-tasks";
+import { listPublicAssets } from "@/lib/asset-library";
 
 export const runtime = "nodejs";
 
@@ -14,7 +15,11 @@ export async function GET(request: NextRequest) {
       const preview = await getOwnedReusableAssetPreview(user.id, assetId);
       return new NextResponse(preview.file, { headers: { "content-type": preview.mimeType, "cache-control": "private, max-age=300", "content-disposition": `inline; filename*=UTF-8''${encodeURIComponent(preview.name)}`, "x-content-type-options": "nosniff" } });
     }
-    return NextResponse.json({ assets: await listReusableImageAssets(user.id) });
+    const [assets, publicAssets] = await Promise.all([
+      listReusableImageAssets(user.id),
+      listPublicAssets(user.id).catch(() => []),
+    ]);
+    return NextResponse.json({ assets, publicAssets });
   } catch (error) {
     const code = error instanceof Error ? error.message : "ASSETS_UNAVAILABLE";
     return NextResponse.json({ error: code }, { status: code === "ASSET_NOT_FOUND" ? 404 : /INVALID|MISMATCH/.test(code) ? 400 : 503 });

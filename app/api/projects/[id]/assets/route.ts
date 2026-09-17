@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { authCookie, sessionFromToken, validRequestOrigin } from "@/lib/auth";
-import { linkProjectAsset, listProjectAssets, ownedProject } from "@/lib/project-workspace";
+import { linkProjectAsset, listProjectAssets, writableProject } from "@/lib/project-workspace";
 import { saveUploadedAsset, validAssetRole, validReferenceIntent } from "@/lib/video-tasks";
 
 export const runtime = "nodejs";
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
   if (!user) return NextResponse.json({ error: "UNAUTHORIZED" }, { status: 401 });
   const { id } = await params;
   try {
-    await ownedProject(user.id, id);
+    await writableProject(user.id, id);
     const form = await request.formData();
     const role = validAssetRole(form.get("role"));
     const file = form.get("file");
@@ -40,6 +40,6 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     return NextResponse.json({ asset: { ...asset, previewUrl: `/api/assets?id=${encodeURIComponent(asset.id)}` } }, { status: 201 });
   } catch (error) {
     const code = error instanceof Error ? error.message : "PROJECT_ASSET_UPLOAD_FAILED";
-    return NextResponse.json({ error: code }, { status: code.startsWith("ASSET_") || code === "REFERENCE_INTENT_INVALID" ? 400 : code === "PROJECT_NOT_FOUND" ? 404 : 503 });
+    return NextResponse.json({ error: code }, { status: code.startsWith("ASSET_") || code === "REFERENCE_INTENT_INVALID" ? 400 : code === "PROJECT_NOT_FOUND" ? 404 : code === "PROJECT_FROZEN" ? 409 : 503 });
   }
 }

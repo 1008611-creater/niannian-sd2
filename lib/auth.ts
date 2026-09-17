@@ -450,6 +450,29 @@ const schema = `
   );
   CREATE INDEX IF NOT EXISTS model_overrides_enabled
     ON model_overrides(enabled, sort_order);
+  -- 素材治理单独一张表，不动 uploaded_assets 本体：
+  -- 下架只是"不展示"，字节和历史任务的 manifest 必须保持原样可追溯。
+  CREATE TABLE IF NOT EXISTS asset_moderation (
+    asset_id TEXT PRIMARY KEY,
+    visibility TEXT NOT NULL DEFAULT 'owner',
+    reason TEXT,
+    updated_by TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+  );
+  CREATE INDEX IF NOT EXISTS asset_moderation_visibility
+    ON asset_moderation(visibility, updated_at);
+  CREATE TABLE IF NOT EXISTS admin_audit (
+    id TEXT PRIMARY KEY,
+    actor_email TEXT NOT NULL,
+    target_type TEXT NOT NULL,
+    target_id TEXT NOT NULL,
+    action TEXT NOT NULL,
+    detail TEXT,
+    created_at TEXT NOT NULL
+  );
+  CREATE INDEX IF NOT EXISTS admin_audit_lookup
+    ON admin_audit(target_type, created_at);
 `;
 
 async function database() {
@@ -543,6 +566,24 @@ async function all<T>(sql: string, values: SqlValue[] = []) {
 
 export async function dbRun(sql: string, values: SqlValue[] = []) {
   await run(sql, values);
+}
+
+/**
+ * 后台写操作留痕：谁在什么时候改了哪个对象、改成什么。
+ * 放在这里而不是 lib/admin.ts，是为了让 pricing / model / asset / project 四个模块
+ * 都能直接用，不会和上层模块形成循环依赖。
+ */
+export async function recordAdminAction(input: {
+  actorEmail: string;
+  targetType: "pricing_rule" | "model_override" | "asset" | "project";
+  targetId: string;
+  action: string;
+  detail?: string | null;
+}) {
+  await dbRun(
+    "INSERT INTO admin_audit (id, actor_email, target_type, target_id, action, detail, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    [createId(), input.actorEmail, input.targetType, input.targetId, input.action, input.detail ?? null, timestamp()],
+  );
 }
 
 export async function dbRunCount(sql: string, values: SqlValue[] = []) {

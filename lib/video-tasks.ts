@@ -4,6 +4,7 @@ import path from "node:path";
 import { createId, dbAll, dbOne, dbRun, dbTransaction, timestamp } from "@/lib/auth";
 import { reserveTaskCredits, ServiceMode, taskCreditCost } from "@/lib/credits";
 import { ensurePricingLoaded } from "@/lib/pricing";
+import { publicAssetUsable } from "@/lib/asset-library";
 import { dolaReferencePlan, validateDolaPrompt } from "@/lib/dola-channel";
 import { astorieReferencePlan, astorieSkillChain, validAstorieModel } from "@/lib/astorie-channel";
 import { HIGGSFIELD_MODEL, higgsfieldReferencePlan, higgsfieldSkillChain } from "@/lib/higgsfield-channel";
@@ -220,8 +221,10 @@ async function loadAssets(userId: string, assetIds: string[]) {
   if (uniqueIds.length > MAX_TASK_REFERENCES) throw new Error("ASSET_LIMIT_EXCEEDED");
   const assets: AssetRecord[] = [];
   for (const assetId of uniqueIds) {
-    const asset = await dbOne<AssetRecord>("SELECT * FROM uploaded_assets WHERE id = ? AND user_id = ? LIMIT 1", [assetId, userId]);
+    // 先不管归属取出来，再判断"这个人能不能用"：自己的素材，或别人设为公共且没被下架的。
+    const asset = await dbOne<AssetRecord>("SELECT * FROM uploaded_assets WHERE id = ? LIMIT 1", [assetId]);
     if (!asset) throw new Error("ASSET_NOT_FOUND");
+    if (asset.user_id !== userId && !(await publicAssetUsable(assetId))) throw new Error("ASSET_NOT_FOUND");
     assets.push(asset);
   }
   return assets;
@@ -234,8 +237,10 @@ export async function listReusableImageAssets(userId: string) {
     `SELECT uploaded_assets.*, COALESCE(asset_library_visibility.hidden, 0) AS hidden
      FROM uploaded_assets
      LEFT JOIN asset_library_visibility ON asset_library_visibility.asset_id = uploaded_assets.id
+     LEFT JOIN asset_moderation ON asset_moderation.asset_id = uploaded_assets.id
        WHERE uploaded_assets.user_id = ? AND uploaded_assets.role IN ('character','product','scene','reference_video','reference_audio')
        AND uploaded_assets.mime_type LIKE '%/%' AND uploaded_assets.byte_size > 0
+       AND COALESCE(asset_moderation.visibility, 'owner') <> 'taken_down'
      ORDER BY created_at DESC LIMIT 60`,
     [userId],
   );

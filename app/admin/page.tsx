@@ -177,6 +177,27 @@ type AnalyticsSnapshot = {
     channels: { name: string; value: number }[];
   };
 };
+type AssetVisibility = "owner" | "public" | "taken_down";
+type AdminAsset = {
+  id: string; ownerEmail: string; ownerId: string; role: string; name: string; mimeType: string;
+  byteSize: number; visibility: AssetVisibility; reason: string | null; moderatedBy: string | null;
+  moderatedAt: string | null; hiddenByOwner: boolean; createdAt: string; previewUrl: string;
+};
+type AssetAdminSnapshot = { assets: AdminAsset[]; summary: { returned: number; limit: number } };
+type AdminProject = {
+  id: string; title: string; type: string; status: string; progress: number; episodes: number;
+  ownerEmail: string; ownerId: string; assetCount: number; taskCount: number;
+  createdAt: string; updatedAt: string;
+};
+type ProjectAdminSnapshot = {
+  projects: AdminProject[]; statuses: string[];
+  summary: { returned: number; limit: number; frozen: number };
+};
+const assetVisibilityNames: Record<AssetVisibility, string> = { owner: "仅本人", public: "公共素材", taken_down: "已下架" };
+const assetRoleNames: Record<string, string> = {
+  character: "角色", product: "产品", scene: "场景", reference_video: "参考视频",
+  reference_audio: "参考音频", reference_image: "参考图", other: "其它",
+};
 
 function draftFromModel(model: CatalogModelView): ModelDraft {
   return {
@@ -204,6 +225,13 @@ function draftFromRule(rule: PricingRuleView): PricingDraft {
   };
 }
 
+function formatBytes(value: number) {
+  if (!value) return "—";
+  if (value < 1024) return `${value} B`;
+  if (value < 1024 * 1024) return `${(value / 1024).toFixed(1)} KB`;
+  return `${(value / (1024 * 1024)).toFixed(1)} MB`;
+}
+
 function taskAge(minutes: number) {
   if (minutes < 1) return "刚刚更新";
   if (minutes < 60) return `${minutes} 分钟未更新`;
@@ -214,7 +242,7 @@ function taskAge(minutes: number) {
 export default function AdminPage() {
   const router = useRouter();
   const [overview, setOverview] = useState<Overview | null>(null);
-  const [tab, setTab] = useState<"tasks" | "data" | "users" | "pricing" | "models" | "credits" | "channels" | "audit">("tasks");
+  const [tab, setTab] = useState<"tasks" | "data" | "users" | "pricing" | "models" | "assets" | "projects" | "credits" | "channels" | "audit">("tasks");
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("all");
   const [focus, setFocus] = useState<"all" | "attention" | "overdue" | "manual" | "qa">("attention");
@@ -240,6 +268,14 @@ export default function AdminPage() {
   const [savingModel, setSavingModel] = useState(false);
   const [modelQuery, setModelQuery] = useState("");
   const [analytics, setAnalytics] = useState<AnalyticsSnapshot | null>(null);
+  const [assets, setAssets] = useState<AssetAdminSnapshot | null>(null);
+  const [assetQuery, setAssetQuery] = useState("");
+  const [assetVisibility, setAssetVisibility] = useState<"" | AssetVisibility>("");
+  const [assetDraft, setAssetDraft] = useState<{ assetId: string; visibility: AssetVisibility; reason: string } | null>(null);
+  const [savingAsset, setSavingAsset] = useState(false);
+  const [projects, setProjects] = useState<ProjectAdminSnapshot | null>(null);
+  const [projectQuery, setProjectQuery] = useState("");
+  const [savingProject, setSavingProject] = useState("");
 
   const load = useCallback(async () => {
     setError("");
@@ -288,11 +324,32 @@ export default function AdminPage() {
     setAnalytics(data);
   }, []);
 
+  const loadAssets = useCallback(async () => {
+    const params = new URLSearchParams();
+    if (assetQuery.trim()) params.set("query", assetQuery.trim());
+    if (assetVisibility) params.set("visibility", assetVisibility);
+    const response = await fetch(`/api/admin/assets?${params.toString()}`, { cache: "no-store" });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || "ASSET_ADMIN_UNAVAILABLE");
+    setAssets(data);
+  }, [assetQuery, assetVisibility]);
+
+  const loadProjects = useCallback(async () => {
+    const params = new URLSearchParams();
+    if (projectQuery.trim()) params.set("query", projectQuery.trim());
+    const response = await fetch(`/api/admin/projects?${params.toString()}`, { cache: "no-store" });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || "PROJECT_ADMIN_UNAVAILABLE");
+    setProjects(data);
+  }, [projectQuery]);
+
   useEffect(() => {
     if (tab === "pricing") loadPricing().catch(() => setError("价目表加载失败，请刷新重试"));
     if (tab === "models") loadModels().catch(() => setError("模型目录加载失败，请刷新重试"));
     if (tab === "data") loadAnalytics().catch(() => setError("经营数据加载失败，请刷新重试"));
-  }, [tab, loadPricing, loadModels, loadAnalytics]);
+    if (tab === "assets") loadAssets().catch(() => setError("素材库加载失败，请刷新重试"));
+    if (tab === "projects") loadProjects().catch(() => setError("项目列表加载失败，请刷新重试"));
+  }, [tab, loadPricing, loadModels, loadAnalytics, loadAssets, loadProjects]);
 
   async function savePricingRule() {
     if (!pricingDraft) return;
@@ -382,6 +439,41 @@ export default function AdminPage() {
       setError(actionError instanceof Error ? `${failure}：${actionError.message}` : failure);
     } finally {
       setSavingModel(false);
+    }
+  }
+
+  async function runAssetAction(action: () => Promise<Response>, failure: string) {
+    setSavingAsset(true);
+    setError("");
+    try {
+      const response = await action();
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "ASSET_UPDATE_FAILED");
+      setAssetDraft(null);
+      await loadAssets();
+    } catch (actionError) {
+      setError(actionError instanceof Error ? `${failure}：${actionError.message}` : failure);
+    } finally {
+      setSavingAsset(false);
+    }
+  }
+
+  async function runProjectAction(projectId: string, status: string) {
+    setSavingProject(projectId);
+    setError("");
+    try {
+      const response = await fetch("/api/admin/projects", {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ projectId, status }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "PROJECT_UPDATE_FAILED");
+      await loadProjects();
+    } catch (actionError) {
+      setError(actionError instanceof Error ? `项目状态更新失败：${actionError.message}` : "项目状态更新失败");
+    } finally {
+      setSavingProject("");
     }
   }
 
@@ -640,6 +732,8 @@ export default function AdminPage() {
           <button className={tab === "users" ? "active" : ""} onClick={() => setTab("users")}>用户管理</button>
           <button className={tab === "pricing" ? "active" : ""} onClick={() => setTab("pricing")}>定价管理</button>
           <button className={tab === "models" ? "active" : ""} onClick={() => setTab("models")}>模型管理</button>
+          <button className={tab === "assets" ? "active" : ""} onClick={() => setTab("assets")}>素材库</button>
+          <button className={tab === "projects" ? "active" : ""} onClick={() => setTab("projects")}>项目管理</button>
           <button className={tab === "credits" ? "active" : ""} onClick={() => setTab("credits")}>积分与充值</button>
           <button className={tab === "channels" ? "active" : ""} onClick={() => setTab("channels")}>渠道状态</button>
           <button className={tab === "audit" ? "active" : ""} onClick={() => setTab("audit")}>审计记录</button>
@@ -842,6 +936,88 @@ export default function AdminPage() {
               <p className="admin-hint">下架只影响源站：渠道里这个模型还能用，但用户看不到也下不了单。加价按「基础价 × (1 + 加价%)」向上取整，下单时生效。</p>
             </div> : null}
           </> : <div className="admin-empty">模型目录加载中…</div>}
+        </section> : null}
+
+        {tab === "assets" ? <section className="admin-panel">
+          {assets ? <>
+            <div className="credits-admin-summary">
+              <b>素材 {assets.summary.returned} 个</b>
+              <span>最多展示 {assets.summary.limit} 个 · 按上传时间倒序</span>
+            </div>
+            <div className="admin-toolbar">
+              <input value={assetQuery} onChange={(event) => setAssetQuery(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") void loadAssets().catch(() => setError("素材库加载失败")); }} placeholder="搜索文件名、素材 ID 或上传者邮箱" />
+              <select value={assetVisibility} onChange={(event) => setAssetVisibility(event.target.value as "" | AssetVisibility)}>
+                <option value="">全部可见性</option>
+                <option value="owner">仅本人</option>
+                <option value="public">公共素材</option>
+                <option value="taken_down">已下架</option>
+              </select>
+              <button className="primary" onClick={() => void loadAssets().catch(() => setError("素材库加载失败"))}>搜索</button>
+              {savingAsset ? <span>处理中…</span> : null}
+            </div>
+            <p className="admin-hint">下架只影响「展示」：素材字节和历史任务的 manifest 原样保留，随时可以恢复。设为「公共素材」后，全站用户在做视频时能直接引用它。</p>
+            <div className="admin-table">
+              <div className="admin-table-row head"><span>素材</span><span>上传者</span><span>用途</span><span>大小</span><span>可见性</span><span>处置说明</span><span>预览</span><span>操作</span></div>
+              {assets.assets.length ? assets.assets.map((asset) => <div className="admin-table-row" key={asset.id}>
+                <b title={asset.id}>{asset.name || asset.id}</b>
+                <span>{asset.ownerEmail}{asset.hiddenByOwner ? " · 已自行隐藏" : ""}</span>
+                <span>{assetRoleNames[asset.role] ?? asset.role}</span>
+                <span>{formatBytes(asset.byteSize)}</span>
+                <span>{assetVisibilityNames[asset.visibility] ?? asset.visibility}</span>
+                <span>{asset.reason || "—"}</span>
+                <span><a href={asset.previewUrl} target="_blank" rel="noreferrer">打开</a></span>
+                <div className="admin-actions">
+                  {asset.visibility !== "public" ? <button className="success" onClick={() => void runAssetAction(() => fetch("/api/admin/assets", { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({ assetId: asset.id, visibility: "public" }) }), "设为公共素材失败")}>设公共</button> : null}
+                  {asset.visibility !== "owner" ? <button onClick={() => void runAssetAction(() => fetch("/api/admin/assets", { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({ assetId: asset.id, visibility: "owner" }) }), "恢复为仅本人失败")}>恢复仅本人</button> : null}
+                  {asset.visibility !== "taken_down" ? <button className="danger" onClick={() => setAssetDraft({ assetId: asset.id, visibility: "taken_down", reason: "" })}>下架</button> : null}
+                </div>
+              </div>) : <div className="admin-empty">没有匹配的素材</div>}
+            </div>
+
+            {assetDraft ? <div className="admin-panel">
+              <div className="admin-form-row">
+                <input value={assetDraft.assetId} readOnly placeholder="素材 ID" />
+                <input value={assetDraft.reason} onChange={(event) => setAssetDraft({ ...assetDraft, reason: event.target.value })} placeholder="下架理由（必填，会记进审计）" />
+                <button className="danger" disabled={savingAsset || !assetDraft.reason.trim()} onClick={() => void runAssetAction(() => fetch("/api/admin/assets", { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({ assetId: assetDraft.assetId, visibility: assetDraft.visibility, reason: assetDraft.reason }) }), "下架失败")}>确认下架</button>
+                <button onClick={() => setAssetDraft(null)}>取消</button>
+              </div>
+              <p className="admin-hint">下架后任何人（含上传者）都看不到这个素材，但管理员仍能预览复核。理由必填——这是给用户的交代，也是日后复盘的依据。</p>
+            </div> : null}
+          </> : <div className="admin-empty">素材库加载中…</div>}
+        </section> : null}
+
+        {tab === "projects" ? <section className="admin-panel">
+          {projects ? <>
+            <div className="credits-admin-summary">
+              <b>项目 {projects.summary.returned} 个</b>
+              <span>其中已冻结 {projects.summary.frozen} 个 · 按最近更新倒序</span>
+            </div>
+            <div className="admin-toolbar">
+              <input value={projectQuery} onChange={(event) => setProjectQuery(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") void loadProjects().catch(() => setError("项目列表加载失败")); }} placeholder="搜索项目名、项目 ID 或归属邮箱" />
+              <button className="primary" onClick={() => void loadProjects().catch(() => setError("项目列表加载失败"))}>搜索</button>
+            </div>
+            <p className="admin-hint">后台刻意不提供「删除项目」：删项目会连带删掉画布、任务关联和素材关联，不可逆。要处置异常项目，请改状态为「已冻结」。</p>
+            <div className="admin-table">
+              <div className="admin-table-row head"><span>项目</span><span>归属</span><span>类型</span><span>状态</span><span>进度</span><span>素材</span><span>任务</span><span>更新时间</span><span>操作</span></div>
+              {projects.projects.length ? projects.projects.map((project) => <div className="admin-table-row" key={project.id}>
+                <b title={project.id}>{project.title || "(未命名)"}</b>
+                <span>{project.ownerEmail}</span>
+                <span>{project.type}</span>
+                <span>{project.status}</span>
+                <span>{project.progress}%</span>
+                <span>{project.assetCount}</span>
+                <span>{project.taskCount}</span>
+                <span>{new Date(project.updatedAt).toLocaleString("zh-CN")}</span>
+                <div className="admin-actions">
+                  <select value="" disabled={savingProject === project.id} onChange={(event) => { if (event.target.value) void runProjectAction(project.id, event.target.value); }}>
+                    <option value="">改状态…</option>
+                    {projects.statuses.map((status) => <option key={status} value={status}>{status}</option>)}
+                  </select>
+                  {savingProject === project.id ? <span>处理中…</span> : null}
+                </div>
+              </div>) : <div className="admin-empty">没有匹配的项目</div>}
+            </div>
+          </> : <div className="admin-empty">项目列表加载中…</div>}
         </section> : null}
 
         {tab === "credits" ? <section className="admin-panel credits-admin-panel">

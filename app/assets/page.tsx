@@ -6,8 +6,9 @@ import { useRouter } from "next/navigation";
 import { SiteHeader } from "@/components/SiteHeader";
 
 type AssetRole = "character" | "product" | "scene" | "motion" | "reference_video" | "reference_audio";
-type LibraryAsset = { id: string; role: AssetRole; name: string; mimeType: string; byteSize: number; hidden: boolean; previewUrl: string; createdAt: string };
+type LibraryAsset = { id: string; role: AssetRole; name: string; mimeType: string; byteSize: number; hidden: boolean; previewUrl: string; createdAt: string; isPublic?: boolean };
 type RoleFilter = "all" | AssetRole | "image" | "video" | "audio";
+type LibraryScope = "mine" | "public";
 
 const roleNames: Record<AssetRole, string> = { character: "人物图", product: "关键资产图", scene: "场景图", motion: "动作视频", reference_video: "视频参考", reference_audio: "音频参考" };
 
@@ -49,6 +50,8 @@ function AssetPreview({ asset }: { asset: LibraryAsset }) {
 export default function AssetsPage() {
   const router = useRouter();
   const [assets, setAssets] = useState<LibraryAsset[]>([]);
+  const [publicAssets, setPublicAssets] = useState<LibraryAsset[]>([]);
+  const [scope, setScope] = useState<LibraryScope>("mine");
   const [loading, setLoading] = useState(true);
   const [showHidden, setShowHidden] = useState(false);
   const [roleFilter, setRoleFilter] = useState<RoleFilter>("all");
@@ -68,16 +71,23 @@ export default function AssetsPage() {
         return fetch("/library/assets", { cache: "no-store" });
       })
       .then(async (response) => response?.ok ? response.json() : { assets: [] })
-      .then((payload) => setAssets(Array.isArray(payload?.assets) ? payload.assets : []))
+      .then((payload) => {
+        setAssets(Array.isArray(payload?.assets) ? payload.assets : []);
+        setPublicAssets(Array.isArray(payload?.publicAssets) ? payload.publicAssets : []);
+      })
       .catch(() => setMessage("素材库暂时无法读取，请稍后重试。"))
       .finally(() => setLoading(false));
   }, [router]);
 
-  const visibleAssets = useMemo(() => assets.filter((asset) => {
-    if (showHidden ? !asset.hidden : asset.hidden) return false;
-    if (roleFilter === "all") return true;
-    return (["image", "video", "audio"] as string[]).includes(roleFilter) ? assetKind(asset) === roleFilter : asset.role === roleFilter;
-  }), [assets, roleFilter, showHidden]);
+  const visibleAssets = useMemo(() => {
+    const source = scope === "public" ? publicAssets : assets;
+    return source.filter((asset) => {
+      // 公共素材不存在「我隐藏了它」这回事，隐藏筛选只对自有素材生效。
+      if (scope === "mine" && (showHidden ? !asset.hidden : asset.hidden)) return false;
+      if (roleFilter === "all") return true;
+      return (["image", "video", "audio"] as string[]).includes(roleFilter) ? assetKind(asset) === roleFilter : asset.role === roleFilter;
+    });
+  }, [assets, publicAssets, roleFilter, showHidden, scope]);
 
   async function uploadAsset(file: File) {
     setUploading(true);
@@ -133,6 +143,10 @@ export default function AssetsPage() {
         </div>
       </header>
       <div className="asset-library-toolbar">
+        <div className="asset-library-scope">
+          <button type="button" className={scope === "mine" ? "active" : ""} onClick={() => setScope("mine")}>我的素材 {assets.filter((asset) => !asset.hidden).length}</button>
+          <button type="button" className={scope === "public" ? "active" : ""} onClick={() => { setScope("public"); setShowHidden(false); }}>公共素材 {publicAssets.length}</button>
+        </div>
         <div className="asset-library-filters">
           <button type="button" className={!showHidden && roleFilter === "all" ? "active" : ""} onClick={() => { setShowHidden(false); setRoleFilter("all"); }}>全部</button>
           <button type="button" className={!showHidden && roleFilter === "character" ? "active" : ""} onClick={() => { setShowHidden(false); setRoleFilter("character"); setUploadRole("character"); }}>人物</button>
@@ -140,7 +154,7 @@ export default function AssetsPage() {
           <button type="button" className={!showHidden && roleFilter === "product" ? "active" : ""} onClick={() => { setShowHidden(false); setRoleFilter("product"); setUploadRole("product"); }}>关键道具</button>
           <button type="button" className={!showHidden && roleFilter === "video" ? "active" : ""} onClick={() => { setShowHidden(false); setRoleFilter("video"); }}>视频</button>
           <button type="button" className={!showHidden && roleFilter === "audio" ? "active" : ""} onClick={() => { setShowHidden(false); setRoleFilter("audio"); }}>音频</button>
-          <button type="button" className={showHidden ? "active" : ""} onClick={() => setShowHidden(true)}>已隐藏 {assets.filter((asset) => asset.hidden).length}</button>
+          {scope === "mine" ? <button type="button" className={showHidden ? "active" : ""} onClick={() => setShowHidden(true)}>已隐藏 {assets.filter((asset) => asset.hidden).length}</button> : null}
         </div>
         {message ? <span role="status">{message}</span> : null}
       </div>
@@ -148,9 +162,23 @@ export default function AssetsPage() {
         {visibleAssets.map((asset) => <article className="asset-library-card" key={asset.id}>
           <AssetPreview asset={asset} />
           <div className="asset-library-card-body"><span>{roleNames[asset.role]}</span><b title={asset.name}>{asset.name}</b><small>{formatFileSize(asset.byteSize)} · {new Date(asset.createdAt).toLocaleDateString("zh-CN")}</small></div>
-          <footer>{!asset.hidden ? <button type="button" className="asset-use-button" onClick={() => useInWorkbench(asset)}>用于制作</button> : null}<button type="button" onClick={() => { void setHidden(asset, !asset.hidden); }}>{asset.hidden ? "恢复" : "隐藏"}</button></footer>
+          <footer>
+            {!asset.hidden ? <button type="button" className="asset-use-button" onClick={() => useInWorkbench(asset)}>用于制作</button> : null}
+            {asset.isPublic ? <em className="asset-public-tag">公共素材</em> : <button type="button" onClick={() => { void setHidden(asset, !asset.hidden); }}>{asset.hidden ? "恢复" : "隐藏"}</button>}
+          </footer>
         </article>)}
-      </div> : <div className="asset-library-empty"><b>{showHidden ? "没有已隐藏素材" : roleFilter === "all" ? "还没有可用素材" : `还没有${roleNames[roleFilter as AssetRole] ?? ({ image: "图片", video: "视频", audio: "音频" } as Record<string, string>)[roleFilter]}素材`}</b><span>{showHidden ? "" : "点击右上角上传素材，或从工作台上传。"}</span>{!showHidden ? <label className="asset-empty-upload">选择图片<input type="file" accept="image/jpeg,image/png,image/webp" disabled={uploading} onChange={(event) => { const file = event.target.files?.[0]; if (file) void uploadAsset(file); }} /></label> : null}</div>}
+      </div> : <div className="asset-library-empty">
+        {scope === "public"
+          ? <>
+            <b>还没有公共素材</b>
+            <span>公共素材由管理员在后台「素材库」里挑选上架，上架后全站用户都能直接引用它做视频。</span>
+          </>
+          : <>
+            <b>{showHidden ? "没有已隐藏素材" : roleFilter === "all" ? "还没有可用素材" : `还没有${roleNames[roleFilter as AssetRole] ?? ({ image: "图片", video: "视频", audio: "音频" } as Record<string, string>)[roleFilter]}素材`}</b>
+            <span>{showHidden ? "" : "点击右上角上传素材，或从工作台上传。"}</span>
+            {!showHidden ? <label className="asset-empty-upload">选择图片<input type="file" accept="image/jpeg,image/png,image/webp" disabled={uploading} onChange={(event) => { const file = event.target.files?.[0]; if (file) void uploadAsset(file); }} /></label> : null}
+          </>}
+      </div>}
     </section>
   </main>;
 }

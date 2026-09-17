@@ -3,7 +3,7 @@ import { authCookie, sessionFromToken, validRequestOrigin } from "@/lib/auth";
 import { createVideoTask, listVideoTasks, publicVideoTask } from "@/lib/video-tasks";
 import { publicMimoWorkerAvailability } from "@/lib/mimo-windows-worker";
 import { getProductRouting, validProductRoute } from "@/lib/product-routing";
-import { linkProjectTask, listProjectVideoTasks, ownedProject } from "@/lib/project-workspace";
+import { linkProjectTask, listProjectVideoTasks, writableProject } from "@/lib/project-workspace";
 
 export const runtime = "nodejs";
 
@@ -30,7 +30,9 @@ export async function POST(request: NextRequest) {
     if (!user) return NextResponse.json({ error: "UNAUTHORIZED" }, { status: 401 });
     const body = await request.json().catch(() => ({}));
     const projectId = typeof body.projectId === "string" && body.projectId.trim() ? body.projectId.trim() : null;
-    if (projectId) await ownedProject(user.id, projectId);
+    // 用 writableProject 而不是 ownedProject：冻结项目要在「建任务 + 扣积分」之前就拦住，
+    // 否则用户会被扣了分才收到报错。
+    if (projectId) await writableProject(user.id, projectId);
     if (!Array.isArray(body.assetIds)) return NextResponse.json({ error: "VIDEO_TASK_INVALID" }, { status: 400 });
     const product = validProductRoute(body.product);
     if (!product) return NextResponse.json({ error: "PRODUCT_INVALID" }, { status: 400 });
@@ -64,7 +66,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ task: await publicVideoTask(task) }, { status: 201 });
   } catch (error) {
     const code = error instanceof Error ? error.message : "VIDEO_TASK_CREATE_FAILED";
-    const status = /INVALID|NOT_FOUND|PREFLIGHT|CREDITS|QUOTE|LIMIT|UNSUPPORTED/.test(code) ? 400 : 503;
+    const status = code === "PROJECT_FROZEN" ? 409 : /INVALID|NOT_FOUND|PREFLIGHT|CREDITS|QUOTE|LIMIT|UNSUPPORTED/.test(code) ? 400 : 503;
     return NextResponse.json({ error: code }, { status });
   }
 }

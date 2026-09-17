@@ -84,7 +84,8 @@
     "test": "npm run test:date-display && npm run test:video-task-public-state && npm run test:video-workbench-harness",
     "verify": "bash scripts/verify.sh",
     "verify:win": "pwsh -NoProfile -File scripts/verify.ps1",
-    "check:env": "bash scripts/check-env.sh --keys-only --skip-missing"
+    "check:env": "bash scripts/check-env.sh --keys-only --skip-missing",
+    "test:admin-p1:e2e": "node scripts/admin-p1-assets-projects.e2e.mjs"
   },
   "dependencies": {
     "bullmq": "^5.80.9",
