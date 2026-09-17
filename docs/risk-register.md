@@ -33,6 +33,10 @@
 | R27 | 模型目录全实时拉取，上游抖动即全线不可用 | P1 | `lib/ziyu-api.ts` 原实现 `cache:"no-store"`，下单校验也实时拉 | 紫域抖一下 → 工作台打不开、下单 502 | **已处置**：快照 + 实时兜底（TTL 600s，上游挂则退回旧快照并标记 degraded），见 ADR-0005 | 已处置 2026-09-18 |
 | R28 | 管理员身份依赖代码硬编码默认邮箱 | P1 | `lib/admin.ts:16 DEFAULT_ADMIN_EMAIL`；容器内 `ADMIN_EMAILS` 未配置 | 换环境/改代码可能丢失管理员身份 | **已处置**：`ADMIN_EMAILS=1453637677@qq.com` 显式写入 `.env.production` 与容器 env | 已处置 2026-09-18 |
 | R29 | 后台无法直接给用户加积分 | P2 | `app/admin/page.tsx` 只有充值审批，无加余额动作 | 人工补偿/赠送只能发兑换码 | 需要时再补 admin 动作 | 待定 |
+| R30 | **契约测试 `video-workbench-harness.contract.test.mjs` 红灯** | P1 | `node --test` → `not ok 1`，`QUEUE_PACKET_HASH_MISMATCH`，13 用例 12 通过 | `npm run verify` 无法全绿；harness 快照与哈希算法不一致 | **非本次改动引入**（该测试只 import node 内置 + 两个未改动的 harness 脚本）。未擅自改 fixture 掩盖，待确认是"fixture 被手改"还是"哈希算法变更"后再修 | 老大 |
+| R31 | 后台看板的渠道成本是**估算值** | P2 | `lib/analytics.ts` 按「用户价 ÷ 1.5」反推，无渠道账单回写 | 可能被误当财务凭证 | UI 上强制显示口径说明；真实账单需去紫域后台对账 | 已知并披露 |
+| R32 | 改价后历史订单的可对账性 | P1 | `pricing_rules` 只存当前价，不存历史版本 | 调价后无法回溯"当时按什么价收的" | **已按 ledger 保证**：`credit_ledger` 记录了每笔实际扣费金额与 task_id，退款也按该金额退，与当前价目表无关。因此未引入 `video_tasks` 单价快照列（避免一次 Postgres ALTER 迁移） | 已处置 2026-09-18 |
+| R33 | 模型覆盖配置可能残留 | P2 | 紫域下架模型后 `model_overrides` 仍留记录 | 后台出现"渠道已移除"的僵尸配置 | 合并目录会把这类标为 `source=override_only` 并在后台显示，源站不展示、下单返回 `MODEL_NOT_FOUND`；后台可一键清除 | 已处置 2026-09-18 |
 
 ---
 

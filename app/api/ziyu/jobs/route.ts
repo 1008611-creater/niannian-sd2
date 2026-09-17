@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { authCookie, sessionFromToken, validRequestOrigin } from "@/lib/auth";
-import { listZiyuJobs, listZiyuModels, ZiyuApiError } from "@/lib/ziyu-api";
+import { catalogModelById } from "@/lib/model-catalog";
+import { listZiyuJobs, ZiyuApiError } from "@/lib/ziyu-api";
 import { resolveDurationSeconds, submitBilledZiyuJob, ZiyuBillingError } from "@/lib/ziyu-billing";
 import { ziyuPromptMaxLength } from "@/lib/ziyu-contract";
 
@@ -30,11 +31,16 @@ export async function POST(request: NextRequest) {
     let modelLabel = typeof body?.modelId === "string" && body.modelId ? body.modelId : "ziyu-default";
     // 未显式传时长时，按模型支持的第一档计费，避免"按 10 秒扣钱、渠道按 5 秒出片"。
     let modelDefaultDuration: number | undefined;
+    let modelSurchargePercentValue = 0;
     if (body.modelId) {
-      const model = (await listZiyuModels()).find((item) => item.id === body.modelId);
-      if (!model || !model.modes.includes(mode)) return NextResponse.json({ error: "MODEL_MODE_NOT_ALLOWED" }, { status: 400 });
+      // 用合并了后台覆盖的目录校验：下架的模型渠道还能用，但源站不能下单。
+      const model = await catalogModelById(String(body.modelId));
+      if (!model || model.source !== "channel") return NextResponse.json({ error: "MODEL_NOT_FOUND" }, { status: 400 });
+      if (!model.enabled) return NextResponse.json({ error: "MODEL_DISABLED" }, { status: 400 });
+      if (!model.modes.includes(mode)) return NextResponse.json({ error: "MODEL_MODE_NOT_ALLOWED" }, { status: 400 });
       promptLimit = ziyuPromptMaxLength(model.promptMaxLength);
       modelLabel = model.id;
+      modelSurchargePercentValue = model.surchargePercent;
       const first = Array.isArray(model.allowedDurations) ? Number(model.allowedDurations[0]) : Number.NaN;
       if (Number.isInteger(first)) modelDefaultDuration = first;
       if (body.duration && model.allowedDurations.length && !model.allowedDurations.includes(Number.parseInt(String(body.duration), 10))) return NextResponse.json({ error: "DURATION_NOT_ALLOWED" }, { status: 400 });
@@ -66,6 +72,7 @@ export async function POST(request: NextRequest) {
       durationSeconds: resolveDurationSeconds(body?.duration ?? modelDefaultDuration),
       aspectRatio: typeof body.ratio === "string" && body.ratio ? body.ratio : "16:9",
       modelLabel,
+      surchargePercent: modelSurchargePercentValue,
     });
     return NextResponse.json(result, { status: 202 });
   } catch (error) {

@@ -421,6 +421,35 @@ const schema = `
   );
   CREATE INDEX IF NOT EXISTS auth_rate_events_lookup
     ON auth_rate_events(key_hash, created_at);
+  CREATE TABLE IF NOT EXISTS pricing_rules (
+    id TEXT PRIMARY KEY,
+    mode TEXT NOT NULL,
+    credits_per_second INTEGER,
+    flat_credits INTEGER,
+    min_seconds INTEGER NOT NULL DEFAULT 1,
+    max_seconds INTEGER NOT NULL DEFAULT 30,
+    enabled INTEGER NOT NULL DEFAULT 1,
+    note TEXT,
+    updated_by TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+  );
+  CREATE INDEX IF NOT EXISTS pricing_rules_mode_enabled
+    ON pricing_rules(mode, enabled);
+  CREATE TABLE IF NOT EXISTS model_overrides (
+    model_id TEXT PRIMARY KEY,
+    display_name TEXT,
+    enabled INTEGER NOT NULL DEFAULT 1,
+    sort_order INTEGER NOT NULL DEFAULT 0,
+    tags TEXT,
+    surcharge_percent INTEGER NOT NULL DEFAULT 0,
+    note TEXT,
+    updated_by TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+  );
+  CREATE INDEX IF NOT EXISTS model_overrides_enabled
+    ON model_overrides(enabled, sort_order);
 `;
 
 async function database() {

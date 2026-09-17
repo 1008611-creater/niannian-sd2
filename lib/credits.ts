@@ -1,41 +1,29 @@
 import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { createId, DatabaseTransaction, dbAll, dbOne, dbRun, dbTransaction, timestamp } from "@/lib/auth";
+import {
+  ensurePricingLoaded,
+  pricingCostFor,
+  pricingCoverage,
+  pricingModes,
+  pricingRevision,
+  pricingTable,
+  PRICING_MAX_SECONDS,
+  PRICING_MIN_SECONDS,
+  type PricingMode,
+} from "@/lib/pricing";
 
-export const serviceModes = ["automatic", "manual"] as const;
-export type ServiceMode = (typeof serviceModes)[number];
+export const serviceModes = pricingModes;
+export type ServiceMode = PricingMode;
 
 /**
- * 渠道成本按秒线性计价：4 渠道点/秒。
- * 原表只覆盖 4~15 秒，而紫域实际支持 1~30 秒 —— 选 16~30 秒会抛
- * CREDIT_QUOTE_INVALID，等于把用户挡在门外。改为按秒线性生成 1~30，
- * 4~15 秒的价格与原来完全一致（4×4=16 … 15×4=60），不涨价、只补齐。
+ * 价目表现在存在 pricing_rules 表里（见 lib/pricing.ts），后台改价即时生效。
+ * 这里只保留渠道侧的硬边界常量，供入参收敛用。
  */
-const CHANNEL_COST_PER_SECOND = 4;
-export const MIN_BILLABLE_DURATION_SECONDS = 1;
-export const MAX_BILLABLE_DURATION_SECONDS = 30;
+export const MIN_BILLABLE_DURATION_SECONDS = PRICING_MIN_SECONDS;
+export const MAX_BILLABLE_DURATION_SECONDS = PRICING_MAX_SECONDS;
 
-const automaticCosts: Record<number, number> = Object.fromEntries(
-  Array.from(
-    { length: MAX_BILLABLE_DURATION_SECONDS - MIN_BILLABLE_DURATION_SECONDS + 1 },
-    (_, index) => {
-      const duration = MIN_BILLABLE_DURATION_SECONDS + index;
-      return [duration, duration * CHANNEL_COST_PER_SECOND];
-    },
-  ),
-);
-const manualCosts: Record<number, number> = automaticCosts;
 const ldxpPackages = [100, 300, 500, 1000] as const;
 const rechargeStatuses = ["pending", "approved", "rejected"] as const;
-const channelCreditMultiplier = 1.5;
-
-function customerCosts(costs: Record<number, number>) {
-  return Object.fromEntries(
-    Object.entries(costs).map(([duration, cost]) => [duration, Math.ceil(cost * channelCreditMultiplier)]),
-  ) as Record<number, number>;
-}
-
-const customerAutomaticCosts = customerCosts(automaticCosts);
-const customerManualCosts = customerCosts(manualCosts);
 
 type WalletRow = { balance: number | string };
 type LedgerRow = {
@@ -69,18 +57,25 @@ export function validServiceMode(value: unknown): ServiceMode | null {
   return typeof value === "string" && serviceModes.includes(value as ServiceMode) ? value as ServiceMode : null;
 }
 
+/**
+ * 同步取价：读内存里的价目表快照。冷启动还没加载完时用内置默认值兜底，
+ * 所以这里永远不会因为"库还没ready"而变成 undefined。
+ * 真正扣费前调用方会先 await ensurePricingLoaded()，保证用的是库里最新价。
+ */
 export function taskCreditCost(serviceMode: ServiceMode, durationSeconds: number) {
-  const costs = serviceMode === "manual" ? customerManualCosts : customerAutomaticCosts;
-  const cost = costs[durationSeconds];
-  if (!Number.isInteger(cost) || cost <= 0) throw new Error("CREDIT_QUOTE_INVALID");
+  const cost = pricingCostFor(serviceMode, durationSeconds);
+  if (cost === null) throw new Error("CREDIT_QUOTE_INVALID");
   return cost;
 }
 
 export function creditPricing() {
   const shopUrl = process.env.LDXP_SHOP_URL?.trim() || null;
+  const table = pricingTable();
   return {
-    automatic: customerAutomaticCosts,
-    manual: customerManualCosts,
+    automatic: table.automatic,
+    manual: table.manual,
+    coverage: pricingCoverage(),
+    revision: pricingRevision(),
     recharge: {
       yuanPerCredit: 0.01,
       packages: ldxpPackages,
@@ -163,6 +158,7 @@ function publicRecharge(row: RechargeRow) {
 }
 
 export async function getCreditSummary(userId: string) {
+  await ensurePricingLoaded();
   await ensureWallet(userId);
   const [wallet, ledger, requests] = await Promise.all([
     dbOne<WalletRow>("SELECT balance FROM user_credits WHERE user_id = ? LIMIT 1", [userId]),
@@ -177,8 +173,19 @@ export async function getCreditSummary(userId: string) {
   };
 }
 
-export async function reserveTaskCredits(input: { userId: string; taskId: string; serviceMode: ServiceMode; durationSeconds: number }) {
-  const cost = taskCreditCost(input.serviceMode, input.durationSeconds);
+export async function reserveTaskCredits(input: {
+  userId: string;
+  taskId: string;
+  serviceMode: ServiceMode;
+  durationSeconds: number;
+  /** 模型级加价百分比（后台 model_overrides.surcharge_percent），0 表示不加价。 */
+  surchargePercent?: number;
+}) {
+  // 真正动钱之前先拉一次最新价目表，避免用到冷启动时的默认值。
+  await ensurePricingLoaded();
+  const base = taskCreditCost(input.serviceMode, input.durationSeconds);
+  const surcharge = Math.trunc(Number(input.surchargePercent ?? 0));
+  const cost = surcharge === 0 ? base : Math.max(1, Math.ceil(base * (1 + surcharge / 100)));
   return dbTransaction(async (db) => {
     await ensureWallet(input.userId, db);
     const changed = await db.run(

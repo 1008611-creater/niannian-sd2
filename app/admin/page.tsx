@@ -122,6 +122,88 @@ const mimoChannelStateNames: Record<string, string> = {
   authentication_failed: "登录已失效", unreachable: "渠道不可达",
 };
 
+type PricingRuleView = {
+  id: string; mode: "automatic" | "manual"; creditsPerSecond: number | null; flatCredits: number | null;
+  minSeconds: number; maxSeconds: number; enabled: boolean; note: string | null; updatedBy: string | null;
+  createdAt: string; updatedAt: string; shadowed: boolean;
+};
+type PricingSnapshot = {
+  rules: PricingRuleView[];
+  table: { automatic: Record<string, number>; manual: Record<string, number> };
+  coverage: { minSeconds: number; maxSeconds: number; missing: { automatic: number[]; manual: number[] }; complete: boolean };
+  revision: { updatedAt: string | null; loadedAt: number | null; source: "database" | "default" };
+  bounds: { minSeconds: number; maxSeconds: number };
+};
+type PricingDraft = {
+  id: string; mode: "automatic" | "manual"; kind: "per_second" | "flat";
+  creditsPerSecond: string; flatCredits: string; minSeconds: string; maxSeconds: string; enabled: boolean; note: string;
+};
+const pricingModeNames: Record<string, string> = { automatic: "自动制作", manual: "人工兜底" };
+
+function emptyDraft(mode: "automatic" | "manual" = "automatic"): PricingDraft {
+  return { id: "", mode, kind: "per_second", creditsPerSecond: "6", flatCredits: "", minSeconds: "1", maxSeconds: "30", enabled: true, note: "" };
+}
+
+type CatalogModelView = {
+  id: string; name: string; displayName: string; type: string; modes: string[];
+  allowedDurations: number[]; allowedRatios: string[]; resolution: string;
+  enabled: boolean; sortOrder: number; tags: string[]; surchargePercent: number;
+  note: string | null; source: "channel" | "override_only"; override: boolean;
+};
+type ModelCatalogSnapshot = {
+  models: CatalogModelView[]; channelModelCount: number; overrideCount: number; channelError: string | null;
+  summary: { total: number; enabled: number; disabled: number; staleOverrides: number };
+};
+type ModelDraft = {
+  modelId: string; displayName: string; enabled: boolean;
+  sortOrder: string; tags: string; surchargePercent: string; note: string;
+};
+type AnalyticsSnapshot = {
+  totals: { users: number; projects: number; tasks: number; completed: number; failed: number; completionRate: number | null; activeUsers14d: number };
+  credits: {
+    consumed: number; toppedUp: number; outstanding: number; yuanPerCredit: number;
+    revenueYuan: number; channelCostYuan: number; grossMarginYuan: number; costBasis: string;
+  };
+  trend: {
+    days: number;
+    signups: { day: string; value: number }[];
+    tasks: { day: string; value: number }[];
+    creditsConsumed: { day: string; value: number }[];
+    creditsToppedUp: { day: string; value: number }[];
+  };
+  breakdown: {
+    failureReasons: { name: string; value: number }[];
+    topModels: { name: string; value: number }[];
+    channels: { name: string; value: number }[];
+  };
+};
+
+function draftFromModel(model: CatalogModelView): ModelDraft {
+  return {
+    modelId: model.id,
+    displayName: model.displayName === model.name ? "" : model.displayName,
+    enabled: model.enabled,
+    sortOrder: String(model.sortOrder),
+    tags: model.tags.join("、"),
+    surchargePercent: String(model.surchargePercent),
+    note: model.note ?? "",
+  };
+}
+
+function draftFromRule(rule: PricingRuleView): PricingDraft {
+  return {
+    id: rule.id,
+    mode: rule.mode,
+    kind: rule.flatCredits === null ? "per_second" : "flat",
+    creditsPerSecond: String(rule.creditsPerSecond ?? ""),
+    flatCredits: String(rule.flatCredits ?? ""),
+    minSeconds: String(rule.minSeconds),
+    maxSeconds: String(rule.maxSeconds),
+    enabled: rule.enabled,
+    note: rule.note ?? "",
+  };
+}
+
 function taskAge(minutes: number) {
   if (minutes < 1) return "刚刚更新";
   if (minutes < 60) return `${minutes} 分钟未更新`;
@@ -132,7 +214,7 @@ function taskAge(minutes: number) {
 export default function AdminPage() {
   const router = useRouter();
   const [overview, setOverview] = useState<Overview | null>(null);
-  const [tab, setTab] = useState<"tasks" | "users" | "credits" | "channels" | "audit">("tasks");
+  const [tab, setTab] = useState<"tasks" | "data" | "users" | "pricing" | "models" | "credits" | "channels" | "audit">("tasks");
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("all");
   const [focus, setFocus] = useState<"all" | "attention" | "overdue" | "manual" | "qa">("attention");
@@ -150,6 +232,14 @@ export default function AdminPage() {
   const [outputReview, setOutputReview] = useState<AdminTask | null>(null);
   const [productRouting, setProductRouting] = useState<ProductRouting | null>(null);
   const [savingProductRoute, setSavingProductRoute] = useState("");
+  const [pricing, setPricing] = useState<PricingSnapshot | null>(null);
+  const [pricingDraft, setPricingDraft] = useState<PricingDraft | null>(null);
+  const [savingPricing, setSavingPricing] = useState(false);
+  const [catalog, setCatalog] = useState<ModelCatalogSnapshot | null>(null);
+  const [modelDraft, setModelDraft] = useState<ModelDraft | null>(null);
+  const [savingModel, setSavingModel] = useState(false);
+  const [modelQuery, setModelQuery] = useState("");
+  const [analytics, setAnalytics] = useState<AnalyticsSnapshot | null>(null);
 
   const load = useCallback(async () => {
     setError("");
@@ -171,11 +261,129 @@ export default function AdminPage() {
     setProductRouting(data.routing);
   }, []);
 
+  const loadPricing = useCallback(async () => {
+    const response = await fetch("/api/admin/pricing", { cache: "no-store" });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || "PRICING_UNAVAILABLE");
+    setPricing(data);
+  }, []);
+
   useEffect(() => {
     Promise.all([load(), loadProductRouting()]).catch(() => setError("管理员数据加载失败，请刷新重试"));
     const timer = window.setInterval(() => { load().catch(() => undefined); loadProductRouting().catch(() => undefined); }, 30_000);
     return () => window.clearInterval(timer);
   }, [load, loadProductRouting]);
+
+  const loadModels = useCallback(async () => {
+    const response = await fetch("/api/admin/models", { cache: "no-store" });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || "MODEL_CATALOG_UNAVAILABLE");
+    setCatalog(data);
+  }, []);
+
+  const loadAnalytics = useCallback(async () => {
+    const response = await fetch("/api/admin/analytics", { cache: "no-store" });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || "ANALYTICS_UNAVAILABLE");
+    setAnalytics(data);
+  }, []);
+
+  useEffect(() => {
+    if (tab === "pricing") loadPricing().catch(() => setError("价目表加载失败，请刷新重试"));
+    if (tab === "models") loadModels().catch(() => setError("模型目录加载失败，请刷新重试"));
+    if (tab === "data") loadAnalytics().catch(() => setError("经营数据加载失败，请刷新重试"));
+  }, [tab, loadPricing, loadModels, loadAnalytics]);
+
+  async function savePricingRule() {
+    if (!pricingDraft) return;
+    setSavingPricing(true);
+    setError("");
+    try {
+      const response = await fetch("/api/admin/pricing", {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          ...(pricingDraft.id ? { id: pricingDraft.id } : {}),
+          mode: pricingDraft.mode,
+          creditsPerSecond: pricingDraft.kind === "per_second" ? pricingDraft.creditsPerSecond : null,
+          flatCredits: pricingDraft.kind === "flat" ? pricingDraft.flatCredits : null,
+          minSeconds: pricingDraft.minSeconds,
+          maxSeconds: pricingDraft.maxSeconds,
+          enabled: pricingDraft.enabled,
+          note: pricingDraft.note,
+        }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "PRICING_UPDATE_FAILED");
+      setPricing(data.snapshot);
+      setPricingDraft(null);
+    } catch (actionError) {
+      setError(actionError instanceof Error ? `价目保存失败：${actionError.message}` : "价目保存失败");
+    } finally {
+      setSavingPricing(false);
+    }
+  }
+
+  async function runPricingAction(action: () => Promise<Response>, failure: string) {
+    setSavingPricing(true);
+    setError("");
+    try {
+      const response = await action();
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "PRICING_UPDATE_FAILED");
+      if (data.snapshot) setPricing(data.snapshot);
+      else await loadPricing();
+    } catch (actionError) {
+      setError(actionError instanceof Error ? `${failure}：${actionError.message}` : failure);
+    } finally {
+      setSavingPricing(false);
+    }
+  }
+
+  async function saveModelOverride() {
+    if (!modelDraft) return;
+    setSavingModel(true);
+    setError("");
+    try {
+      const response = await fetch("/api/admin/models", {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          modelId: modelDraft.modelId,
+          displayName: modelDraft.displayName,
+          enabled: modelDraft.enabled,
+          sortOrder: modelDraft.sortOrder,
+          tags: modelDraft.tags,
+          surchargePercent: modelDraft.surchargePercent,
+          note: modelDraft.note,
+        }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "MODEL_UPDATE_FAILED");
+      setCatalog(data.snapshot);
+      setModelDraft(null);
+    } catch (actionError) {
+      setError(actionError instanceof Error ? `模型保存失败：${actionError.message}` : "模型保存失败");
+    } finally {
+      setSavingModel(false);
+    }
+  }
+
+  async function runModelAction(action: () => Promise<Response>, failure: string) {
+    setSavingModel(true);
+    setError("");
+    try {
+      const response = await action();
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "MODEL_UPDATE_FAILED");
+      if (data.snapshot) setCatalog(data.snapshot);
+      else await loadModels();
+    } catch (actionError) {
+      setError(actionError instanceof Error ? `${failure}：${actionError.message}` : failure);
+    } finally {
+      setSavingModel(false);
+    }
+  }
 
   async function saveProductRoute(product: keyof ProductRouting, channel: string | null) {
     setSavingProductRoute(product);
@@ -206,6 +414,11 @@ export default function AdminPage() {
       || (focus === "qa" && task.status === "blocked" && task.blocker === "awaiting_content_qa");
     return matches && focusMatches && (status === "all" || task.status === status);
   }), [overview, query, status, focus]);
+
+  const visibleModels = useMemo(() => (catalog?.models ?? []).filter((model) => {
+    const term = modelQuery.trim().toLowerCase();
+    return !term || model.id.toLowerCase().includes(term) || model.displayName.toLowerCase().includes(term);
+  }), [catalog, modelQuery]);
 
   function openTaskFocus(nextFocus: typeof focus) {
     setTab("tasks");
@@ -423,7 +636,10 @@ export default function AdminPage() {
         </section>
         <nav className="admin-tabs">
           <button className={tab === "tasks" ? "active" : ""} onClick={() => setTab("tasks")}>任务中心</button>
+          <button className={tab === "data" ? "active" : ""} onClick={() => setTab("data")}>数据看板</button>
           <button className={tab === "users" ? "active" : ""} onClick={() => setTab("users")}>用户管理</button>
+          <button className={tab === "pricing" ? "active" : ""} onClick={() => setTab("pricing")}>定价管理</button>
+          <button className={tab === "models" ? "active" : ""} onClick={() => setTab("models")}>模型管理</button>
           <button className={tab === "credits" ? "active" : ""} onClick={() => setTab("credits")}>积分与充值</button>
           <button className={tab === "channels" ? "active" : ""} onClick={() => setTab("channels")}>渠道状态</button>
           <button className={tab === "audit" ? "active" : ""} onClick={() => setTab("audit")}>审计记录</button>
@@ -465,7 +681,168 @@ export default function AdminPage() {
           </article>) : <div className="admin-empty">当前筛选条件下没有任务</div>}</div>
         </section> : null}
 
+        {tab === "data" ? <section className="admin-panel">
+          {analytics ? <>
+            <div className="analytics-cards">
+              <article><span>注册用户</span><b>{analytics.totals.users}</b><small>14 天内有出片行为 {analytics.totals.activeUsers14d} 人</small></article>
+              <article><span>累计任务</span><b>{analytics.totals.tasks}</b><small>已完成 {analytics.totals.completed} · 失败/阻塞 {analytics.totals.failed}</small></article>
+              <article><span>完成率</span><b>{analytics.totals.completionRate === null ? "—" : `${Math.round(analytics.totals.completionRate * 100)}%`}</b><small>已完成 ÷ 全部任务</small></article>
+              <article><span>消耗积分</span><b>{analytics.credits.consumed}</b><small>用户已充值 {analytics.credits.toppedUp} · 账上沉淀 {analytics.credits.outstanding}</small></article>
+              <article><span>收入（估）</span><b>{analytics.credits.revenueYuan} 元</b><small>按 {analytics.credits.yuanPerCredit} 元/积分折算</small></article>
+              <article><span>渠道成本（估）</span><b>{analytics.credits.channelCostYuan} 元</b><small>毛利约 {analytics.credits.grossMarginYuan} 元</small></article>
+            </div>
+            <p className="admin-hint">成本口径：{analytics.credits.costBasis}。要看真实账单请去紫域后台对账。</p>
+            {[["每日新增用户", analytics.trend.signups], ["每日任务数", analytics.trend.tasks], ["每日消耗积分", analytics.trend.creditsConsumed], ["每日充值积分", analytics.trend.creditsToppedUp]].map(([label, series]) => {
+              const rows = series as { day: string; value: number }[];
+              const max = Math.max(1, ...rows.map((item) => item.value));
+              return <div key={label as string}>
+                <div className="credits-admin-summary"><b>{label as string}</b><span>近 {analytics.trend.days} 天</span></div>
+                <div className="analytics-trend">
+                  {rows.map((item) => <div className="analytics-bar" key={item.day}>
+                    <em>{item.day.slice(5)}</em>
+                    <i style={{ width: `${Math.max(2, Math.round((item.value / max) * 100))}%` }} />
+                    <b>{item.value}</b>
+                  </div>)}
+                </div>
+              </div>;
+            })}
+            <div className="credits-admin-summary"><b>失败原因分布</b><span>取状态为 failed/blocked 的任务</span></div>
+            <div className="admin-table">
+              <div className="admin-table-row head"><span>原因</span><span>次数</span></div>
+              {analytics.breakdown.failureReasons.length ? analytics.breakdown.failureReasons.map((row) => <div className="admin-table-row" key={row.name}><b>{row.name}</b><span>{row.value}</span></div>) : <div className="admin-empty">暂无失败任务</div>}
+            </div>
+            <div className="credits-admin-summary"><b>调用最多的模型</b><span>Top {analytics.breakdown.topModels.length}</span></div>
+            <div className="admin-table">
+              <div className="admin-table-row head"><span>模型</span><span>任务数</span></div>
+              {analytics.breakdown.topModels.length ? analytics.breakdown.topModels.map((row) => <div className="admin-table-row" key={row.name}><b>{row.name}</b><span>{row.value}</span></div>) : <div className="admin-empty">还没有任务</div>}
+            </div>
+            <div className="credits-admin-summary"><b>渠道分布</b><span>按 video_tasks.channel 统计</span></div>
+            <div className="admin-table">
+              <div className="admin-table-row head"><span>渠道</span><span>任务数</span></div>
+              {analytics.breakdown.channels.length ? analytics.breakdown.channels.map((row) => <div className="admin-table-row" key={row.name}><b>{row.name}</b><span>{row.value}</span></div>) : <div className="admin-empty">还没有任务</div>}
+            </div>
+          </> : <div className="admin-empty">经营数据加载中…</div>}
+        </section> : null}
+
         {tab === "users" ? <section className="admin-panel"><div className="admin-table"><div className="admin-table-row head"><span>用户邮箱</span><span>身份</span><span>项目</span><span>任务</span><span>注册时间</span></div>{overview.users.map((user) => <div className="admin-table-row" key={user.id}><b>{user.email}</b><span>{user.isAdmin ? "管理员" : "普通用户"}</span><span>{user.projectCount}</span><span>{user.taskCount}</span><span>{new Date(user.createdAt).toLocaleString("zh-CN")}</span></div>)}</div></section> : null}
+
+        {tab === "pricing" ? <section className="admin-panel">
+          {pricing ? <>
+            <div className="credits-admin-summary">
+              <b>价目来源</b>
+              <span>{pricing.revision.source === "database" ? "数据库 pricing_rules" : "内置默认值（库里还没有规则）"}{pricing.revision.updatedAt ? ` · 最后改价 ${new Date(pricing.revision.updatedAt).toLocaleString("zh-CN")}` : ""}</span>
+            </div>
+            {pricing.rules.some((rule) => rule.shadowed) ? <div className="admin-blocker">
+              有规则被遮蔽：{pricing.rules.filter((rule) => rule.shadowed).map((rule) => `${pricingModeNames[rule.mode] ?? rule.mode} ${rule.minSeconds}~${rule.maxSeconds}s`).join("、")}。
+              它们和另一条更晚保存的规则完全同区间，1~30 秒里没有任何一秒会命中 —— 改了也不生效，建议删掉或改窄区间。
+            </div> : null}
+            {pricing.coverage.complete ? null : <div className="admin-blocker">
+              报价缺口：自动模式缺 {pricing.coverage.missing.automatic.join("、") || "无"} 秒；人工模式缺 {pricing.coverage.missing.manual.join("、") || "无"} 秒。
+              缺哪秒，用户选哪秒就会下单失败（CREDIT_QUOTE_INVALID）。
+            </div>}
+            <div className="admin-toolbar">
+              <button className="primary" onClick={() => setPricingDraft(emptyDraft())}>新增规则</button>
+              <button disabled={savingPricing} onClick={() => void runPricingAction(() => fetch("/api/admin/pricing", { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "restore_default" }) }), "恢复默认价失败")}>恢复默认价</button>
+              {savingPricing ? <span>处理中…</span> : null}
+            </div>
+            <div className="admin-table">
+              <div className="admin-table-row head"><span>模式</span><span>计价方式</span><span>区间</span><span>状态</span><span>备注</span><span>最后修改</span><span>操作</span></div>
+              {pricing.rules.length ? pricing.rules.map((rule) => <div className="admin-table-row" key={rule.id}>
+                <b>{pricingModeNames[rule.mode] ?? rule.mode}</b>
+                <span>{rule.flatCredits !== null ? `一口价 ${rule.flatCredits} 积分` : `${rule.creditsPerSecond} 积分/秒`}</span>
+                <span>{rule.minSeconds}~{rule.maxSeconds} 秒</span>
+                <span>{rule.shadowed ? "被遮蔽（不生效）" : rule.enabled ? "启用" : "停用"}</span>
+                <span>{rule.note || "—"}</span>
+                <span>{rule.updatedBy ?? "系统"} · {new Date(rule.updatedAt).toLocaleString("zh-CN")}</span>
+                <div className="admin-actions">
+                  <button onClick={() => setPricingDraft(draftFromRule(rule))}>编辑</button>
+                  <button onClick={() => void runPricingAction(() => fetch("/api/admin/pricing", { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({ id: rule.id, mode: rule.mode, creditsPerSecond: rule.creditsPerSecond, flatCredits: rule.flatCredits, minSeconds: rule.minSeconds, maxSeconds: rule.maxSeconds, enabled: !rule.enabled, note: rule.note }) }), "状态切换失败")}>{rule.enabled ? "停用" : "启用"}</button>
+                  <button className="danger" onClick={() => void runPricingAction(() => fetch(`/api/admin/pricing?id=${encodeURIComponent(rule.id)}`, { method: "DELETE" }), "删除失败")}>删除</button>
+                </div>
+              </div>) : <div className="admin-empty">还没有任何定价规则</div>}
+            </div>
+
+            {pricingDraft ? <div className="admin-panel">
+              <div className="admin-form-row">
+                <select value={pricingDraft.mode} onChange={(event) => setPricingDraft({ ...pricingDraft, mode: event.target.value as "automatic" | "manual" })}>
+                  <option value="automatic">自动制作</option><option value="manual">人工兜底</option>
+                </select>
+                <select value={pricingDraft.kind} onChange={(event) => setPricingDraft({ ...pricingDraft, kind: event.target.value as "per_second" | "flat" })}>
+                  <option value="per_second">按秒计价</option><option value="flat">一口价</option>
+                </select>
+                {pricingDraft.kind === "per_second"
+                  ? <input value={pricingDraft.creditsPerSecond} onChange={(event) => setPricingDraft({ ...pricingDraft, creditsPerSecond: event.target.value })} placeholder="每秒积分" />
+                  : <input value={pricingDraft.flatCredits} onChange={(event) => setPricingDraft({ ...pricingDraft, flatCredits: event.target.value })} placeholder="一口价积分" />}
+                <input value={pricingDraft.minSeconds} onChange={(event) => setPricingDraft({ ...pricingDraft, minSeconds: event.target.value })} placeholder="最小秒" />
+                <input value={pricingDraft.maxSeconds} onChange={(event) => setPricingDraft({ ...pricingDraft, maxSeconds: event.target.value })} placeholder="最大秒" />
+                <input value={pricingDraft.note} onChange={(event) => setPricingDraft({ ...pricingDraft, note: event.target.value })} placeholder="备注（如：长片折扣）" />
+                <label><input type="checkbox" checked={pricingDraft.enabled} onChange={(event) => setPricingDraft({ ...pricingDraft, enabled: event.target.checked })} /> 启用</label>
+                <button className="primary" disabled={savingPricing} onClick={() => void savePricingRule()}>保存</button>
+                <button onClick={() => setPricingDraft(null)}>取消</button>
+              </div>
+              <p className="admin-hint">优先级：区间更窄的优先 → 区间一样宽时最近保存的优先 → 再一样则一口价优先。所以「改基础价」请直接编辑默认那条；要叠「25~30 秒 · 一口价 150」做长片折扣，就新增一条窄区间规则。</p>
+            </div> : null}
+
+            <div className="credits-admin-summary"><b>当前生效价（自动模式）</b><span>1 积分 = 0.01 元</span></div>
+            <div className="pricing-preview">
+              {Array.from({ length: pricing.bounds.maxSeconds - pricing.bounds.minSeconds + 1 }, (_, index) => pricing.bounds.minSeconds + index).map((duration) => {
+                const cost = pricing.table.automatic[duration];
+                return <span key={duration} className={cost === undefined ? "missing" : ""}>{duration}s · {cost === undefined ? "无价" : `${cost} 积分 · ${(cost / 100).toFixed(2)} 元`}</span>;
+              })}
+            </div>
+            <p className="admin-hint">改价只影响改价之后下的单；已经在跑的任务退款按当时实际扣掉的积分退还，不受影响。</p>
+          </> : <div className="admin-empty">价目表加载中…</div>}
+        </section> : null}
+
+        {tab === "models" ? <section className="admin-panel">
+          {catalog ? <>
+            <div className="credits-admin-summary">
+              <b>渠道模型 {catalog.channelModelCount} 个</b>
+              <span>上架 {catalog.summary.enabled} · 下架 {catalog.summary.disabled}{catalog.summary.staleOverrides ? ` · 残留配置 ${catalog.summary.staleOverrides}` : ""}</span>
+            </div>
+            {catalog.channelError ? <div className="admin-blocker">渠道模型列表拉取失败：{catalog.channelError}（现在显示的是上次同步的快照加上你的覆盖配置）</div> : null}
+            <div className="admin-toolbar">
+              <input value={modelQuery} onChange={(event) => setModelQuery(event.target.value)} placeholder="搜索模型 ID 或名称" />
+              <select value="" onChange={(event) => { if (event.target.value) setModelDraft(draftFromModel(catalog.models.find((model) => model.id === event.target.value) as CatalogModelView)); }}>
+                <option value="">选择模型来配置…</option>
+                {catalog.models.map((model) => <option key={model.id} value={model.id}>{model.displayName}</option>)}
+              </select>
+            </div>
+            <div className="admin-table">
+              <div className="admin-table-row head"><span>模型</span><span>ID</span><span>能力</span><span>时长档</span><span>状态</span><span>排序</span><span>加价</span><span>标签</span><span>操作</span></div>
+              {visibleModels.length ? visibleModels.map((model) => <div className="admin-table-row" key={model.id}>
+                <b>{model.displayName}</b>
+                <span>{model.id}</span>
+                <span>{model.modes.length ? model.modes.join("/") : "—"}</span>
+                <span>{model.allowedDurations.length ? `${model.allowedDurations[0]}~${model.allowedDurations[model.allowedDurations.length - 1]}s` : "—"}</span>
+                <span>{model.source === "override_only" ? "渠道已移除" : model.enabled ? "上架" : "下架"}</span>
+                <span>{model.sortOrder}</span>
+                <span>{model.surchargePercent ? `+${model.surchargePercent}%` : "—"}</span>
+                <span>{model.tags.length ? model.tags.join("、") : "—"}</span>
+                <div className="admin-actions">
+                  <button onClick={() => setModelDraft(draftFromModel(model))}>配置</button>
+                  <button onClick={() => void runModelAction(() => fetch("/api/admin/models", { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({ modelId: model.id, displayName: model.displayName, enabled: !model.enabled, sortOrder: model.sortOrder, tags: model.tags, surchargePercent: model.surchargePercent, note: model.note }) }), "状态切换失败")}>{model.enabled ? "下架" : "上架"}</button>
+                  {model.override ? <button className="danger" onClick={() => void runModelAction(() => fetch(`/api/admin/models?modelId=${encodeURIComponent(model.id)}`, { method: "DELETE" }), "清除配置失败")}>清除配置</button> : null}
+                </div>
+              </div>) : <div className="admin-empty">没有匹配的模型</div>}
+            </div>
+
+            {modelDraft ? <div className="admin-panel">
+              <div className="admin-form-row">
+                <input value={modelDraft.modelId} readOnly placeholder="模型 ID" />
+                <input value={modelDraft.displayName} onChange={(event) => setModelDraft({ ...modelDraft, displayName: event.target.value })} placeholder="中文显示名（留空用渠道原名）" />
+                <input value={modelDraft.sortOrder} onChange={(event) => setModelDraft({ ...modelDraft, sortOrder: event.target.value })} placeholder="排序（小靠前）" />
+                <input value={modelDraft.surchargePercent} onChange={(event) => setModelDraft({ ...modelDraft, surchargePercent: event.target.value })} placeholder="加价 %" />
+                <input value={modelDraft.tags} onChange={(event) => setModelDraft({ ...modelDraft, tags: event.target.value })} placeholder="标签，顿号分隔" />
+                <input value={modelDraft.note} onChange={(event) => setModelDraft({ ...modelDraft, note: event.target.value })} placeholder="备注" />
+                <label><input type="checkbox" checked={modelDraft.enabled} onChange={(event) => setModelDraft({ ...modelDraft, enabled: event.target.checked })} /> 上架</label>
+                <button className="primary" disabled={savingModel} onClick={() => void saveModelOverride()}>保存</button>
+                <button onClick={() => setModelDraft(null)}>取消</button>
+              </div>
+              <p className="admin-hint">下架只影响源站：渠道里这个模型还能用，但用户看不到也下不了单。加价按「基础价 × (1 + 加价%)」向上取整，下单时生效。</p>
+            </div> : null}
+          </> : <div className="admin-empty">模型目录加载中…</div>}
+        </section> : null}
 
         {tab === "credits" ? <section className="admin-panel credits-admin-panel">
           <div className="credits-admin-summary"><b>用户积分余额</b><span>{overview.credits.wallets.reduce((total, wallet) => total + wallet.balance, 0)} 积分</span></div>

@@ -53,6 +53,8 @@ export type BilledZiyuJobInput = {
   durationSeconds: number;
   aspectRatio: string;
   modelLabel: string;
+  /** 模型级加价百分比，来自后台 model_overrides。默认 0。 */
+  surchargePercent?: number;
 };
 
 async function updateTask(
@@ -119,6 +121,7 @@ export async function submitBilledZiyuJob(input: BilledZiyuJobInput) {
       taskId,
       serviceMode: "automatic",
       durationSeconds,
+      surchargePercent: input.surchargePercent ?? 0,
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "CREDITS_RESERVATION_FAILED";

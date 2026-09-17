@@ -3,6 +3,7 @@ import { mkdir, readFile, rename, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { createId, dbAll, dbOne, dbRun, dbTransaction, timestamp } from "@/lib/auth";
 import { reserveTaskCredits, ServiceMode, taskCreditCost } from "@/lib/credits";
+import { ensurePricingLoaded } from "@/lib/pricing";
 import { dolaReferencePlan, validateDolaPrompt } from "@/lib/dola-channel";
 import { astorieReferencePlan, astorieSkillChain, validAstorieModel } from "@/lib/astorie-channel";
 import { HIGGSFIELD_MODEL, higgsfieldReferencePlan, higgsfieldSkillChain } from "@/lib/higgsfield-channel";
@@ -403,6 +404,8 @@ export async function createVideoTask(input: {
   const allowedChannels = [selectedChannel];
   const promptSha256 = createHash("sha256").update(prompt).digest("hex");
   const serviceMode: ServiceMode = input.serviceMode ?? (input.executionMode === "manual_assist" ? "manual" : "automatic");
+  // 报价来自数据库 pricing_rules，下单前拉一次最新价，别用冷启动的默认值。
+  if (input.chargeCredits) await ensurePricingLoaded();
   const creditCost = input.chargeCredits ? taskCreditCost(serviceMode, input.durationSeconds) : 0;
   const metadata = await Promise.all(assets.map(referenceMetadata));
   const references = assets.map((asset, index) => {
@@ -674,6 +677,7 @@ function ownerAstorieAuthorizationSpec(task: VideoTaskRecord, spec: Record<strin
 }
 
 export async function authorizeOwnedMimoExecution(userId: string, taskId: string) {
+  await ensurePricingLoaded();
   const task = await findOwnedVideoTask(userId, taskId);
   if (!task) throw new Error("VIDEO_TASK_NOT_FOUND");
   if (task.channel !== "mimo" || task.execution_mode !== "codex_skill") throw new Error("MIMO_OWNER_AUTHORIZATION_INVALID");

@@ -1683,3 +1683,25 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .generator-prompt { grid-template-rows: auto auto auto !important; }
 .generator-prompt-heading > small { position: static; }
 .generator-prompt-assets { position: relative; left: auto; right: auto; bottom: auto; min-height: 42px; max-width: 100%; margin-top: 2px; overflow-x: auto; }
+
+/* 后台定价管理 */
+.admin-hint { margin: 8px 0 0; color: var(--muted); font-size: 10px; line-height: 1.8; }
+.admin-form-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
+.admin-form-row input, .admin-form-row select { border: 1px solid #303038; border-radius: 8px; background: #15151b; color: #fff; padding: 10px 12px; outline: none; }
+.admin-form-row input[type="checkbox"] { width: auto; padding: 0; }
+.admin-form-row label { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; color: var(--muted); }
+.pricing-preview { display: flex; flex-wrap: wrap; gap: 8px; }
+.pricing-preview > span { padding: 7px 10px; border: 1px solid var(--line); border-radius: 6px; background: #18191c; font-size: 10px; color: #f2f3f5; }
+.pricing-preview > span.missing { border-color: rgba(185,38,70,.55); color: #ff8ca5; }
+
+/* 后台数据看板 */
+.analytics-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+.analytics-cards > article { display: grid; gap: 5px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 7px; background: #18191c; }
+.analytics-cards > article > span { font-size: 10px; color: var(--muted); }
+.analytics-cards > article > b { font-size: 18px; color: #f2a7b7; }
+.analytics-cards > article > small { font-size: 10px; color: var(--muted); line-height: 1.6; }
+.analytics-trend { display: grid; gap: 5px; margin-top: 8px; }
+.analytics-bar { display: grid; grid-template-columns: 46px 1fr 62px; align-items: center; gap: 10px; font-size: 10px; }
+.analytics-bar > em { font-style: normal; color: var(--muted); }
+.analytics-bar > i { display: block; height: 8px; min-width: 2px; border-radius: 4px; background: linear-gradient(90deg, #6b5cff, #a394ff); }
+.analytics-bar > b { text-align: right; color: #f2f3f5; }
