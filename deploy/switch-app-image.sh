@@ -5,11 +5,13 @@
 #       不能用 docker compose up，否则会另起空 Postgres。这里沿用"取旧容器 env + 换镜像重建"。
 #
 # 用法：
-#   ssh haika-kidswear-1757 'bash -s -- niannian-sd2:billing-20260918-r1' < deploy/switch-app-image.sh
-# 不带参数则默认用 TARGET_IMAGE 变量（下面可改）
+#   ssh haika-kidswear-1757 'bash -s -- <镜像:标签> [KEY=VALUE ...]' < deploy/switch-app-image.sh
+# 额外的 KEY=VALUE 会覆盖同名变量，并同步写入 .env.production（先备份），避免下次重建时丢失。
 set -uo pipefail
 
 TARGET_IMAGE="${1:-${TARGET_IMAGE:-}}"
+shift 2>/dev/null || true
+EXTRA_ENV=("$@")
 D=/srv/kidswear-data/staging/niannian-sd2-4998bd8
 STAMP=$(date +%Y%m%d-%H%M%S)
 
@@ -32,6 +34,24 @@ docker inspect niannian-sd2-app --format '{{range .Config.Env}}{{.}}{{"\n"}}{{en
 chmod 600 "$NEWENV"
 echo "  变量总数：$(wc -l < "$NEWENV")"
 echo "  DATABASE_URL：$(grep -cE '^DATABASE_URL=' "$NEWENV") 条"
+
+if [ ${#EXTRA_ENV[@]} -gt 0 ]; then
+  echo ""
+  echo "=== 1b. 追加/覆盖环境变量（同时写入 .env.production）==="
+  cp "$D/.env.production" "$D/.env.production.bak.$STAMP"
+  for kv in "${EXTRA_ENV[@]}"; do
+    k="${kv%%=*}"
+    grep -v "^${k}=" "$NEWENV" > "$NEWENV.tmp" 2>/dev/null || true
+    [ -f "$NEWENV.tmp" ] && mv "$NEWENV.tmp" "$NEWENV"
+    printf '%s\n' "$kv" >> "$NEWENV"
+
+    grep -v "^${k}=" "$D/.env.production" > "$D/.env.production.tmp" 2>/dev/null || true
+    [ -f "$D/.env.production.tmp" ] && mv "$D/.env.production.tmp" "$D/.env.production"
+    printf '%s\n' "$kv" >> "$D/.env.production"
+    echo "  $k 已设置（值长度 ${#kv}）  .env.production 备份：.bak.$STAMP"
+  done
+  chmod 600 "$D/.env.production"
+fi
 
 echo ""
 echo "=== 2. 保留旧容器 ==="

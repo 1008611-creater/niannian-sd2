@@ -92,9 +92,77 @@ function normalizeModel(model: Partial<ZiyuModel>): ZiyuModel | null {
   };
 }
 
-export async function listZiyuModels() {
+/**
+ * 模型目录同步策略：**快照 + 实时兜底**（老大 2026-09-18 定，见 ADR-0005）。
+ *
+ * 原来每次调用都实时打紫域，连下单校验 modelId 都要再拉一次 —— 紫域抖一下，
+ * 用户连工作台都打不开、下单直接 502。现在：
+ *   - 快照新鲜（< TTL）→ 直接返回，零上游依赖；
+ *   - 快照过期 → 实时拉，成功则更新快照；
+ *   - 上游挂了 → 退回旧快照并标记 stale（降级但不阻断），只有从没成功过才抛错。
+ *
+ * TTL 默认 600 秒，可用 ZIYU_MODEL_TTL_SECONDS 覆盖。
+ */
+const DEFAULT_MODEL_TTL_SECONDS = 600;
+
+function modelTtlMs() {
+  const configured = Number(process.env.ZIYU_MODEL_TTL_SECONDS);
+  return (Number.isInteger(configured) && configured > 0 ? configured : DEFAULT_MODEL_TTL_SECONDS) * 1000;
+}
+
+type ModelSnapshot = { models: ZiyuModel[]; fetchedAt: number; stale: boolean };
+
+declare global {
+  // eslint-disable-next-line no-var
+  var niannianZiyuModelSnapshot: ModelSnapshot | undefined;
+  // eslint-disable-next-line no-var
+  var niannianZiyuModelInflight: Promise<ZiyuModel[]> | undefined;
+}
+
+async function fetchZiyuModels(): Promise<ZiyuModel[]> {
   const payload = await requestJson<{ models?: Partial<ZiyuModel>[] }>("/api/v1/models");
   return Array.isArray(payload.models) ? payload.models.map(normalizeModel).filter((model): model is ZiyuModel => Boolean(model)) : [];
+}
+
+export async function listZiyuModels(): Promise<ZiyuModel[]> {
+  const now = Date.now();
+  const snapshot = globalThis.niannianZiyuModelSnapshot;
+  if (snapshot && now - snapshot.fetchedAt < modelTtlMs()) return snapshot.models;
+
+  // 并发去重：快照过期时一堆请求同时进来，只让一个真的去拉上游。
+  if (!globalThis.niannianZiyuModelInflight) {
+    globalThis.niannianZiyuModelInflight = fetchZiyuModels()
+      .then((models) => {
+        globalThis.niannianZiyuModelSnapshot = { models, fetchedAt: Date.now(), stale: false };
+        return models;
+      })
+      .catch((error: unknown) => {
+        const stale = globalThis.niannianZiyuModelSnapshot;
+        if (stale) {
+          // 上游挂了：标记 stale 后继续用旧快照，不阻断下单。
+          stale.stale = true;
+          return stale.models;
+        }
+        throw error;
+      })
+      .finally(() => {
+        globalThis.niannianZiyuModelInflight = undefined;
+      });
+  }
+  return globalThis.niannianZiyuModelInflight;
+}
+
+/** 供后台/健康检查展示：模型目录上次同步时间与是否处于降级状态。 */
+export function ziyuModelSyncStatus() {
+  const snapshot = globalThis.niannianZiyuModelSnapshot;
+  if (!snapshot) return { synced: false, stale: false, modelCount: 0, ageSeconds: null as number | null, ttlSeconds: modelTtlMs() / 1000 };
+  return {
+    synced: true,
+    stale: snapshot.stale,
+    modelCount: snapshot.models.length,
+    ageSeconds: Math.round((Date.now() - snapshot.fetchedAt) / 1000),
+    ttlSeconds: modelTtlMs() / 1000,
+  };
 }
 
 export async function uploadZiyuAssets(files: Array<{ type: "image" | "video" | "audio"; name: string; data: string }>) {

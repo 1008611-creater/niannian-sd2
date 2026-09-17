@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { authCookie, sessionFromToken } from "@/lib/auth";
 import { providerDescriptors } from "@/lib/provider-contract";
-import { listZiyuModels, ZiyuApiError, ziyuConfigured } from "@/lib/ziyu-api";
+import { listZiyuModels, ZiyuApiError, ziyuConfigured, ziyuModelSyncStatus } from "@/lib/ziyu-api";
 
 export async function GET(request: NextRequest) {
   const user = await sessionFromToken(request.cookies.get(authCookie)?.value).catch(() => null);
@@ -20,8 +20,15 @@ export async function GET(request: NextRequest) {
     }
   }
   const clientModels = models;
+  const sync = ziyuModelSyncStatus();
   return NextResponse.json({
     providers: providerDescriptors.map((provider) => provider.id === "ziyu" ? { ...provider, label: "智能视频渠道", purpose: "实时可用的视频与图片生成渠道", configured, state, models: clientModels } : provider),
-    ziyu: { configured, state, models: clientModels, ...(error ? { error } : {}) },
+    ziyu: {
+      configured,
+      state: sync.stale && state === "ready" ? "degraded" : state,
+      models: clientModels,
+      modelSync: sync,
+      ...(error ? { error } : {}),
+    },
   });
 }
