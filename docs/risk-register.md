@@ -1,0 +1,22 @@
+# risk-register.md — 风险登记表
+
+> 登记日期：2026-09-17　|　等级：P0 阻塞 / P1 高 / P2 中
+
+| ID | 风险 | 等级 | 证据 | 影响 | 处置 | 负责人 |
+|---|---|---|---|---|---|---|
+| R1 | Postgres 0 张表，迁移从未执行 | P0 | `information_schema` 计数为 0 | 所有写库功能无持久化保证 | T0-3 + T0-4 | 待定 |
+| R2 | 应用容器缺 `DATABASE_URL`，且 `POSTGRES_DB` 被污染成 `nnvlwyufbemejgjfPOSTGRES_DB` | P0 | 容器内 `printenv` 键名证据 | 应用退回 sql.js SQLite 单文件兜底，Postgres 闲置 | T0-2 + T0-3 | 待定 |
+| R3 | 生产数据实际落在 sql.js SQLite 单文件（无并发安全、无备份） | P0 | `data/niannian-auth.sqlite` 372KB，最后写入 2026-08-23 | 磁盘/容器损坏即丢失全部用户与账目 | T0-4 + T0-5 | 待定 |
+| R4 | 无备份 | P0 | 无 crontab/备份脚本 | 数据不可恢复 | T0-5 | 待定 |
+| R5 | 源码无 Git，无回滚能力 | P0 | `ls -d .git` 失败 | 故障无法回滚、CI 空转 | T0-1 | 待定 |
+| R6 | `.env.production` CRLF + 首行污染 | P1 | `file` 输出 CRLF；首行 `nnvlwyufbemejgjfPOSTGRES_DB` | 凭据解析错误（R2 的根因） | T0-2 | 待定 |
+| R7 | 本地任务表从未落库（`video_tasks=0`） | P1 | SQLite 计数 | 无法对账、无法重试、无法审计 | T1-1 | 待定 |
+| R8 | 渠道模型 ID 会失效 | P1 | 历史任务 `model not found`、`unavailable` | 下单直接失败 | T1-3 | 待定 |
+| R9 | 生成失败率约 30%（含审核拦截） | P1 | 20 条任务 6 条失败 | 用户体验差、可能白扣积分 | T1-5 | 待定 |
+| R10 | 未启用渠道仍在 UI/接口描述中出现 | P1 | `provider-contract.ts` 静态描述 | 假能力，误导用户 | T1-2 | 待定 |
+| R11 | 无 worker/dispatcher 但保留队列代码 | P2 | `docker ps`、`ps aux` 无进程 | 死代码误导维护 | T3-1 | 待定 |
+| R12 | `lint` 实际是 `tsc --noEmit` | P2 | `package.json` | 无静态检查 | T2-3 | 待定 |
+| R13 | `/api/health` 暴露内部版本与迁移名 | P2 | 接口响应 | 信息泄露（低危害） | T3-2 | 待定 |
+| R14 | 镜像 32 天未重建（2026-08-16） | P2 | `docker inspect` | 与源码漂移 | T0-1 后纳入 CI 构建 | 待定 |
+| R15 | 依赖紫域单一渠道 | P1 | 凭据矩阵 | 渠道停摆即全线停摆 | 预设备用渠道 + 优雅降级提示 | 待定 |
+| R16 | 积分与渠道点数汇率未定义 | P1 | 无相关配置 | 成本失控、对账困难 | 决策 D3 | 老大 |
