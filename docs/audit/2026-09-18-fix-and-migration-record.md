@@ -258,9 +258,23 @@ curl -s -o /dev/null -w "%{http_code}\n" https://sd2.cauai.fun/api/providers   #
   属付费动作，等你点头我再跑一次。
 - **t2i 定价是拍的**：紫域文生图的真实点数成本未知，我按 5 秒档（30 积分）兜底，
   需要你拿实际账单校准一次。
-- **新用户要先用兑换码才能出片**（你选的策略）。生成命令：
-  `docker exec -w /app niannian-sd2-app node scripts/generate-ldxp-codes.mjs`
-  兑换码渠道已确认可用（`LDXP_REDEEM_SECRET` 长度 61，满足 ≥32 要求）。
+- **新用户要先用兑换码才能出片**（你选的策略）。兑换码渠道已确认可用
+  （`LDXP_REDEEM_SECRET` 长度 61，脚本要求 ≥32）。
+
+  生成命令（**注意文件名是 `generate-ldxp-credit-codes.mjs`，不是 `generate-ldxp-codes.mjs`**）：
+
+  ```bash
+  # 在容器内生成（credits 只能选 100 / 300 / 500 / 1000；output 文件必须不存在，脚本用 wx 模式写入）
+  docker exec -w /app niannian-sd2-app node scripts/generate-ldxp-credit-codes.mjs \
+    --credits=100 --count=10 --output=/tmp/ldxp-100-$(date +%s).txt
+
+  # 拷出来
+  docker cp niannian-sd2-app:/tmp/ldxp-100-XXXX.txt ./ldxp-codes.txt
+  ```
+
+  脚本约束：`--credits` 必须是 100/300/500/1000；`--count` 1~5000（默认 100）；
+  `--output` 必填且文件不能已存在。用户可以拿码在 `/api/credits` 用
+  `{"action":"redeem_ldxp_code","code":"..."}` 兑换。
 
 ---
 
