@@ -209,7 +209,62 @@ curl -s -o /dev/null -w "%{http_code}\n" https://sd2.cauai.fun/api/providers   #
 
 ---
 
-## 七、本次新增/改动的文件
+## 七、落库 + 计费改造（老大批准后实施，已上线）
+
+### 决策（老大 2026-09-18 拍板）
+
+| 项 | 决策 |
+|---|---|
+| 是否接计费/落库 | **一起接** |
+| 新用户初始积分 | **送 0，靠兑换码充值** |
+| 失败退款 | **只要没拿到片就全退**（含内容审核拦截，渠道成本我们承担） |
+
+### 实施内容
+
+1. **`lib/credits.ts`**：价目表从"只覆盖 4~15 秒"改为按秒线性生成 **1~30 秒**。
+   原表是 4 渠道点/秒（4s→16 … 15s→60），紫域实际支持 1~30 秒，
+   **不补齐的话选 16~30 秒会抛 `CREDIT_QUOTE_INVALID`，等于把用户挡在门外**。
+   补齐后 4~15 秒价格与原来完全一致（不涨价）。用户价 = 渠道成本 × 1.5，即 **6 积分/秒**（10 秒 = 60 积分 = 0.6 元）。
+2. **新增 `lib/ziyu-billing.ts`**：`submitBilledZiyuJob` 统一封装，顺序是
+   **落库 → 扣费 → 打渠道**，失败自动全额退款：
+   - 先写 `video_tasks` 意图记录（就算后面挂了，也留下"谁何时想出什么片"）；
+   - 再 `reserveTaskCredits`，**余额不足直接 402，绝不碰渠道**（不能先花钱再发现没钱）；
+   - 再 `createZiyuJob`，成功写 `provider_task_id`；失败 `refundTaskCredits` + 标记 `failed`。
+3. **`app/api/ziyu/jobs/route.ts`**：接入封装；顺带修了两个会多收/错收费的坑——
+   - **t2i（文生图）没有时长**，原本会按 10 秒计费 → 改为固定 5 秒档（30 积分 = 0.3 元）；
+   - 未传时长时按**模型支持的第一档**计费，避免"按 10 秒扣钱、渠道按 5 秒出片"。
+
+### 上线与验证
+
+镜像 `niannian-sd2:billing-20260918-r1`（BUILD_ID `bK82nzwpe45X0MiZZcK-s`），
+用 `deploy/switch-app-image.sh` 切换，旧容器保留为 `niannian-sd2-app.bak.20260918-010620`。
+
+上线前先做了两项"不然会出事"的前置验证：
+- 计费代码以前只在 sql.js 下跑过 —— 确认 `dbTransaction` 会把 `?` 转成 `$n`，Postgres 下可用；
+- 用事务实测扣款语义：余额 100 扣 60 → `UPDATE 1`（成功，余 40）；再扣 60 → `UPDATE 0`（**余额不足不扣**）；随后 ROLLBACK，无残留。
+
+端到端验证（造临时用户 + 会话，测完已清理，库里零残留）：
+
+| 项 | 结果 |
+|---|---|
+| 余额 0 下单 | `HTTP 402 {"error":"CREDITS_INSUFFICIENT"}` |
+| 落库 | `video_tasks` 1 条：`status=failed, blocker=CREDITS_INSUFFICIENT, duration_seconds=10, channel=ziyu` |
+| **渠道是否被碰** | **没有** —— 紫域任务列表调用前后都是 20 条，**没花一分钱** |
+| 事务一致性 | 扣款失败时钱包行一并回滚，不会留下脏钱包 |
+
+### 还没验证 / 需要老大决定
+
+- **真实出片链路未跑**：要跑就得真扣积分 + 消耗渠道点数（10 秒约 40 渠道点 / 60 积分）。
+  属付费动作，等你点头我再跑一次。
+- **t2i 定价是拍的**：紫域文生图的真实点数成本未知，我按 5 秒档（30 积分）兜底，
+  需要你拿实际账单校准一次。
+- **新用户要先用兑换码才能出片**（你选的策略）。生成命令：
+  `docker exec -w /app niannian-sd2-app node scripts/generate-ldxp-codes.mjs`
+  兑换码渠道已确认可用（`LDXP_REDEEM_SECRET` 长度 61，满足 ≥32 要求）。
+
+---
+
+## 八、本次新增/改动的文件
 
 | 文件 | 作用 |
 |---|---|
@@ -219,3 +274,7 @@ curl -s -o /dev/null -w "%{http_code}\n" https://sd2.cauai.fun/api/providers   #
 | `deploy/backup-postgres-host.sh` | 宿主机侧每日 `pg_dump` 备份 |
 | `deploy/apply-env-and-recreate-app.sh` | 保留旧容器 + 增量重建应用容器 |
 | `package.json` | 新增 `db:migrate:full` / `db:migrate:full:dry-run` |
+| `lib/credits.ts` | 价目表补齐到 1~30 秒（按秒线性，4~15 秒价格不变） |
+| `lib/ziyu-billing.ts` | 新增：紫域下单的落库 + 计费 + 失败退款封装 |
+| `app/api/ziyu/jobs/route.ts` | 接入计费封装；修 t2i 计费与时长兜底 |
+| `deploy/switch-app-image.sh` | 换镜像重启生产容器（保留旧容器可秒回退） |

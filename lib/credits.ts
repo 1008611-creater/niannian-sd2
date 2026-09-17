@@ -4,20 +4,25 @@ import { createId, DatabaseTransaction, dbAll, dbOne, dbRun, dbTransaction, time
 export const serviceModes = ["automatic", "manual"] as const;
 export type ServiceMode = (typeof serviceModes)[number];
 
-const automaticCosts: Record<number, number> = {
-  4: 16,
-  5: 20,
-  6: 24,
-  7: 28,
-  8: 32,
-  9: 36,
-  10: 40,
-  11: 44,
-  12: 48,
-  13: 52,
-  14: 56,
-  15: 60,
-};
+/**
+ * 渠道成本按秒线性计价：4 渠道点/秒。
+ * 原表只覆盖 4~15 秒，而紫域实际支持 1~30 秒 —— 选 16~30 秒会抛
+ * CREDIT_QUOTE_INVALID，等于把用户挡在门外。改为按秒线性生成 1~30，
+ * 4~15 秒的价格与原来完全一致（4×4=16 … 15×4=60），不涨价、只补齐。
+ */
+const CHANNEL_COST_PER_SECOND = 4;
+export const MIN_BILLABLE_DURATION_SECONDS = 1;
+export const MAX_BILLABLE_DURATION_SECONDS = 30;
+
+const automaticCosts: Record<number, number> = Object.fromEntries(
+  Array.from(
+    { length: MAX_BILLABLE_DURATION_SECONDS - MIN_BILLABLE_DURATION_SECONDS + 1 },
+    (_, index) => {
+      const duration = MIN_BILLABLE_DURATION_SECONDS + index;
+      return [duration, duration * CHANNEL_COST_PER_SECOND];
+    },
+  ),
+);
 const manualCosts: Record<number, number> = automaticCosts;
 const ldxpPackages = [100, 300, 500, 1000] as const;
 const rechargeStatuses = ["pending", "approved", "rejected"] as const;

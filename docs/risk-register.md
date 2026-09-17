@@ -24,9 +24,12 @@
 | R18 | 表间存在外键，朴素批量插入会撞 `23503` | P1 | 迁移实测 `asset_reference_metadata_asset_id_fkey` | 迁移中断、数据半截 | 已按 `information_schema` 外键依赖拓扑排序插入 | 已处置 2026-09-18 |
 | R19 | Postgres 角色名被 CRLF 污染成 `niannian\r` | P1 | `cat -A` 显示 `niannian^M$` | `DATABASE_URL` 用干净用户名无法认证 | 新建干净角色 `niannian` + 文件化 SQL 设密；旧带 CR 角色暂留 | 已处置 2026-09-18 |
 | R20 | 迁移后尚未做真人登录 + 下单验证 | P1 | 只能用探针证明"写在 Postgres" | 老用户能否登录仍未证实 | **已降级**：老大确认无老用户；改用新用户链路实测，注册/登录/渠道均通（2026-09-18） | 已降级 |
-| R21 | **紫域下单路径完全不计费** | P0 | `grep "credit\|balance\|deduct\|charge" lib/ziyu-api.ts` → 0 命中 | 余额 0 也能无限出片，成本裸奔、无法商业化 | 待决策：是否接入 `reserveTaskCredits` | 老大 |
-| R22 | 紫域下单不写 `video_tasks` | P1 | 写入点仅 `lib/video-tasks.ts:581`（另一条路径） | 历史空、失败无法重试、无法对账 | 待决策：是否补落库 | 老大 |
-| R23 | 新用户注册不送积分、不建 `user_credits` 行 | P1 | `verifyRegistration` 只 INSERT users | 一旦接计费，新用户注册即被挡 | 与 R21 同批决策 | 老大 |
+| R21 | **紫域下单路径完全不计费** | P0 | `grep "credit\|balance\|deduct\|charge" lib/ziyu-api.ts` → 0 命中 | 余额 0 也能无限出片，成本裸奔、无法商业化 | **已处置**：接入 `lib/ziyu-billing.ts`（先扣费后打渠道，402 不碰渠道），2026-09-18 上线 | 已处置 |
+| R22 | 紫域下单不写 `video_tasks` | P1 | 写入点仅 `lib/video-tasks.ts:581`（另一条路径） | 历史空、失败无法重试、无法对账 | **已处置**：同一封装内先落库再提交 | 已处置 |
+| R23 | 新用户注册不送积分、不建 `user_credits` 行 | P1 | `verifyRegistration` 只 INSERT users | 一旦接计费，新用户注册即被挡 | **已按老大决策**：送 0，走兑换码充值；`reserveTaskCredits` 内 `ensureWallet` 会按需建钱包 | 已处置（策略：送 0） |
+| R24 | 价目表只覆盖 4~15 秒，渠道支持 1~30 秒 | P1 | `lib/credits.ts` 原常量表；紫域 `allowedDurations` 分布 | 选 16~30 秒会抛 `CREDIT_QUOTE_INVALID`，把用户挡在门外 | **已处置**：改为 1~30 秒按秒线性（4 点/秒），4~15 秒价格不变 | 已处置 |
+| R25 | t2i（文生图）按时长计费会多收 | P2 | t2i 无时长概念 | 生图按 10 秒收 = 60 积分，明显偏高 | 已按 5 秒档（30 积分）兜底；**真实成本待老大按账单校准** | 老大 |
+| R26 | 真实出片链路尚未跑通验证 | P1 | 需真扣积分 + 消耗渠道点数 | 无法确认"充值后能真正出片" | 待老大授权后跑一次（约 40 渠道点 / 60 积分） | 老大 |
 
 ---
 
