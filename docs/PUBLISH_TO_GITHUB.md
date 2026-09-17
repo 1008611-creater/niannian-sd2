@@ -1,5 +1,33 @@
 # 发布到 GitHub
 
+## ✅ 状态：已推送（2026-09-18）
+
+| 项 | 值 |
+|---|---|
+| 仓库 | **https://github.com/1008611-creater/niannian-sd2** |
+| 可见性 | **私有**（源码含部署路径与业务逻辑，不建议公开） |
+| 默认分支 | `main` |
+| 提交数 | 6（基线 → env 修复 → 发布指南 → 顺序修正 → 数据层修复 → 计费改造） |
+| 文件树条目 | 2098 |
+| CI | 首次运行会触发 `niannian-ai-web CI`（typecheck / lint / test / secret-scan / build） |
+
+推送前自检已通过：`bash scripts/secret-scan.sh` → `OK 未发现密钥`；仓库不含任何真实 `.env` 文件。
+
+> ⚠️ **首次 CI 大概率红灯**：这份源码此前从未跑过 CI（服务器无 `.git`），
+> typecheck / lint / test 很可能暴露历史欠账。红灯不是新问题，是以前没检查过。
+> 按 `docs/implementation-plan.md` 的阶段 2 逐个清。
+
+后续推送：
+
+```bash
+cd E:/codex/niannianai/zhuanhuiyuangong/sd2
+git push origin main
+```
+
+---
+
+## 以下为原始操作说明（保留备查）
+
 仓库已在本地初始化并完成首个提交（`4bb9f81`，1874 个文件，工作区干净）。
 
 > 推送前自检已通过：`bash scripts/secret-scan.sh` → `OK 未发现密钥`；仓库中不含任何真实 `.env` 文件（仅 `.env.example` / `.env.docker.example` 占位模板）。
