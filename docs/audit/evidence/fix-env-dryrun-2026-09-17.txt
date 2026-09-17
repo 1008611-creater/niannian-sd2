@@ -1,0 +1,68 @@
+[fix-env] 模式：--dry-run
+[fix-env] 目标：/srv/kidswear-data/staging/niannian-sd2-4998bd8/.env.production
+
+=== 现状诊断 ===
+CRLF 行数：41
+污染键名：
+  1:nnvlwyufbemejgjfPOSTGRES_DB
+DATABASE_URL：缺失  <-- 应用因此退回 sql.js SQLite 兜底
+POSTGRES_DB（干净键名）：缺失
+
+=== 修复后（键名与长度，不显示值）===
+  POSTGRES_DB                            len=8
+  POSTGRES_USER                          len=8
+  POSTGRES_PASSWORD                      len=48
+  AUTH_OTP_PEPPER                        len=64
+  AUTH_SESSION_SECRET                    len=64
+  AUTH_COOKIE_SECURE                     len=4
+  APP_ORIGIN                             len=21
+  SMTP_HOST                              len=11
+  SMTP_PORT                              len=3
+  MIMO_BASE_URL                          len=19
+  MIMO_USERNAME                          len=0
+  MIMO_PASSWORD                          len=0
+  MIMO_TOKEN                             len=0
+  MIORA_BASE_URL                         len=20
+  MIORA_CDP_URL                          len=32
+  MIORA_COOKIE                           len=0
+  MIORA_PROVIDER_SUBMIT_ENABLED          len=5
+  VIDEO_SERVER_DISPATCH_URL              len=0
+  VIDEO_SERVER_DISPATCH_TOKEN            len=0
+  MAC_CODEX_AGENT_TOKEN                  len=44
+  DOLA_CODEX_AGENT_TOKEN                 len=49
+  MAC_CODEX_LEASE_SECONDS                len=4
+  MAC_CODEX_HEARTBEAT_TTL_SECONDS        len=3
+  MAC_CODEX_READINESS_TTL_SECONDS        len=3
+  DOLA_CODEX_LEASE_SECONDS               len=4
+  DOLA_CODEX_READINESS_TTL_SECONDS       len=3
+  LDXP_SHOP_URL                          len=45
+  LDXP_REDEEM_SECRET                     len=61
+  REDRAW_WORKER_CONCURRENCY              len=1
+  REDRAW_CLAIM_RECOVERY_MS               len=6
+  REDRAW_SKILL_BUNDLE_VERSION            len=16
+  NIANNIAN_GPT_API_BASE_URL              len=22
+  NIANNIAN_GPT_RESPONSES_PATH            len=10
+  NIANNIAN_GPT_API_KEY                   len=28
+  RUNNINGHUB_BASE_URL                    len=25
+  RUNNINGHUB_API_KEY                     len=28
+  TENCENT_COS_SECRET_ID                  len=34
+  TENCENT_COS_SECRET_KEY                 len=35
+  TENCENT_COS_BUCKET                     len=27
+  TENCENT_COS_REGION                     len=19
+  ZIYU_API_KEY                           len=48
+  SMTP_PASS                              len=16
+  SMTP_USER                              len=17
+  SMTP_FROM                              len=17
+  DATABASE_URL                           len=104
+
+=== 关键差异 ===
+  4a5
+  > DATABASE_URL
+  25c26
+  < nnvlwyufbemejgjfPOSTGRES_DB
+  ---
+  > POSTGRES_DB
+
+[fix-env] DRY-RUN 结束，未修改任何文件。
+[fix-env] 确认无误后执行：
+  ssh -o BatchMode=yes haika-kidswear-1757 'bash -s' < deploy/fix-env-production.sh --apply
