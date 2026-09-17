@@ -12,6 +12,8 @@ PATTERNS=(
   'xox[baprs]-[A-Za-z0-9-]{10,}'
   'AIza[A-Za-z0-9_-]{20,}'
   '-----BEGIN [A-Z ]*PRIVATE KEY-----'
+  'postgres(ql)?://[A-Za-z0-9_.-]+:[^@[:space:]]+@'   # 连接串里带明文口令
+  'DATABASE_URL=postgres(ql)?://[A-Za-z0-9_.-]+:[^@[:space:]]+@'
 )
 
 EXCLUDES=(
@@ -28,7 +30,9 @@ EXCLUDES=(
 hits=0
 for p in "${PATTERNS[@]}"; do
   # shellcheck disable=SC2068
-  result=$(grep -rInE --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=.git --exclude=package-lock.json "$p" . 2>/dev/null || true)
+  # 占位值与本机 CI 测试用的 DSN 不算泄密：replace-with-password / 127.0.0.1 / localhost
+  result=$(grep -rInE --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=.git --exclude=package-lock.json "$p" . 2>/dev/null \
+    | grep -vE 'replace-with-password|@(127\.0\.0\.1|localhost)[:/]' || true)
   if [ -n "$result" ]; then
     echo "[secret-scan] FAIL 命中模式：$p"
     echo "$result" | cut -c1-120 | sed 's/=.*/=<redacted>/'
@@ -36,10 +40,13 @@ for p in "${PATTERNS[@]}"; do
   fi
 done
 
-# 额外规则：env 文件不得入库
-if git ls-files 2>/dev/null | grep -qE '^\.env($|\.)' ; then
-  echo "[secret-scan] FAIL 仓库中存在被跟踪的 .env 文件"
-  git ls-files | grep -E '^\.env($|\.)'
+# 额外规则：env 文件不得入库（模板文件 .env.example / .env.sample 等除外）
+# 说明：.env.example 之类是"键名清单+占位值"，本就该入库；真正危险的是带真值的 .env / .env.production
+ENV_ALLOWLIST='^\.env(\.docker)?\.(example|sample|template|dist)$'
+tracked_env=$(git ls-files 2>/dev/null | grep -E '^\.env($|\.)' | grep -vE "$ENV_ALLOWLIST" || true)
+if [ -n "$tracked_env" ]; then
+  echo "[secret-scan] FAIL 仓库中存在被跟踪的非模板 .env 文件"
+  echo "$tracked_env"
   hits=$((hits + 1))
 fi
 

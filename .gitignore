@@ -21,3 +21,4 @@ runtime/real-mimo-*/
 *.tsbuildinfo
 .postgres-data/
 .postgres-password.local
+.tmp-*

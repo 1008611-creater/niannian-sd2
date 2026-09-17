@@ -71,6 +71,8 @@
     "credits:generate-ldxp-codes": "node scripts/generate-ldxp-credit-codes.mjs",
     "db:migrate:sqlite-to-postgres": "node scripts/migrate-sqlite-to-postgres.mjs",
     "db:migrate:dry-run": "node scripts/migrate-sqlite-to-postgres.mjs --dry-run",
+    "db:migrate:full": "node scripts/migrate-sqlite-to-postgres-full.mjs",
+    "db:migrate:full:dry-run": "node scripts/migrate-sqlite-to-postgres-full.mjs --dry-run",
     "release:build": "node scripts/build-release-candidate.mjs",
     "release:audit": "node scripts/release-candidate-audit.mjs",
     "release:compat:readonly": "node scripts/production-compat-readonly.mjs",

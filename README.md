@@ -22,6 +22,19 @@
 
 完整证据：[`docs/audit/2026-09-17-sd2-website-audit.md`](docs/audit/2026-09-17-sd2-website-audit.md)
 
+### 2026-09-18 修复状态：数据层 P0 已闭环
+
+| 项 | 修复前 | 现在 |
+|---|---|---|
+| `DATABASE_URL` | 缺失 | 已注入并生效 |
+| Postgres 表数 | 0 | 27 |
+| 写入落点 | sql.js SQLite 单文件 | Postgres（已实测确认） |
+| 备份 | 无 | 每日 03:10 `pg_dump`，保留 14 天 |
+| 数据完整性 | — | 12 张非空表与 SQLite 逐表对账一致 |
+
+记录：[`docs/audit/2026-09-18-fix-and-migration-record.md`](docs/audit/2026-09-18-fix-and-migration-record.md)
+⚠️ 仍未证实：真实账号登录 + 下单链路（需人工实测一次）。
+
 ---
 
 ## 二、文档导航
