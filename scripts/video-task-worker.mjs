@@ -3,6 +3,7 @@
 import { createHash, randomUUID } from "node:crypto";
 import { spawn } from "node:child_process";
 import { access, mkdir, open, readFile, rename, rm, writeFile } from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -25,6 +26,10 @@ function workerStatePath() {
 }
 const statePath = workerStatePath();
 const lockPath = path.join(dataDirectory, "video-worker.lock");
+// Docker 里 hostname == 容器 ID，每次重建都不同。
+// 锁文件在共享卷里会跨容器存活，而 PID 是命名空间隔离的，
+// 必须用实例标识区分锁是否来自本次容器实例。
+const lockInstanceId = os.hostname();
 const resultSchemaPath = path.join(projectDirectory, "scripts", "video-task-result.schema.json");
 const disabledChannels = new Set(["artflash", "tensor", "tensorart", "tensor.art", "echoon"]);
 let activeLockToken = null;
@@ -110,7 +115,11 @@ async function acquireLock() {
     // Docker restarts commonly reuse the container's worker PID. A lock written
     // by the immediately preceding container must not make this new process
     // reject itself as a second worker.
-    if (Number(existing.pid) === process.pid) {
+    // 实例标识不同 → 一定是上一个容器实例的残留，直接接管。
+    // 只靠 PID 判断会误伤：新容器里那个旧 PID 可能已被别的进程占用。
+    if (existing.instanceId !== lockInstanceId) {
+      await rm(lockPath, { force: true });
+    } else if (Number(existing.pid) === process.pid) {
       await rm(lockPath, { force: true });
     } else if (processAlive(Number(existing.pid))) {
       throw new Error(`VIDEO_WORKER_ALREADY_RUNNING:${existing.pid}`);
@@ -122,7 +131,10 @@ async function acquireLock() {
   }
   const token = randomUUID();
   const handle = await open(lockPath, "wx");
-  await handle.writeFile(`${JSON.stringify({ pid: process.pid, token, startedAt: now() })}\n`, "utf8");
+  await handle.writeFile(
+    `${JSON.stringify({ instanceId: lockInstanceId, pid: process.pid, token, startedAt: now() })}\n`,
+    "utf8",
+  );
   await handle.close();
   return token;
 }
