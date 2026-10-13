@@ -1,0 +1,2907 @@
+{
+  "date": "2026-10-13",
+  "scope": "Sanitized source snapshots recovered from running deployments; production untouched; excluded environment credentials, user data, runtime storage, generated/build output and unreviewed media.",
+  "repository": "1008611-creater/niannian-sd2",
+  "variants": [
+    {
+      "name": "workbench-1757",
+      "source": "sd2-1757",
+      "server": "haika-1757",
+      "sourcePath": "/srv/kidswear-data/staging/niannian-sd2-4998bd8",
+      "relationship": "Current deployed source snapshot; runtime data excluded",
+      "excludedSensitiveAndRuntimeFiles": true,
+      "files": [
+        {
+          "path": ".code-review-graphignore",
+          "sha256": "69ebcbc33979427fb1ae09b3aee7b886988d601cc14b0725fbe241b776f3fd40"
+        },
+        {
+          "path": ".dockerignore",
+          "sha256": "9944cb4f1c35a2774636e563a3bd6d181ff0edcb8faee07c283f9db423f0468d"
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "ad16d640bc09a6223554ff418535880b1c354336fb9d4ca060e32ef7979196a6"
+        },
+        {
+          "path": ".gitignore",
+          "sha256": "32e2f6c355df5491a3dedf17ffaf02b83bd934cbb86e5a39ce315e8dffaef164"
+        },
+        {
+          "path": "AGENTS.md",
+          "sha256": "e046d8434bc846b963851d508fbab6a401a9f6a04d4eb3087d480dbe7be3b195"
+        },
+        {
+          "path": "app/admin/page.tsx",
+          "sha256": "914d2590bbeb3ce532a886b00be5cc8866c35656cdd48537a484f3f6afdfd5bf"
+        },
+        {
+          "path": "app/api/admin/dola-preflight/route.ts",
+          "sha256": "929bd313f910a32aa50aa56e739ca8abe90e10ff7239494ce3d9a26af94b2087"
+        },
+        {
+          "path": "app/api/admin/mimo-preflight/route.ts",
+          "sha256": "cbfb78a866925b689b524ead841b1a2a357e0977f934921937519f6a3dc310a0"
+        },
+        {
+          "path": "app/api/admin/miora-preflight/route.ts",
+          "sha256": "862ff4589e3cf33d901c3716e349c7e0596545da087b93166ab7631ea9b47587"
+        },
+        {
+          "path": "app/api/admin/miora-templates/route.ts",
+          "sha256": "938221b3a86ff23f0db09a260d75f7cb57c0075751531f1f9f0bcb6e647b833e"
+        },
+        {
+          "path": "app/api/admin/overview/route.ts",
+          "sha256": "730646b2406d62aa0ae9cae7d76b7f3c0e6523b5ac1ad25b1561355c73933a0f"
+        },
+        {
+          "path": "app/api/admin/product-routing/route.ts",
+          "sha256": "8b5be09e66d0d04000611150ada53b4f02d334b2a1fc3b915b9f47a1b38e7bba"
+        },
+        {
+          "path": "app/api/admin/redraw/reconcile-provider-task/route.ts",
+          "sha256": "c4f94c4db2188eac418f4a42617c209b18a65840c9a492a822292a42b1e1ef89"
+        },
+        {
+          "path": "app/api/admin/video-redraw-step01/route.ts",
+          "sha256": "934292a080ae7b5ba9d6d56e37a9df3aef20b351d3abba014c6c2bfc084eccd9"
+        },
+        {
+          "path": "app/api/assets/route.ts",
+          "sha256": "90cb05ea639a05fe99b4a84f0648960254986bca3adb1909d69d00bd5dd42384"
+        },
+        {
+          "path": "app/api/auth/login/route.ts",
+          "sha256": "5d0d89964c7f654bb5cedf6287ae67f319a01c44f8aee6da29f4737257006719"
+        },
+        {
+          "path": "app/api/auth/otp/resend/route.ts",
+          "sha256": "973d5c1d4fe8b49f3eb133ee427b9fabd4475894dee28d4082afe31576b0bd23"
+        },
+        {
+          "path": "app/api/auth/password-reset/resend/route.ts",
+          "sha256": "ecd48934c597374a2bf3e2811d554cf9cdcac2b63334fba701c656530ef6edc2"
+        },
+        {
+          "path": "app/api/auth/password-reset/start/route.ts",
+          "sha256": "251d0309c84419d59cb1e59b16b56604f12dfe60219939b48afeec1da505fcff"
+        },
+        {
+          "path": "app/api/auth/password-reset/verify/route.ts",
+          "sha256": "acae07aae140b3a2e892dd61ea3c9aa51594143960cb2d04dc951e92ef756e49"
+        },
+        {
+          "path": "app/api/auth/register/start/route.ts",
+          "sha256": "39c95d35d8571ef03661a065535e8107f378a3cfa122bf9381e0f9c13391a5ca"
+        },
+        {
+          "path": "app/api/auth/register/verify/route.ts",
+          "sha256": "3b44ceb547967699ee577fb33e7bf57aa988d23b4dc9109be757470c12e426dd"
+        },
+        {
+          "path": "app/api/auth/session/route.ts",
+          "sha256": "11d37832bf6c32c83a315371cca5a1255de974e14bdb40bacdf005bc5ce153b9"
+        },
+        {
+          "path": "app/api/credits/route.ts",
+          "sha256": "8596aa771506422591d5842a5ba0fafe757b7a22a4b100232f386a63817b32c0"
+        },
+        {
+          "path": "app/api/editor/sso/route.ts",
+          "sha256": "4b5fcb992cfb612b8ee7a4ae7fceb64632d8ced67c3a8662ec3bf5a792034c60"
+        },
+        {
+          "path": "app/api/health/route.ts",
+          "sha256": "528eabe9fb834c6e70208a60dbfc430bf993c26ea720e2fbb6123024a5f59513"
+        },
+        {
+          "path": "app/api/internal/dola-windows/claim/route.ts",
+          "sha256": "4b122dd8a2a8c478e6d9e8f32de9f817aa482c0716e6d65b3dc8f7206fb54086"
+        },
+        {
+          "path": "app/api/internal/dola-windows/heartbeat/route.ts",
+          "sha256": "4472c1062fc3fbf2220e826848d9ba3ee65a6babfc45de09fa77e74a5d36c943"
+        },
+        {
+          "path": "app/api/internal/dola-windows/status/route.ts",
+          "sha256": "8b7cc5156080ace9134979f024e6056e25d2856719d20b10a26db61e2f484dcc"
+        },
+        {
+          "path": "app/api/internal/dola-windows/tasks/[id]/assets/[assetId]/route.ts",
+          "sha256": "8202735be26f0fd2ba7ecd9f8c23ca29e802728eeef61b83c5cb02ea237daede"
+        },
+        {
+          "path": "app/api/internal/dola-windows/tasks/[id]/result/route.ts",
+          "sha256": "5a75dd76b5d264f74ccb4f0a724e21394cdc7fa303d2e0eba15b5a87e15c2345"
+        },
+        {
+          "path": "app/api/internal/editor-billing/balance/route.ts",
+          "sha256": "f5c46cc620037726834f189ef858815b801e6f37d62a982d7b0e4c815d4af1c5"
+        },
+        {
+          "path": "app/api/internal/editor-billing/consume/route.ts",
+          "sha256": "cd6b86f57e98aa81f444fc503594dacf796905be467f466b0d13a3a1ae28b4be"
+        },
+        {
+          "path": "app/api/internal/mac-codex/claim/route.ts",
+          "sha256": "197c47b96183d9b1ff485aa4000bb961d37f59c898864cc688fb1e8188aaa930"
+        },
+        {
+          "path": "app/api/internal/mac-codex/heartbeat/route.ts",
+          "sha256": "c1e6e652912b546784d3930ec0125c8d303a01efc59ca3b22382e5ad426e4adf"
+        },
+        {
+          "path": "app/api/internal/mac-codex/status/route.ts",
+          "sha256": "f7795425ae836b096e2d3919dc760d1ff3ba9e60be8b56421b2086313dfc130a"
+        },
+        {
+          "path": "app/api/internal/mac-codex/tasks/[id]/assets/[assetId]/route.ts",
+          "sha256": "6d2226f011aebbd3ba7800d64d657cc539b81f652f2cbfeb384eb1e088dfd36b"
+        },
+        {
+          "path": "app/api/internal/mac-codex/tasks/[id]/result/route.ts",
+          "sha256": "b3dfe13de4c379e47503151d5fadfec81fe330b1ad79a05c911248889385a020"
+        },
+        {
+          "path": "app/api/internal/media-edge/[id]/route.ts",
+          "sha256": "8fbc7b68ddcf012655012db54786ed14b02012298824c8ecdca5b3ad5734d572"
+        },
+        {
+          "path": "app/api/internal/windows-astorie/claim/route.ts",
+          "sha256": "140de355b6565bdeed29a78a0443d5de7c2689e1d10c52fcdc1e2a07964ac56b"
+        },
+        {
+          "path": "app/api/internal/windows-astorie/heartbeat/route.ts",
+          "sha256": "85604ac6fcd5a6c969285608d8c8994d8cc579b4d2824a2d847b88c6da3a739a"
+        },
+        {
+          "path": "app/api/internal/windows-astorie/tasks/[id]/result/route.ts",
+          "sha256": "c524f1b8a3df27c761b852146bf5ea1823d1ea97cc23d21bc33158ffebb6d782"
+        },
+        {
+          "path": "app/api/internal/windows-mimo/claim/route.ts",
+          "sha256": "386d362cbf0547409cad4492223d383b21bab692a2ed065cde0ab8809a60e26f"
+        },
+        {
+          "path": "app/api/internal/windows-mimo/heartbeat/route.ts",
+          "sha256": "40e16ef867340ab05309f9cd5c2a93b7d08c80e593e61d1fff0cf341ac6c02b9"
+        },
+        {
+          "path": "app/api/internal/windows-mimo/status/route.ts",
+          "sha256": "5cc2f674b4aecacc4b52741dad3ceadda30e214d2f3c6437dd6539844d2214af"
+        },
+        {
+          "path": "app/api/internal/windows-mimo/tasks/[id]/assets/[assetId]/route.ts",
+          "sha256": "c18c04b03f3e1660b81f8bf683840dae50d5557944973848552df1a53e051dd6"
+        },
+        {
+          "path": "app/api/internal/windows-mimo/tasks/[id]/result/route.ts",
+          "sha256": "e1bd96db9b4883b6e127904d41290f309c1996bd582801204add3cb60da2226f"
+        },
+        {
+          "path": "app/api/projects/route.ts",
+          "sha256": "389dc6148dea783c583bf86b4d4eaf3b466bcf76ac0a01ecfe7f534f66ac6fa9"
+        },
+        {
+          "path": "app/api/projects/[id]/assets/route.ts",
+          "sha256": "a665c40e84d3deea5015f79578b6ac0a9c4044c928ede3bf434c1a2893f4fe83"
+        },
+        {
+          "path": "app/api/projects/[id]/canvas/route.ts",
+          "sha256": "e0f935510b9b8def48ac4fe9df139449a3e60984772244093ccbea1560c70d9e"
+        },
+        {
+          "path": "app/api/projects/[id]/deliveries/route.ts",
+          "sha256": "637a2dad0883270eb47604e468ef5af413a28f1e82467f74f89cefea3ac0915a"
+        },
+        {
+          "path": "app/api/projects/[id]/overview/route.ts",
+          "sha256": "4b3d234fba198663fa400f142a09b19f6b039a2b8990dadbaf4643b6991ea16b"
+        },
+        {
+          "path": "app/api/projects/[id]/route.ts",
+          "sha256": "478eb284265de7eea3ec45d61cb9946e66b193157823f4ace7ca4c1c0d8f2251"
+        },
+        {
+          "path": "app/api/projects/[id]/short-drama/route.ts",
+          "sha256": "f314d6332a4e0d3351bd2da449143499fedb8a9f8ac054c53f86618015d871ed"
+        },
+        {
+          "path": "app/api/providers/route.ts",
+          "sha256": "79bb9232b0aea29a3a8c6c38955b3fb6be68efc3543e55a562e380c24e65c2a0"
+        },
+        {
+          "path": "app/api/redraw/jobs/route.ts",
+          "sha256": "3b9d82e4901d8f3342d2a595165b497526ce0c964d60676f1c3cd790eedb335e"
+        },
+        {
+          "path": "app/api/redraw/jobs/[id]/cancel/route.ts",
+          "sha256": "1ddb959dfc65560cbd1d5c3491c63b1169e62a0d96b9f2ae1908232e95976cb9"
+        },
+        {
+          "path": "app/api/redraw/jobs/[id]/retry/route.ts",
+          "sha256": "22ae7ea0e5b99e436140a94849447df79228202ce44080da558ee0f5989925c1"
+        },
+        {
+          "path": "app/api/redraw/jobs/[id]/route.ts",
+          "sha256": "670f4152ba9d302bca131c7041f5c2ffc338fc331c4ded8ba84b0fb01491fed7"
+        },
+        {
+          "path": "app/api/team/route.ts",
+          "sha256": "ab8ef648133b72adad4a8ce457e8a793b22340415734957cd7778dcf0c264ccf"
+        },
+        {
+          "path": "app/api/video-tasks/route.ts",
+          "sha256": "c616bf6afd7d3676deaf3dc4671f3b73e20e9b10d199ec98038a7828b5b0386b"
+        },
+        {
+          "path": "app/api/video-tasks/[id]/authorize-execution/route.ts",
+          "sha256": "6f6417a3ad8215a8e81a7a6265d28a10b439876929ef3f841f63d6542d250717"
+        },
+        {
+          "path": "app/api/video-tasks/[id]/download/route.ts",
+          "sha256": "2af25ada67e0103e81b8c86d215a0552acf6eec693939963a18b2186c5281ca8"
+        },
+        {
+          "path": "app/api/video-tasks/[id]/handoff/route.ts",
+          "sha256": "6691fbca4242a9519a3f7c2f2616b691388bbaaeffcf29db71631d6e7b14df71"
+        },
+        {
+          "path": "app/api/workflow/route.ts",
+          "sha256": "4c8f10904d46b838662411bcd9db3f4196effaeaf63be5cc1ddc1288d101342c"
+        },
+        {
+          "path": "app/api/ziyu/jobs/route.ts",
+          "sha256": "edfe87ed00801f94acee65860427b1ab587e4e747a7864098bd5eda1b00294fa"
+        },
+        {
+          "path": "app/api/ziyu/jobs/[jobId]/media/route.ts",
+          "sha256": "e772988d177040992dc0098a12a0cdcfb9f08e4c49a9ec155a99168c485541b8"
+        },
+        {
+          "path": "app/api/ziyu/jobs/[jobId]/route.ts",
+          "sha256": "5a4d3bcfc62b797589d9c80e74134e8eb2faf45ea9a39a9b0fe0ab56bfdb2eb7"
+        },
+        {
+          "path": "app/api/ziyu/media/route.ts",
+          "sha256": "97f711113d280230035cd71a70bc1652dfa5bf76b475a939939eaf7f5b812b81"
+        },
+        {
+          "path": "app/api/ziyu/uploads/route.ts",
+          "sha256": "9c0f7bc6489d1e7dd11d940dda47a2da05253b97d7b75849251506c65c77336d"
+        },
+        {
+          "path": "app/assets/page.tsx",
+          "sha256": "128dba9ca972d5c98c677f96aec61bd19fbbfe2baddf55e1b94fafa965673597"
+        },
+        {
+          "path": "app/canvas/page.tsx",
+          "sha256": "c0d964ffa315b8f596d90b764323e4b57bda2bc66b3c26c4c78035ef30174682"
+        },
+        {
+          "path": "app/canvas/[id]/page.tsx",
+          "sha256": "dc1ee04b9552a43f397748f7bd748050f1128971e1672ea0094f8bb1b05ed1a1"
+        },
+        {
+          "path": "app/credits/page.tsx",
+          "sha256": "3e849c203504377ed37749221d76d9295f7933873ddc27bff45e9d61cbf11979"
+        },
+        {
+          "path": "app/error.tsx",
+          "sha256": "4ce47492d3c7455bf137fd31e123ff06677735538ec301211994ad8eae5340db"
+        },
+        {
+          "path": "app/globals.css",
+          "sha256": "b3f85007a648307cb9f649877cff6243f421d5ef2474dd549deb1b3dc9515d60"
+        },
+        {
+          "path": "app/guide/page.tsx",
+          "sha256": "9bddb226faec338dfaeba3486f6f29ceb28a080a5b3e14b8260c7d6507e5fccc"
+        },
+        {
+          "path": "app/home/page.tsx",
+          "sha256": "4bea8b15d6585b52bb92199f7ae9493e3ffa14e70d092b89131a7390c671d27f"
+        },
+        {
+          "path": "app/icon.svg",
+          "sha256": "bc628356b542df8e0c659577d3145bbd6ce685bf746046e844108dc0644ef63a"
+        },
+        {
+          "path": "app/layout.tsx",
+          "sha256": "1c95277a6c8738097c19c6a7dc2c030d8b3290187f9e77ea15641e6332c29c5e"
+        },
+        {
+          "path": "app/library/assets/route.ts",
+          "sha256": "775a2e8823f3af04cb511a92ea7f3175188cf887f6168ef9a23e029dfc2656ca"
+        },
+        {
+          "path": "app/login/page.tsx",
+          "sha256": "d8d7d4c8144162357d441c7f17bacd677a5bd083645a2758c647add4f86dbe91"
+        },
+        {
+          "path": "app/media/assets/[id]/route.ts",
+          "sha256": "9e1e84cb11651a906baf8373ad1875bac7b28fed3b6dc1eb2bf8197ae283077e"
+        },
+        {
+          "path": "app/not-found.tsx",
+          "sha256": "3ba1093280a250ebab6e51ae6de071793e1324555117c00355358d2b3b905f38"
+        },
+        {
+          "path": "app/page.tsx",
+          "sha256": "c3244c0ba3e8e269b2cb64da2e639a1fa5a39e22cd35f2f51a0228a072570913"
+        },
+        {
+          "path": "app/projects/page.tsx",
+          "sha256": "d7fe3d90920de7cc2ce0e5bc71159a1fad3ef55ffaebd690d5a0e32bb31520c7"
+        },
+        {
+          "path": "app/redraw/page.tsx",
+          "sha256": "30199685630f527cc959f882d1e9a7318264d7e9a050bc09e8d65f804668f175"
+        },
+        {
+          "path": "app/settings/page.tsx",
+          "sha256": "8862775c0e219e49eae69b6e7815d324b28516d7c221d4e9dfda19f68e45cbe8"
+        },
+        {
+          "path": "app/showcase/page.tsx",
+          "sha256": "118361b43f4f59009e8196961170d53aa2c5dd84bebfa152ec2588b5e6e6ee31"
+        },
+        {
+          "path": "app/step01/page.tsx",
+          "sha256": "8cdf196c58e3d8854a5e1402bc7b4b2500cecb397a340a0f6af43090711718e7"
+        },
+        {
+          "path": "app/studio/page.tsx",
+          "sha256": "9ba1f9f7d7f275ea84ac389b9112806889629ffb4e4f06f5a67c7c54e0674b9b"
+        },
+        {
+          "path": "app/studio/[id]/page.tsx",
+          "sha256": "3341cd1a6bd8e5b335e58b4662db274aebd39e7979dc7c77a1ee92f89c7789b7"
+        },
+        {
+          "path": "app/tasks/page.tsx",
+          "sha256": "a9d319c09cca9bf4ce05ef0fa05658c44b8f1874d94e6de9731ddb9c1c83bd12"
+        },
+        {
+          "path": "app/team/page.tsx",
+          "sha256": "322addf2bc8543e04122a4658926a6bfcabadd1b8cfcc0c6c82305446617df86"
+        },
+        {
+          "path": "app/workspace/[id]/deliveries/page.tsx",
+          "sha256": "d993c7d829991abd83ba41bc5fa3502c657f13f5f214cabdbbb8f4443e4f5f2f"
+        },
+        {
+          "path": "app/workspace/[id]/page.tsx",
+          "sha256": "a56c8f5004930c60a5a271df777c1953a802fef0173948976a4c899acc4f822a"
+        },
+        {
+          "path": "app/workspace/[id]/redraw/page.tsx",
+          "sha256": "a2fc6b4255b35b99873e36c6aec0b3b71f65158024a8a664f0afd5de0c91d2c7"
+        },
+        {
+          "path": "app/workspace/[id]/short-drama/page.tsx",
+          "sha256": "cccf0bf7c3213fe854f3bd913a10d5678b1f4d9b14cab174a6ca5869cb9f1a1c"
+        },
+        {
+          "path": "AUTOMATION_AI_4_MEMORY.md",
+          "sha256": "79362ceb8f77427bf1db41760cf4763e49bc258065c6cb68132865662289fd7d"
+        },
+        {
+          "path": "backup-postgres-host.sh",
+          "sha256": "b02a920ca8b2fbf095e82a1ed10fc0618c95f8c2e9bf128f9ac31c5ab4b927bf"
+        },
+        {
+          "path": "components/AuthModal.tsx",
+          "sha256": "61202b46559ddf1ea550c62c3fb745366f061910b7a8aba17c9b299b317fd4bf"
+        },
+        {
+          "path": "components/Icons.tsx",
+          "sha256": "7fb0a7af8a15d6b2bed75ce43857ec55edf44e1578f7ae7b42f986050b1ff294"
+        },
+        {
+          "path": "components/Logo.tsx",
+          "sha256": "3da2697593e7b2ed7ea694b4737f28b11ca4127540ee0e9b032dbf965c97f4be"
+        },
+        {
+          "path": "components/MineralFlowBackground.tsx",
+          "sha256": "0a06df4889a3168cb464297c00abcd881ba490c725a34b315385510493c8e720"
+        },
+        {
+          "path": "components/SiteHeader.tsx",
+          "sha256": "f22befbf623493fbb8f370a6bb7ef771caa6a25acc716032254b62dfc2014fa0"
+        },
+        {
+          "path": "CONTROLLED_MIMO_REAL_DELIVERY_20260715.md",
+          "sha256": "18d0d4907f8fddb916b5a3df0c3ad8a40bfc90738f23cedf20210db81467ad8e"
+        },
+        {
+          "path": "deploy/apply-media-edge-compose.sh",
+          "sha256": "541d7d659c78fdcc3080ca2a3249fa41505c9c7186eea22c7243da90fc89081d"
+        },
+        {
+          "path": "deploy/cloudflare/niannian-cos-media-edge/worker.mjs",
+          "sha256": "083ded8a301b0d3ee3bf96516356b974eb0d0f91038a62a1c47568175bdb07ca"
+        },
+        {
+          "path": "deploy/cloudflare/niannian-cos-media-edge/worker.test.mjs",
+          "sha256": "d2e87c070290ab88921509de7e6238afd09c5a13ea0c783a0232f164db7a0fd7"
+        },
+        {
+          "path": "deploy/cloudflare/niannian-cos-media-edge/wrangler.jsonc",
+          "sha256": "7c96dfdacecb1e43e9db1c603634aa52d1a654bfa58f80ebb6d457667e595d70"
+        },
+        {
+          "path": "deploy/cos-app-override.yml",
+          "sha256": "1b8b57afcb87ee3fd7138948c8656d14df1b4c1cc280111224e4a5cfd64a7843"
+        },
+        {
+          "path": "deploy/create-faststart-playback.sh",
+          "sha256": "bd880ba58db169bc34082f76220cdfabed78c0ce556f34a7788bed105be86e5c"
+        },
+        {
+          "path": "deploy/create-stream-playback.sh",
+          "sha256": "a035477c9c8feec90d712bbe155682855ce614ade0753c5adec59722f16eb476"
+        },
+        {
+          "path": "deploy/deploy-astorie-app.sh",
+          "sha256": "23a3f25d589752640dbac58decd2cf6d657e34a73075960a6538b40e9a3d9533"
+        },
+        {
+          "path": "deploy/dispatcher-runtime.override.yml",
+          "sha256": "bc6a3fbfe28b3394d1ff6c1039ef6f8fbf6db46a77822d126c07607d77e1de61"
+        },
+        {
+          "path": "deploy/Dockerfile.media-accel-hotfix",
+          "sha256": "5f2d5ebce35dc23de1b29df41da77a59cb58946ccf75b1085eb0989655a6196d"
+        },
+        {
+          "path": "deploy/face-processor-app-override.yml",
+          "sha256": "ab70a80d05068dc63a4d25e61fc97766e6c90648ea0b23a8a9ef91f532d5f4a5"
+        },
+        {
+          "path": "deploy/FACE_PROCESSOR_DEPLOYMENT_CANDIDATE.md",
+          "sha256": "d06dcea42bfdebc9a25060b1b419f996147a7d049989ef81690fbedc49ed6de5"
+        },
+        {
+          "path": "deploy/generate-stream-playback-variants.sh",
+          "sha256": "2b535748bc175017380c65fa206994879dd0b705abf8e6e17702a9a9338bd16a"
+        },
+        {
+          "path": "deploy/grant-nginx-video-read.sh",
+          "sha256": "e50e457d2d02de7482e39d42a4b4bbe426f612fc89a44a0493b1c9d8ec4ce5c5"
+        },
+        {
+          "path": "deploy/higgsfield-channel.override.yml",
+          "sha256": "f1d7dd5cfc2e74ec3ef734584a3c5a6319a5a6402ce7c2149f8904fe37327aa3"
+        },
+        {
+          "path": "deploy/inspect-media-faststart.sh",
+          "sha256": "69735465239dc21f151343fc304f9de41d009b37d47e99d00c0cc9563f4da5d0"
+        },
+        {
+          "path": "deploy/mimo-efficiency-app-override.yml",
+          "sha256": "60f5d0f29d48012eaaaa71b938ca77f470413294eda12d6ad2f17610499101fd"
+        },
+        {
+          "path": "deploy/mimo-user-confirmed-no-submission-recovery.override.yml",
+          "sha256": "97a8c91df68e5bbfccc0a0ff0017609cfe11ae2d559e31034a9dc8c6de39f31c"
+        },
+        {
+          "path": "deploy/nginx/apply-media-acceleration.sh",
+          "sha256": "32f559daf3506db3bbec1f47e10f5e2d19bad79c732aa091639318a37d5f233a"
+        },
+        {
+          "path": "deploy/nginx/media-direct.sd2.cauai.fun.conf",
+          "sha256": "e508b99813245bf35e11ac984190da239b68993b0849a571fd1e7c140a5fb843"
+        },
+        {
+          "path": "deploy/nginx/sd2.cauai.fun.conf",
+          "sha256": "5bb7021a3dc8f5bdda6e6380229b7555ba3eb139b3567e7b9cd0612c85121c9f"
+        },
+        {
+          "path": "deploy/niannian-redraw-web.service",
+          "sha256": "cd8c066bab2155c79e396d69058baf0f2e0de1e51d60c9769fc689135bb02106"
+        },
+        {
+          "path": "deploy/niannian-redraw-worker.service",
+          "sha256": "e188996fa57d96c01f32fb79b3b9cf92ff646c8c2e34c16fef2253e495a76e52"
+        },
+        {
+          "path": "deploy/niannian-video-stream-variants.service",
+          "sha256": "5fa3b55b8a788536988a0e27e4f81d11d2e272f64ff826f3eb563a1de4237d95"
+        },
+        {
+          "path": "deploy/niannian-video-stream-variants.timer",
+          "sha256": "59afde78c34c8215e631f97d6cca265483fb299be91253e29adede1dc43f634c"
+        },
+        {
+          "path": "deploy/niannian-video-workbench-dispatcher.service",
+          "sha256": "d6f5bc3464c26bba8d896819d068f583912491469e0998ae0d57f8d6a100dd3b"
+        },
+        {
+          "path": "deploy/redraw-runtime-pilot/README.md",
+          "sha256": "369306bb661047b5c4b4cd82056c114d4f0fcde9dca88d6614eadc566be670b6"
+        },
+        {
+          "path": "deploy/RELEASE_RUNBOOK_1.4.0_RC1.md",
+          "sha256": "22078d005c72af6c6d5b843b77052fe05f27cbf39252493147e448655a75482f"
+        },
+        {
+          "path": "deploy/RELEASE_RUNBOOK_1.4.11_RC3.md",
+          "sha256": "1bc1e441ffb51bfee2f4c52793f5fa875c3b53edba5c51f6a5d4ca450a5805f0"
+        },
+        {
+          "path": "deploy/RELEASE_RUNBOOK_1.4.12_RC4.md",
+          "sha256": "564ee6f41bd0bf7a2cba829746da191f501f1431887aff1c8784ad4cbb45130c"
+        },
+        {
+          "path": "deploy/RELEASE_RUNBOOK_1.4.13_WINDOWS_MIMO_RC1.md",
+          "sha256": "dec4b4b1262651260e4bd6a5fe8f06a96e5664ed93fdfe97d8ba11fc7cd13cd8"
+        },
+        {
+          "path": "deploy/RELEASE_RUNBOOK_1.4.1_RC2.md",
+          "sha256": "a30b72d08155e73d22430178c5c21c07e48b44ea2061fccbf7eed254dbfa5676"
+        },
+        {
+          "path": "deploy/repair-high-bitrate-stream-variants.sh",
+          "sha256": "5cc43253e66aa8dcba0903da95177c64bfbd2475388505b543b7f02427aae397"
+        },
+        {
+          "path": "deploy/rolling-switch-app.sh",
+          "sha256": "c5c6381c8d711a3a9b77f9e95de1f3ee1d1f7628906010905771b077ef9760f2"
+        },
+        {
+          "path": "deploy/step01/finalize-step01-evidence.sh",
+          "sha256": "7442ef70532face4192d5bedb921acf2183e61e0ec24811166a1c371203d23e7"
+        },
+        {
+          "path": "deploy/step01/run-audio-evidence.sh",
+          "sha256": "8eb95f0781d7798f07207df3384f871a90c5d85dccbd64d242aa46da368e8679"
+        },
+        {
+          "path": "deploy/step01/run-local-evidence.sh",
+          "sha256": "96503bd955d4d487ee2bc6b9525e8d784461fbd7710313d53083e878e5d9d48a"
+        },
+        {
+          "path": "deploy/step01/run-paddle-smart-ocr.sh",
+          "sha256": "629c06faa438eb7b9ae9024e58dbf5100aa0ab73315a4884dbc5e4e9e9ea688e"
+        },
+        {
+          "path": "deploy/step01/write-mimo-key-from-stdin.sh",
+          "sha256": "80dfb5a75e2de79053aabe75c79b1564d66c2ab023f6e3351858f7122588b10c"
+        },
+        {
+          "path": "deploy/step01/write-paddle-key-from-stdin.sh",
+          "sha256": "7eaa5413b44a284bff59bddbd341721ab484613e5d9d3cb83c3953e9fe1e4203"
+        },
+        {
+          "path": "deploy/switch-media-accel-app.sh",
+          "sha256": "0850fd686652f066b6e1126d4c1b42b577542f484f9dc1a108633afb868af05b"
+        },
+        {
+          "path": "deploy/systemd/niannian-editor-billing.service",
+          "sha256": "cc2a75596f885ebb869b33f635ab63c1ea3564e243269023181c352eea024976"
+        },
+        {
+          "path": "deploy/VIDEO_WORKBENCH_HARNESS_PERSISTENT_CONTROLLER_CANDIDATE.md",
+          "sha256": "49d5edeed285d631eae6d7530cea16bd440d8034d2798d4ece0e00694012fffa"
+        },
+        {
+          "path": "deploy/workbench-ui-baseline-20260730.override.yml",
+          "sha256": "e52ebb09e3eb3d3b405d98105457731395eb3d6d275caef7a4230a774b0a7a8b"
+        },
+        {
+          "path": "DESIGN.md",
+          "sha256": "d3f94157dd058986d353ec27b7b69fd580fb9c75ae37e0804b3c644661572b91"
+        },
+        {
+          "path": "DESIGN_CANDIDATE_REVIEW_NOCTURNE_20260715.md",
+          "sha256": "8bbc16daa20d3021e1a0fdcc6e71d41ad10823a909626848f05984f193a3e2b1"
+        },
+        {
+          "path": "DESIGN_MISTAKE_LOG.md",
+          "sha256": "4a781cb4362b948d8990a00e92b9d1fd6e7809e2e7c31062c0490bfc95178988"
+        },
+        {
+          "path": "docker-compose.yml",
+          "sha256": "b4bd0ce2f7042eb582d1c17748a4e6dc498913cdd21ab66693974ff7519af4d8"
+        },
+        {
+          "path": "Dockerfile",
+          "sha256": "0fbafd0438e84b7a8709668e380fd8adbbe6a4eb5013a5b2609d797363d89b69"
+        },
+        {
+          "path": "docs/agent-team/AI_PRODUCTION_HARNESS_FUTURE_PROJECT.md",
+          "sha256": "9ab615a459c0ec533a8b83ef9412ca671cdf0bd59717cd9b8b84a7cb9c2629bb"
+        },
+        {
+          "path": "docs/agent-team/mimo-efficiency-control-record-20260728.json",
+          "sha256": "cdffd413029d01fdd1d260f7c71e582ad4e1b5bc5c659d0d5a514613be28637e"
+        },
+        {
+          "path": "docs/agent-team/mimo-efficiency-handoff-20260728.json",
+          "sha256": "f9a6b35acce7778c945e572b800e3760f17a896a92c822b39dbcd36a98fad757"
+        },
+        {
+          "path": "docs/agent-team/mimo-efficiency-rework-handoff-20260728.json",
+          "sha256": "19a30e52a53e9e7f8cd7fd7afca141c98e333a2fc16145aa83cf8f18ceba0e93"
+        },
+        {
+          "path": "docs/agent-team/mimo-efficiency-rework-spec-20260728.md",
+          "sha256": "6b877b398643f7aee0e625de6b1a4378d611810b4c00d0bb65c06c6249dadf40"
+        },
+        {
+          "path": "docs/agent-team/mimo-efficiency-rework-worker-report-20260728.md",
+          "sha256": "7956a8aca64b906c3a1da6437ae417da5483f9ecac7ccb7ed563544c1118b8ed"
+        },
+        {
+          "path": "docs/agent-team/mimo-efficiency-task-spec-20260728.md",
+          "sha256": "77cf166b40feeef0be3e13ebd7bec472a0227871ca0dc6e237359656359ba03e"
+        },
+        {
+          "path": "docs/agent-team/mimo-efficiency-worker-report-20260728.md",
+          "sha256": "d0d5521597423473633fbfe79b309367ae997a4f0a6ce99b80a6a636a4852722"
+        },
+        {
+          "path": "docs/agent-team/mimo-isolated-lease-recovery-task-spec-20260728.md",
+          "sha256": "1824e5ba4c9bccc359278e9010954b6ad9e3a76003db5f485afbb4c1828c3df2"
+        },
+        {
+          "path": "docs/agent-team/mimo-preflight-cost-gate-repair-pcr-20260728.md",
+          "sha256": "d5086cdd8158f099fa5daddbf18d8a79bd278ee84bcdfac2196d9c68cb458d53"
+        },
+        {
+          "path": "docs/agent-team/mimo-user-confirmed-no-submission-recovery-deployment-pcr-20260728.md",
+          "sha256": "d4bad9477b50772b396cc7f5908b22b7435f582d54427ff9ab20fc70b45e7799"
+        },
+        {
+          "path": "docs/agent-team/mimo-user-confirmed-no-submission-recovery-pcr-20260728.md",
+          "sha256": "aece8a903b9cc934db46963ec1a436d76b61b7c22b7796dea4549dc4a8e15dcd"
+        },
+        {
+          "path": "docs/agent-team/mimo-user-confirmed-no-submission-recovery-reacceptance-report-20260728.md",
+          "sha256": "d718994e11d80fd2b12bffa998d179e0bbcc02fab56b8d68ae9aafa19b043ff2"
+        },
+        {
+          "path": "docs/agent-team/mimo-user-confirmed-no-submission-recovery-review-report-20260728.md",
+          "sha256": "b9a3c9f2ceee2edb03a939bdf5fc54be6c8314a7cbe66a8d446f036d443788cb"
+        },
+        {
+          "path": "docs/agent-team/mimo-user-confirmed-no-submission-recovery-task-spec-20260728.md",
+          "sha256": "0b724e5592a3a1e3e5d41b7c7814ad48394c15fe9103e1e4309535a8f6f1e36e"
+        },
+        {
+          "path": "docs/agent-team/mimo-user-confirmed-no-submission-recovery-worker-report-20260728.md",
+          "sha256": "e82c6231f13868637f3b5531ec690df50a411e5993acf85a3646422a8f90c702"
+        },
+        {
+          "path": "docs/agent-team/MIMO_TEXT_HANDOFF_PREFLIGHT_20260728.md",
+          "sha256": "4a329880290bd10b8b5d92e194689e22374ab3e4176441df728de48c632485fb"
+        },
+        {
+          "path": "docs/agent-team/niannian-master-control-contract-v1.json",
+          "sha256": "363aa49444cbaed4300c2fd497e423e04c20dd870e3365a3a3a4c26478ef9171"
+        },
+        {
+          "path": "docs/agent-team/task-spec.md",
+          "sha256": "a22baf627ab12e5f26aec4d74e19c298bc3d0c10129fa0b82f2c9e2e288f8105"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-delivery-manager/current-task.json",
+          "sha256": "3fdf0353b84799dbfb15675d914ccd0e5fc22e7a147a060bfc3f81a738514896"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-delivery-manager/results/AS-DELIVERY-eqn9UpeUX3dFGba2vXFo0xtU-20260730.final_delivery.json",
+          "sha256": "0f308bbaffbacdc5bab47c8f2e521c222e581df0c15dbf21d6d42b68dbd0307f"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-delivery-manager/results/AS-RECOVER-eqn9UpeUX3dFGba2vXFo0xtU-20260730.external_blocked.json",
+          "sha256": "303bf05cbf72967182b68d6b79941e3712cef3006c96526f0947735617097f20"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-delivery-manager/results/MI-DELIVERY-RECOVERY-D-yKHX6ezMuac97DZyp7Cm0w-20260730.final_delivery.json",
+          "sha256": "e47d680e38dfef827f2c981c58544c3f29d2d95522c412d9fa3ea5890b602ef4"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-delivery-manager/task-packet-AS-CDP-AUTO-20260730.json",
+          "sha256": "9925a7d7d350b919d967ff68b70a2467925f0e4fb649e89b9c4a0198677f57f3"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-dispatcher-cutover-control-packet-20260728.json",
+          "sha256": "e4fbb0b3e70f7f025ca0ebb94c73342ebee54b210e562b9e376cb26d91fbc915"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-dispatcher-task-spec-20260728.md",
+          "sha256": "03fbd905d536b35aa9c2d10ce8174494bbd78848f8b47ed8fef6412f6d0afb0a"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-dispatcher-worker-report-20260728.md",
+          "sha256": "950ae39965268c969ad78c76c8d95ae5cbd463d92a340597f2b770f69e159bd9"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-harness-v1/contract.json",
+          "sha256": "9011277541d49ef90a65348b74a62d4a6295ebad7bcb5e4a40c1f417fc6af070"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-harness-v1/events.jsonl",
+          "sha256": "6ee0316047d734134555d141fdb7ce0aa86a399e8a6e632fdc18341739221a59"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-harness-v1/mimo-local-delivery-recovery-20260730/slot-results.json",
+          "sha256": "15412fdbb0c6d0f1cdea6f882752ffb6a99fb3b2e1823de4646249143605c1e1"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-harness-v1/mimo-local-delivery-recovery-20260730/task-packet.json",
+          "sha256": "73fced589698a71e2895d02b5dd568f3ce69d9d9d802c0cc7c8d4a40ed81ed8c"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-harness-v1/pending-adoption/NIANNIAN-WB-PAID-FACE-PREPROCESS-20260728-01/events.jsonl",
+          "sha256": "f3cb940a7f5ebc7d851086b6bcd2a5fab48de5dbb388ddaf18e4983000b67185"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-harness-v1/task-packet.schema.json",
+          "sha256": "4b715824f9defb07fb107843f150762cbf453a5066292c6acf879c4a4f4fc141"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-harness-v1/task-packets/NIANNIAN-WB-REAL-I2V-4S-20260728-01.json",
+          "sha256": "a8acc9d8e988d407fcbb09714507b0491e8f339cd948630e8591b0b75d3f3aed"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-outbox-delivery-pcr-20260728.md",
+          "sha256": "b63ef4399ad687d9b8376e87f13417fa2712a8dd46ebc0baab9c83591b576f3e"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-outbox-delivery-review-report-20260728.md",
+          "sha256": "ccc8b5c8d618289321d61cb4c4c2d0e6d1e625c9a61975fabf6353c1baacba25"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-outbox-delivery-task-spec-20260728.md",
+          "sha256": "a74cb1ac844347f49028a1f31cab652be1f40351d77d6d57f3be930beb762591"
+        },
+        {
+          "path": "docs/agent-team/video-workbench-outbox-delivery-worker-report-20260728.md",
+          "sha256": "926517410b03f0cd3cf08e63eb3fd7fc37fade12e2870e07ac775e833d56800e"
+        },
+        {
+          "path": "docs/agent-team/worker-report.md",
+          "sha256": "c630728f199fdbdc62d99c36f775274ecf3b2cea9ce1b21f1fc2008881abd50b"
+        },
+        {
+          "path": "IMAGE_REDRAW_RUNTIME_CONTRACT.md",
+          "sha256": "f6c8df0f115ac54be1261cf8d25dc6d2b37f07b214f8b00cedbc1f382c09ba28"
+        },
+        {
+          "path": "lib/admin.ts",
+          "sha256": "aa163d5b2c80ff05d07ff687f435d4ee91ae2ec5d50cb7267f01deec822b91ac"
+        },
+        {
+          "path": "lib/astorie-channel.ts",
+          "sha256": "b9a7963b2f5b94094ce19dc729303f9d77f0ac0fb235f3d23bda18fd32b1f190"
+        },
+        {
+          "path": "lib/astorie-windows-worker.ts",
+          "sha256": "42d5c9cd52a9dfc639fe864ffe8d8186e03ec48459c84f537ba8c411fb36b212"
+        },
+        {
+          "path": "lib/auth.ts",
+          "sha256": "df4bafbd3ce9d4deb0d679683e1a199c75ef193690de57897a7948f5a79cc817"
+        },
+        {
+          "path": "lib/canvas-contract.ts",
+          "sha256": "09afef0961edfd13f280e3eddb718e6ad05eb947057bbd547e777bf373d40791"
+        },
+        {
+          "path": "lib/canvas.ts",
+          "sha256": "2219cfa7882bbb5752129d5c1da0c336d3b827252fd109f083fcb58d716ff485"
+        },
+        {
+          "path": "lib/credits.ts",
+          "sha256": "3c37aed60781c67cb305428d083a12e07e4c2dfd29d0686c91f06a1e0de07353"
+        },
+        {
+          "path": "lib/date-display.ts",
+          "sha256": "cb1ad6027d8c881651cacd9db41544d902bc2cf93af6e0065c4b43c79fea0a4f"
+        },
+        {
+          "path": "lib/demo-data.ts",
+          "sha256": "a2ef6b283071b416294414fd1d29a89531ef6a83f612bf6f29b9817f0bf5f8f7"
+        },
+        {
+          "path": "lib/dola-channel.ts",
+          "sha256": "3b7c73635e2265097b8781dda5e3148c587483e9880cbe6482dafa4ea3e351d4"
+        },
+        {
+          "path": "lib/dola-windows-worker.ts",
+          "sha256": "95e5e3ebe14152aa64e4dff92144e7592adc1b9043279a9db136846dbef81d77"
+        },
+        {
+          "path": "lib/higgsfield-channel.ts",
+          "sha256": "3930aded065c45b2470fa4161002e3e35f48c144555fef2f0f5173f0a638ddfe"
+        },
+        {
+          "path": "lib/legacy-mimo-delivery-backfill.mjs",
+          "sha256": "766a55f0a19656b846662f40ffc19958227eee61b0d38513f5035bf10ea94a77"
+        },
+        {
+          "path": "lib/mac-codex-worker.ts",
+          "sha256": "8ddf6d74ebdfc6ad30dcf046fae425ce1157e4005ae9acd10addd09a0689c71e"
+        },
+        {
+          "path": "lib/media-edge.ts",
+          "sha256": "2d035def09dd579491d3a79d60a85064911e543c11df055448a06a48f932e719"
+        },
+        {
+          "path": "lib/mimo-readiness.ts",
+          "sha256": "c8f1ea9e07fe533ba11568290c667aedcc9b4e49bdabf4eca654086814aa6cc6"
+        },
+        {
+          "path": "lib/mimo-windows-worker.ts",
+          "sha256": "82d0802987037853a596a6fecc3c39872c0ca6525470e3431939d896436fe57b"
+        },
+        {
+          "path": "lib/miora-channel.ts",
+          "sha256": "58462b3fbc15c152b21e2e874e257add78a298aebda9d164b070b7a9f8e80670"
+        },
+        {
+          "path": "lib/miora-learning.ts",
+          "sha256": "44e74150e3477e733d1fd0728627199af3a253a32c2ab85355aa8b8d25d631a2"
+        },
+        {
+          "path": "lib/miora-session.ts",
+          "sha256": "c77be2beeeb37edc82b01acc1f7f816ac1131ebb12f3dff7dd6135738e0daf0d"
+        },
+        {
+          "path": "lib/private-face-processor.mjs",
+          "sha256": "d2fc770c26b6907d82f36fbd3299ab0db015c6fe54c161e8d80e6bc577746632"
+        },
+        {
+          "path": "lib/product-routing.ts",
+          "sha256": "d85def1e6dd7bd43c303aabf105b758c881a5ac2df9015f63d335cbb405bcde7"
+        },
+        {
+          "path": "lib/project-workspace.ts",
+          "sha256": "aa7d4860692b64921390fd6dc0776d5e3d1b1f57888bdbafedf48879da426427"
+        },
+        {
+          "path": "lib/projects.ts",
+          "sha256": "7d31c1f2f9b9df1cbf7304ac279fd9114be49f9db798140e3b22380f11149dd4"
+        },
+        {
+          "path": "lib/provider-contract.ts",
+          "sha256": "19f6ea1447db25c03b0b223b2d8e9eeddd2e200e8b0a32732dda83f656d6f2f1"
+        },
+        {
+          "path": "lib/redraw-contract.ts",
+          "sha256": "948830799b180c1945c71f70590b372c7e657b9c71667706edbac1cef9c3a09b"
+        },
+        {
+          "path": "lib/redraw-jobs.ts",
+          "sha256": "d28666e52d1b0f2dc2f0d027387d1c6e7854b1250460ad22af15d4e63acc0f79"
+        },
+        {
+          "path": "lib/redraw-queue.ts",
+          "sha256": "a5d77e26b7e5e75048cfba8abfa0b67a1ad87d4e865a3802a822357e852d93f6"
+        },
+        {
+          "path": "lib/release-version.ts",
+          "sha256": "9d6871fcbaff78b23eb1c466bebca375dcc10bbd9f66ed2b6607cfaff4661954"
+        },
+        {
+          "path": "lib/shortdrama-contract.ts",
+          "sha256": "d56225b2c5191b85ea39ac58cbfbe3599d8e7e2564dcabf21091b3c0d4239e32"
+        },
+        {
+          "path": "lib/showcase.ts",
+          "sha256": "964a43d923e84f7b3f82719f24a9dbfc4106670c9304ef833525e56a70a5d5e0"
+        },
+        {
+          "path": "lib/video-cos.ts",
+          "sha256": "1a450e6be783db7ed9ce858914c2fe085db0df7b2e8b22f94b2b4fe7fbaa9e30"
+        },
+        {
+          "path": "lib/video-output-gate.mjs",
+          "sha256": "89ca57179fc3a9c23502913007cd35f7972dd9f162249a4ba0c653d48373bb15"
+        },
+        {
+          "path": "lib/video-redraw-step01.ts",
+          "sha256": "5eaec9cebb6fd3bfe885ae612fb0211de934758590925168e0376868831159d7"
+        },
+        {
+          "path": "lib/video-task-execution-stage.ts",
+          "sha256": "e0330d5509550decd37a4c498935ae78a948d07bbd6b9964d2de38d50c89508f"
+        },
+        {
+          "path": "lib/video-task-public-state.ts",
+          "sha256": "3063b0c4cf2afed721bd303f2e601c8ea8efca77f5329a39b3be59aec16238f1"
+        },
+        {
+          "path": "lib/video-tasks.ts",
+          "sha256": "2f22a4c135d313022340d92d5df949dd3060325e5bed4c267a3f778bb300844b"
+        },
+        {
+          "path": "lib/ziyu-api.ts",
+          "sha256": "3def072de0a86d803e83402e16bbce0dd17dc8636269496d75e003ad0917c176"
+        },
+        {
+          "path": "lib/ziyu-billing.ts",
+          "sha256": "86649129391cab2aa174ea5b6189947f84b5f6ded99f992f03f9085d1615e991"
+        },
+        {
+          "path": "lib/ziyu-contract.ts",
+          "sha256": "39998a6dea9af1f8c980e0a0648748faee8f6d620f499559141599e08cb049bb"
+        },
+        {
+          "path": "mac-agent/configure-mimo-macos.command",
+          "sha256": "0bccaa7e72684183c23f5ab884f9dd9e1124858dd7199fc4872ff935721adce3"
+        },
+        {
+          "path": "mac-agent/deploy-existing-macos-hotfix.sh",
+          "sha256": "5c07d6f8337e81c94232e7664f633126565330d27b95f5350a89ccba2df2d721"
+        },
+        {
+          "path": "mac-agent/install-macos-gui.command",
+          "sha256": "458625d49051b5a794816af233a742d90649725a37441bfa2bcaa25dbf95dc7d"
+        },
+        {
+          "path": "mac-agent/install-macos.sh",
+          "sha256": "0ea3329b8e029181f66626cd75f827a77ca47f929a9ed2cd7881a294b6314c87"
+        },
+        {
+          "path": "mac-agent/Install-Niannian-Worker-1.4.2.command",
+          "sha256": "274e0eb61148883ec10767b2f53a74aaf727f74b29f4cd2c71322afb0a60ad2b"
+        },
+        {
+          "path": "mac-agent/Install-Niannian-Worker-1.4.8.command",
+          "sha256": "9f6b3362f59701a1959335910e07d6f25e36adf86c8fc68913cfd38a1f4120ea"
+        },
+        {
+          "path": "mac-agent/mimo-chrome-cdp-submit.mjs",
+          "sha256": "ae347c5dca684dd4e6cbdf621fd71330405bcc545add5f023151aaadadea679b"
+        },
+        {
+          "path": "mac-agent/mimo-chrome-cdp-sync.mjs",
+          "sha256": "fa9acae18f0a1ba49d3148890627f5980a707821e6838bce9059b5fe1af3a98b"
+        },
+        {
+          "path": "mac-agent/mimo-chrome-cdp.mjs",
+          "sha256": "31557389b9b14a74528e98e654bf50a40b2711f78b2ffecbdb1da9b714a5f74b"
+        },
+        {
+          "path": "mac-agent/mimo-safari-ui-diagnostic.mjs",
+          "sha256": "23a269c0cb4f29045530eda0fed1a42ed5dd5a1580dc0c9159911a75a9ef8a86"
+        },
+        {
+          "path": "mac-agent/mimo-safari-visible-submit.mjs",
+          "sha256": "0beee9fbac7758e079bd86c836db059c22e9b52b5ed79d97357f7e3c73e6a981"
+        },
+        {
+          "path": "mac-agent/mimo-safari-visible-sync.mjs",
+          "sha256": "97ef9cdc9493bfc075bf80a2cdb0355d30b15313102b9e2c9e6932c32bf84854"
+        },
+        {
+          "path": "mac-agent/niannian-mac-worker.mjs",
+          "sha256": "845cddb861e56355a27b9ece4f26b4faca4e43f75293bb13e55a61168439634f"
+        },
+        {
+          "path": "mac-agent/patch-mimo-origin-macos.sh",
+          "sha256": "44e815a53d719d04822e573141a4bcd5ab4b0d6d9827d9935fe76ea3466d4680"
+        },
+        {
+          "path": "mac-agent/prepare-mimo-safari-session.mjs",
+          "sha256": "a217aa6e41897f1d23da259f2da99e521a44f560ec07452bd0ed27ca91d65939"
+        },
+        {
+          "path": "mac-agent/README.md",
+          "sha256": "fbd5bec69f311124a3d18b3efe63cfb9afb19bb3e0192f0baebc8b39dc8d305f"
+        },
+        {
+          "path": "mac-agent/repair-mimo-keychain-macos.command",
+          "sha256": "9898e73f3ffcfe1a360ed7ed003a9453a62d02c8f0cc3a51fc27a29020045b33"
+        },
+        {
+          "path": "mac-agent/Repair-Niannian-Worker.command",
+          "sha256": "a097bdcc429922fa53fc125ca865a075278e1ee526105190edd7231025e8eefe"
+        },
+        {
+          "path": "mac-agent/rollback-macos.sh",
+          "sha256": "1994d151286311c42d0fc9fc593ed8d192dd24643a482c5c08abaf03cb9672c4"
+        },
+        {
+          "path": "mac-agent/run-mimo-safari-diagnostic.zsh",
+          "sha256": "6e39a2be8d339f7548bb3d9f15ddfadd84439ce7db2b5dc9320850dc257f784b"
+        },
+        {
+          "path": "mac-agent/run-temporary-recovery-worker.zsh",
+          "sha256": "1206f3304dc6b130e78ef98aadbb22aa668f82c7b171acc37806c5a76cb982cb"
+        },
+        {
+          "path": "mac-agent/run-visible-session-recovery-worker.zsh",
+          "sha256": "da28f99fb56c61d8f92cd70f59a974c455be043b7285894ea208f1f9286bdc0f"
+        },
+        {
+          "path": "mac-agent/skill-bundle/build-skill-bundle.mjs",
+          "sha256": "3848c98860379b0ca1b3ed34c521a5bd79a1ac52e991546b0f9055f0f64f3ccd"
+        },
+        {
+          "path": "mac-agent/skill-bundle/bundle-manifest.json",
+          "sha256": "38288e1bb3c0e8864d96e267f6c463c20d769e2e6ec164ac3fed4385fe24a360"
+        },
+        {
+          "path": "mac-agent/skill-bundle/bundle.config.json",
+          "sha256": "4e9484299c20106fadf1f4de5ea09735cbdb2269a00da0d2d55e98f7fc810c74"
+        },
+        {
+          "path": "mac-agent/skill-bundle/install-skill-bundle.mjs",
+          "sha256": "ae07a70e59b35d20539167a3d320b7cf4b1c08650fb0e4f6bac9b3542d4811b3"
+        },
+        {
+          "path": "mac-agent/skill-bundle/skills/ai-video-channel-router/agents/openai.yaml",
+          "sha256": "426520018a102fdd5bc469331ea9c93f7a1df837f5a85fcdf5bf2f77e1f6adf7"
+        },
+        {
+          "path": "mac-agent/skill-bundle/skills/ai-video-channel-router/scripts/mark-channel-usage.ps1",
+          "sha256": "b991a3f8aed61678bfb770e465fc3b54d75d074f338c2eb9cd6c5d3ea624a3fa"
+        },
+        {
+          "path": "mac-agent/skill-bundle/skills/ai-video-channel-router/scripts/save-hilight-showcase-video.ps1",
+          "sha256": "eaf7e5bff6379006302260a16806fb9f93d010184dffbdd26679b7be3a0ce4e7"
+        },
+        {
+          "path": "mac-agent/skill-bundle/skills/ai-video-channel-router/SKILL.md",
+          "sha256": "3505c59fa7cfccc2ad95080b0ba9250c5f76dd96a57cadc1918a48fa664574f0"
+        },
+        {
+          "path": "mac-agent/skill-bundle/skills/ai-video-fundamentals-skill/agents/openai.yaml",
+          "sha256": "32e0111f33d9e373791e4687113f48381e9c2b2d07e5b9cb85d7404c8c372b16"
+        },
+        {
+          "path": "mac-agent/skill-bundle/skills/ai-video-fundamentals-skill/scripts/validate_ai_video_plan.py",
+          "sha256": "e1df11d8b7ec5827993b7150c431f640ed6d80326413c505c7d2a0b449ad2404"
+        },
+        {
+          "path": "mac-agent/skill-bundle/skills/ai-video-fundamentals-skill/SKILL.md",
+          "sha256": "b81121851071f8edca4fef702bac7af0186b34f447e7f6a48fc761f49baf616a"
+        },
+        {
+          "path": "mac-agent/skill-bundle/skills/mimo-8001-video-channel/scripts/mimo_client.mjs",
+          "sha256": "ae0147ee4bf670c875fac8a4adc72621eb36548525f9a104bf8e04979be0e331"
+        },
+        {
+          "path": "mac-agent/skill-bundle/skills/mimo-8001-video-channel/SKILL.md",
+          "sha256": "60500595a98f84515bf9b98ca676a9311d2b98a9c3ec14761ee1258d4334f33f"
+        },
+        {
+          "path": "mac-agent/skill-bundle/skills/post-coding-review/agents/openai.yaml",
+          "sha256": "1114c8aeccaa88c4b6bb86a60eb129947765eeab13214856bd782a410af81f92"
+        },
+        {
+          "path": "mac-agent/skill-bundle/skills/post-coding-review/SKILL.md",
+          "sha256": "192a682c2a4392e7c2e326b58b9a94e204d6c51254ded5fe53c8b0795650cc21"
+        },
+        {
+          "path": "mac-agent/start-launchagent.applescript",
+          "sha256": "66e797e021c7205468f1e9d21d4a5a2924cff8a7fd0aed45ba7c6bfdb85d008b"
+        },
+        {
+          "path": "mac-agent/worker-result.schema.json",
+          "sha256": "180b941bc3455be682fdea3931bb4de72527dd6576dd16f9adca126e151c5551"
+        },
+        {
+          "path": "MAC_TRAINING_WORKBENCH_INTEGRATION_SUPPORT_20260715.md",
+          "sha256": "eabbd9f29cc76e8bf41a8821e2d9ef0635781954edb9c12ad93b129d1931a0ed"
+        },
+        {
+          "path": "MINERAL_FLOW_V2_EXPERIENCE_CONTRACT.md",
+          "sha256": "45059fa3d2521e5ad70d2100f1e5b90e091c78a2c90aa97b000cb86d8d0be6a2"
+        },
+        {
+          "path": "MIORA_HUMAN_HANDOFF_RUNBOOK.md",
+          "sha256": "9eaa0fb78e00e0bc1032fe7560a4047721800ef3ec8d5737f214be32a62bf1c9"
+        },
+        {
+          "path": "mjs-modules.d.ts",
+          "sha256": "a3743ea8457120cdcae1441be2cad595b4a2ab32464d57cd0fb1ac07342ea710"
+        },
+        {
+          "path": "next-env.d.ts",
+          "sha256": "d678de3a0d7ed0f975ec910b6deea82e3696fafbe2d084d4e4897caa918f10dd"
+        },
+        {
+          "path": "next.config.mjs",
+          "sha256": "0fd6ca742a0cc175d868db12f819dee4c4c473e90377984891b3514fb57aac31"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "91149f03935c8e819cadee0c3318a9d7ac9c4f704d10884d04ea099dd004e8cd"
+        },
+        {
+          "path": "package.json",
+          "sha256": "7ada48d270c794432c6ce387fc49b302565304d52411cac8a7c23c4d078737a8"
+        },
+        {
+          "path": "POST_CODING_REVIEW.md",
+          "sha256": "84455d656e8a1078b00410b7c260280bf2f8d5c2defeadfb789669a81b4839de"
+        },
+        {
+          "path": "POST_CODING_REVIEW_CONTROLLED_MIMO_REAL_DELIVERY_20260715.md",
+          "sha256": "c490abc4bb6b2a7112eb5c9e084d9fb01075b98949a95dc7c125353c1d01b6b0"
+        },
+        {
+          "path": "POST_CODING_REVIEW_COS_DELIVERY_20260727.md",
+          "sha256": "6007463b297ff63c1d9898ec71c0163ee7359ba6e3434bdc05a2e791ac8e7cb6"
+        },
+        {
+          "path": "POST_CODING_REVIEW_FACE_PROCESSOR_LOCAL_IMAGE_ID_20260728.md",
+          "sha256": "984867f3232e6da8ea51de7a4e36ff188723f40a1e876a3e1a59f4fda03c8f3e"
+        },
+        {
+          "path": "POST_CODING_REVIEW_FACE_PROCESSOR_PRODUCTION_RELEASE_20260728.md",
+          "sha256": "c6a79f074cbbd382a3ac491125354d67ea9b574fcbade9faa45adc38f3a94662"
+        },
+        {
+          "path": "POST_CODING_REVIEW_HARNESS_CLAIM_PROJECTION_20260728.md",
+          "sha256": "844b9fea895ada59ffc6f30a6bb8279e8b1885c7d8873a83e7a15f0ef1949086"
+        },
+        {
+          "path": "POST_CODING_REVIEW_HARNESS_INDEPENDENT_ACCEPTANCE_20260728.md",
+          "sha256": "113a37654def520a4d14398e6577711ca75bb5b3b57ac21448121740708604c7"
+        },
+        {
+          "path": "POST_CODING_REVIEW_HARNESS_RECOVERY_FACE_FLAG_20260728.md",
+          "sha256": "60179bbbcccbf0fbe8d0aa1ca826fce836f096dffc93b383049d7d9fa277bcb2"
+        },
+        {
+          "path": "POST_CODING_REVIEW_IMAGE_REDRAW_RUNTIME_V2_20260721.md",
+          "sha256": "8a58cd5b3f2ea0e401fd332523200009f1e7a90ecdca3800e69c9aa8fd57e1b9"
+        },
+        {
+          "path": "POST_CODING_REVIEW_LEGACY_MIMO_BACKFILL_20260727.md",
+          "sha256": "598f5ed0c210f74d04039ce52845ff2bb4071f25dc323b6b7a882e4720e711bf"
+        },
+        {
+          "path": "POST_CODING_REVIEW_LOCAL_PREVIEW_AUTH_20260715.md",
+          "sha256": "f5966307b9acff96e3d174896b40aa0726f31c96f03576b1c02b1393f89518f3"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_AUTO_DELIVERY_20260727.md",
+          "sha256": "8fc8df8c70ff653476b3805eef0ff74441b57b5bbafcaa52d2bcb013e7bbcba3"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_BACKGROUND_CDP_20260728.md",
+          "sha256": "db1e27cef4e00c8a13a431e49077ac09602ae7f7ef9849bebb5be4bc2d5d3676"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_COST_READBACK_20260727.md",
+          "sha256": "b7d076f675b552fcfebd3dc5c7ba073af5762e280096d1d2a03a5cf701f4e92c"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_DURATION_4_15_DEPLOYMENT_20260728.md",
+          "sha256": "e605e5b12f6c82197a5057d3ce779229e3f53b0f35ec615d312461fe34e4c82a"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_EFFICIENCY_20260728.md",
+          "sha256": "c82a3f587cf44ec99497155a1ccf7348e4e84332a2cc9422048174c2526fd80f"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_EFFICIENCY_DEPLOYMENT_20260728.md",
+          "sha256": "58b2ef636e02d9ff080869aa5c5ff88dd79042b2662f522dc0ee9b27e8013b9e"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_EFFICIENCY_REWORK_20260728.md",
+          "sha256": "7788475da2b3061855caf17a1cac9e3ffaa0dfbb38123376f04632ac3d55ed62"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_EXECUTION_STAGES_20260727.md",
+          "sha256": "baf2e8f88bbc3f711e6d5ecfd0001c76fe5296fba5c32de7c9cb92fcd5c649ea"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_FAILURE_QUEUE_20260728.md",
+          "sha256": "649ab5d9924270f0b47a5b01caa2db584eb1b8dc89196977d283d484f7443736"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_IMAGE_TO_VIDEO_BENCHMARK_20260728.md",
+          "sha256": "ee8f947d9d2d6deb217c04ceee3ae0c6d1746d700b4b0ca802329ae061a40e48"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_NATIVE_HISTORY_DELIVERY_20260728.md",
+          "sha256": "b51c7a3fdf78ce100e70e0c3847a083d8fb040f1dd57932b100f4119972b2a0c"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_OWNER_AUTHORIZATION_20260727.md",
+          "sha256": "c835e37d23305407fc0ecb5ec84e58630a01c059f097d0a291d274a070dfdc15"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_OWNER_AUTHORIZATION_DEPLOYMENT_20260727.md",
+          "sha256": "b8d1e10c71ec3ab397e4bf2f6cc1a12d851f9bb48ba172599b0e0229aa1a9f2a"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_PARENT_BRIDGE_20260713.md",
+          "sha256": "3fc68f153d1cc5cc6e1791bbbf73dbd3bb45358e7e38603db9d65b593315faeb"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_TEXT_QUEUE_20260728.md",
+          "sha256": "736a8eeae1a6d060a081cdaf4b2b24730ae658c858c97bfe90cab96b09de1507"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_TEXT_QUEUE_DEPLOYMENT_20260728.md",
+          "sha256": "dca1bd0752f2b73822986b042440c1d5cd6e33f850414fd1adb5fed25a39de60"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_WINDOWS_DEFAULT_ROUTE_20260727.md",
+          "sha256": "9c8137f8ff7c355606e4952ff73afafe562bac403b5cdb735cef62e04ebc3a08"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_WINDOWS_PREFLIGHT_DRY_RUN_20260727.md",
+          "sha256": "53632950dd8a6bae1af2dd2c2762430c166ba93430d047e47a534bc173bfdf88"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIMO_WINDOWS_RECONCILIATION_20260727.md",
+          "sha256": "e700fc383a81ffbde9b49cfa09e8112213295edb5efc577a097bd172162973d9"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MINERAL_FLOW_V2_20260715.md",
+          "sha256": "79f281075067edea4f6ac168b60d75a99a30ae4870f2c9d31f671f564574fd13"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MINERAL_FLOW_V2_DEPLOYMENT_20260715.md",
+          "sha256": "2d77772d5ea598276a3c45a9b6a363f9943089280bdbcc69c03e1a314e8004e8"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MINERAL_UI_20260715.md",
+          "sha256": "dacc518eeee7d96aefd602f69903d7f73f57ae5555bd85fd306b852b3d013367"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIORA_HANDOFF_20260724.md",
+          "sha256": "379e5559de0dcae652c963896f4e8525346c3783a6431f4e3c8c9828d6731eb3"
+        },
+        {
+          "path": "POST_CODING_REVIEW_MIORA_METHOD13_20260724.md",
+          "sha256": "8212259367d6175467131efd12a91f9f427ddd02615be2f1452bb42cef685ee2"
+        },
+        {
+          "path": "POST_CODING_REVIEW_NIANNIAN_MASTER_CONTROL_HARNESS_POLICY_20260728.md",
+          "sha256": "c297d489aa69c64b8f0d8318f3b5ddfb08d1c347169adb61167e2857998e224a"
+        },
+        {
+          "path": "POST_CODING_REVIEW_OFFICIAL_FRONTEND_RECONCILIATION_20260713.md",
+          "sha256": "f8f85e16d2855d3c553386417c868f486209b86fdb9e5eb1549de485173e4d59"
+        },
+        {
+          "path": "POST_CODING_REVIEW_PERSISTENT_HARNESS_DISPATCHER_CANDIDATE_20260728.md",
+          "sha256": "2fc88a9acec9e42821ed52961ca1fdb15e668e6a4482c5b4a0608afdc7571b27"
+        },
+        {
+          "path": "POST_CODING_REVIEW_REAL_I2V_PREGENERATE_GATES_20260728.md",
+          "sha256": "c3094586dd6d46d79c65b93c767559ff8e530e0268b477f08447b798fa69058d"
+        },
+        {
+          "path": "POST_CODING_REVIEW_REAL_I2V_PROVIDER_AUDIO_20260728.md",
+          "sha256": "d4ed046c3c424d903aa0b079042ec072f968bd42c929f316625e0fc1252c0639"
+        },
+        {
+          "path": "post_coding_review_redraw_cos_runtime_r1.md",
+          "sha256": "32ec39fc9adc456094e465ae53d35e26ad372f6477a326d8959adbc2465b49d2"
+        },
+        {
+          "path": "post_coding_review_redraw_ui_skills_r1.md",
+          "sha256": "b53380a76f251dee16c2ab23133555a25ef05b27994a014fb9c93edf4cbecc37"
+        },
+        {
+          "path": "POST_CODING_REVIEW_REFERENCE_CONTRACT_20260713.md",
+          "sha256": "1f8caca4cb8f026be029b08fccae1d6a668791369fe29481d81880374c19c046"
+        },
+        {
+          "path": "POST_CODING_REVIEW_RELEASE_CANDIDATE_20260713.md",
+          "sha256": "383e6e32fa3162fcf67b5cbeca7ec0a4e27c3d43935750af8104235b475c5339"
+        },
+        {
+          "path": "POST_CODING_REVIEW_SAFARI_SESSION_RECOVERY_20260714.md",
+          "sha256": "1cf6df52f2f50ffa863da9d01de117567c0b32de37203e9e90d7a2063a0fcb51"
+        },
+        {
+          "path": "POST_CODING_REVIEW_SERVER_REDRAW_PILOT_20260721.md",
+          "sha256": "d781f0987a6119561f264ac8f3a60e257dee5d095c0c60df452360e96b6d0dc2"
+        },
+        {
+          "path": "POST_CODING_REVIEW_SERVER_REDRAW_RUNTIME_20260721.md",
+          "sha256": "f8e078f1721b302a6a75b150963e5a2dc404223b53253bde8aac79b02f565a65"
+        },
+        {
+          "path": "POST_CODING_REVIEW_SERVER_VIDEO_STEP01_20260721.md",
+          "sha256": "acfe5868755d797d85f4668b00d6555702d28f485306599afdf68e190deffc1a"
+        },
+        {
+          "path": "POST_CODING_REVIEW_STEP01_ARTIFACT_UNIQUENESS_20260727.md",
+          "sha256": "642bccbd6b99064e79fb7c0600f7eaca402b66ae64a5b426762f9b5f969422a2"
+        },
+        {
+          "path": "POST_CODING_REVIEW_STEP01_SERVER_REAL_DELIVERY_20260721.md",
+          "sha256": "372eb25830b48fd7c8b74d8230d302431b2f421f6bcb497bfe1453b2f91f62a1"
+        },
+        {
+          "path": "POST_CODING_REVIEW_VIDEO_WORKBENCH_DISPATCHER_CANDIDATE_20260728.md",
+          "sha256": "c1d52292af39c2d71c95cb5d401e29eadaa156ffb88eb75f74c7038fc6c257e0"
+        },
+        {
+          "path": "POST_CODING_REVIEW_VIDEO_WORKBENCH_HARNESS_FIX_20260728.md",
+          "sha256": "b282b88467d2cca67e3906824b9e41cb7a7744846759f67df32c2aefd6e80118"
+        },
+        {
+          "path": "POST_CODING_REVIEW_VISIBLE_MIMO_COMPLETION_20260714.md",
+          "sha256": "c3189abd47f4598dd6fa63b13576dfa4a707c8a336fcc0e8421b83b0c1440244"
+        },
+        {
+          "path": "POST_CODING_REVIEW_WINDOWS_MIMO_COMPAT_GATE_20260727.md",
+          "sha256": "8468ea554f90455bc59d0be06f84f7032f1b2e889ec7a29758a2f1dac4627662"
+        },
+        {
+          "path": "POST_CODING_REVIEW_WINDOWS_MIMO_POSTDEPLOY_READONLY_20260727.md",
+          "sha256": "07e8f5708a6cbf7ea8c9e7697149992caaab017da053df5162ab4b76222229c7"
+        },
+        {
+          "path": "POST_CODING_REVIEW_WINDOWS_MIMO_RELEASE_CANDIDATE_20260727.md",
+          "sha256": "250f91abcce9ca5956243aefa1a94a7f3a80697fd104bcead4d1798853b3c00a"
+        },
+        {
+          "path": "PRODUCTION_RESOURCE_INVENTORY_20260713.md",
+          "sha256": "1fae48b65e10257ae5513d97f65bae3d5928122632ab1a5b7c257473d8b339f4"
+        },
+        {
+          "path": "PROJECT_MANIFEST.json",
+          "sha256": "50ebf838fe83db3bb739ebbad97e9937932c38fb7addec7e77bfb49cce261a9b"
+        },
+        {
+          "path": "prompts/workbench-clean-dream-purple-gold-background.txt",
+          "sha256": "09c15caa2d629dca6820466b617b76a95d07c3bd2df21b4f2f58575843df791a"
+        },
+        {
+          "path": "prompts/workbench-dream-purple-gold-background.txt",
+          "sha256": "47801764ef6dca34cc19e22f94991fcebc405c9246620cb700d41c21558f3d1c"
+        },
+        {
+          "path": "prompts/workbench-dreamy-aurora-purple-gold-background.txt",
+          "sha256": "300f8cefc9dd9d4c2eae5b75e2df2720d92504b730a61d41cb2dec980adeacae"
+        },
+        {
+          "path": "prompts/workbench-luxury-nocturne-a-smoked-lacquer.txt",
+          "sha256": "5299cd157aee2283b98d7a7af56735761daa7049aff3e1cd334a78a9cf81fc5e"
+        },
+        {
+          "path": "prompts/workbench-luxury-nocturne-b-velvet-stage.txt",
+          "sha256": "f390c911abc6e1c70b06612234245f3db0d3372e4d64c9b8d27fb1ec1a4e9bb9"
+        },
+        {
+          "path": "prompts/workbench-luxury-nocturne-c-obsidian-pearl.txt",
+          "sha256": "2cd69a5c37bfbea58d0e5c8c2f1a3ba5115c1a256aec887d0df7ef9c433aa224"
+        },
+        {
+          "path": "prompts/workbench-oil-painting-background.txt",
+          "sha256": "9d2ebb3c234e6e0dfaa1d38244a23b1eaa66a03c5c0df2357e14b09e5d5d374e"
+        },
+        {
+          "path": "public/favicon.svg",
+          "sha256": "5fbee19dd68c759249da1b8272973910684367376d22878ca485ee58e9f80e7b"
+        },
+        {
+          "path": "public/niannian-ai-authority-gold.svg",
+          "sha256": "958d0a588ae9e45f1149d2247433fe2d7f9dedcf1f3979df45a31ce1c1affd37"
+        },
+        {
+          "path": "public/niannian-ai-mark-transparent.svg",
+          "sha256": "74880b04fb15b358e6d92b45226a24861a05992cc3e9b659bd0b2c755173e558"
+        },
+        {
+          "path": "README.md",
+          "sha256": "011fae819b16bff21ddc64f6f207ea3945cbd6025a051c5996c0ee8d6af8aa18"
+        },
+        {
+          "path": "RELEASE_AUTHORIZATION_PACKAGE_20260713.md",
+          "sha256": "d1f26ba229422fd94b72566383975c39ab84ba171c62177e82ace48422380c28"
+        },
+        {
+          "path": "RELEASE_AUTHORIZATION_PACKAGE_20260713_RC2.md",
+          "sha256": "4beac8c9535bf4fd4701c463fb6d37ce685e896d35d7c18392289fdc26537639"
+        },
+        {
+          "path": "RELEASE_AUTHORIZATION_PACKAGE_20260721_RC3.md",
+          "sha256": "c259b15526872bddfb6dd58622e5875bcc78114165c83892c3668a56454fab23"
+        },
+        {
+          "path": "RELEASE_AUTHORIZATION_PACKAGE_20260721_RC4.md",
+          "sha256": "3e162eb5b0efe86057512b3f8db835f6d10ed8c7e8ec359f4de6155333d6b235"
+        },
+        {
+          "path": "RELEASE_AUTHORIZATION_PACKAGE_20260727_WINDOWS_MIMO_RC1.md",
+          "sha256": "7d35313a7a1e3c5f79e01ed274624dbe57eaeb9b20fbb702f905d9e0eaf31c4d"
+        },
+        {
+          "path": "scripts/astorie-windows-agent.contract.test.mjs",
+          "sha256": "b5f1840fbfde619e0b0ccf91f9f6c089b5d300bd2e99e05dce5a076378f371dd"
+        },
+        {
+          "path": "scripts/astorie-windows-worker.contract.test.mjs",
+          "sha256": "fd3a76629abfdef027578e260e68d7915e52dbd4c0f61e75263afda7a08d41ac"
+        },
+        {
+          "path": "scripts/attach-face-compatible-reference.mjs",
+          "sha256": "624108e5e8b1be1c387a5b80371941bc8ad3b20f8071cef017ea00d58bd559c7"
+        },
+        {
+          "path": "scripts/backfill-stream-variant.mjs",
+          "sha256": "0565ecef6b71a8c4bf53d25b5d151eb0e03f40e4f8fb791aa1364b42d36917f1"
+        },
+        {
+          "path": "scripts/browser-slot-manager.contract.test.mjs",
+          "sha256": "cd6ef092635e3b21c94c4289c0b0633b00dc2cf40d73700b55fef587290ce0ea"
+        },
+        {
+          "path": "scripts/build-account-slot-registry.mjs",
+          "sha256": "8feac1dad54517a48fc2403dde2c2cfc696f9ea7484d6ea0a5c09b016d5099dd"
+        },
+        {
+          "path": "scripts/build-account-slot-registry.test.mjs",
+          "sha256": "a20f1c528594cf37a53edd9f225e7b6186e07dda05465d6fecaacdefee924d8e"
+        },
+        {
+          "path": "scripts/build-employee-redraw-harness-bundle.mjs",
+          "sha256": "f850680276f84558cc174a37662db9afa38c20d1c27ed394a7ac15319606d934"
+        },
+        {
+          "path": "scripts/build-employee-redraw-video-bundle.mjs",
+          "sha256": "162d3648514abf6f2a8cac1d8f6d48ef08a10dfa4290a3b964a530b4c0036430"
+        },
+        {
+          "path": "scripts/build-redraw-skill-bundle.mjs",
+          "sha256": "d9125c1deb931de13ff5869556c7c864fa2d80b5570c49fe6d22e46368a8a78f"
+        },
+        {
+          "path": "scripts/build-release-candidate.mjs",
+          "sha256": "78c4251e1735e1a5850bd3d796e0b3936010f53c48ef36172ae5b317e270b78d"
+        },
+        {
+          "path": "scripts/build-server-step01-bundle.mjs",
+          "sha256": "a0c5e21d21b2a65d931d5c2f6c7402aa51c0785a8408986185c227416343dd79"
+        },
+        {
+          "path": "scripts/build-windows-mimo-agent-candidate.mjs",
+          "sha256": "b9be344350d85c561aaa1d7c2089b1c57b3b499e24c8f00d32cd3748294fce67"
+        },
+        {
+          "path": "scripts/compare-media-network-speed.mjs",
+          "sha256": "5d3722740e1867fc198b1c885de96627a01846ba75a99ef485c90b5fe0e88585"
+        },
+        {
+          "path": "scripts/date-display.test.mjs",
+          "sha256": "395103454b95f9fd8b60f8fb2d3de03cfc3080c98a2941811744f1ffc5db37cd"
+        },
+        {
+          "path": "scripts/delivery-route.integration.mjs",
+          "sha256": "c7c3359ccf57d3d43ce3596b25dee8dcd9390c9582100918c3261157a0cade8d"
+        },
+        {
+          "path": "scripts/dola-windows-agent-api.integration.mjs",
+          "sha256": "4fa5f3e5e254827dbe6b43b37c539fa4a8ab7aaa41f2967ecd3615a5ecd7d878"
+        },
+        {
+          "path": "scripts/employee-redraw-bundle/prompts/01_员工启动提示词.txt",
+          "sha256": "3b28af11632845cb109dd2ea46f099369b3ea142be380f6e74d0ca62ec0c69a2"
+        },
+        {
+          "path": "scripts/employee-redraw-bundle/prompts/02_商品带货转绘提示词模板.txt",
+          "sha256": "d65a426bbba48216ba2b13fa57bce04dbea297c4e6d95a48e611de913bb30642"
+        },
+        {
+          "path": "scripts/employee-redraw-bundle/prompts/03_汽车带货转绘提示词模板.txt",
+          "sha256": "995415ebe579364f3985825b789012b1a9cb268c637bca47eee6b21d35129056"
+        },
+        {
+          "path": "scripts/employee-redraw-bundle/README.md",
+          "sha256": "32d61fc61ad46d1b9ff1109ba04a927c73c3926543aff60834dbe3ad085ce9de"
+        },
+        {
+          "path": "scripts/face-processor-deploy.contract.test.mjs",
+          "sha256": "574e11d7ac881664bd39a7c660c8cbd6647614c05e53ce4a1525155efc1cf2ed"
+        },
+        {
+          "path": "scripts/generate-ldxp-credit-codes.mjs",
+          "sha256": "dcfcecb0b9b073eab1ce5915fed914fecd6887c3e815ad2555ffd5a537c33e02"
+        },
+        {
+          "path": "scripts/higgsfield-direct.mjs",
+          "sha256": "19cf240bc9e8ffd75476ac41335e5d53c485980f09065bd95e08419f20b71123"
+        },
+        {
+          "path": "scripts/Import-NiannianBrowserSlotCredentials.ps1",
+          "sha256": "11c9090b5bd56cbdd23e47f416f2eedad0451e1c987ff3df3edc1234a1ed16a2"
+        },
+        {
+          "path": "scripts/import-step01-evidence-for-web.mjs",
+          "sha256": "5b553a00d28faf6ef829cf848907b2eea73bd9e440c0d2414c785489b2ef7040"
+        },
+        {
+          "path": "scripts/Install-NiannianAStorieAgentTask.ps1",
+          "sha256": "37dc603979678be9ae35bc8019efe7e4d7f172c490c7e0ba899468fc339ae505"
+        },
+        {
+          "path": "scripts/Install-NiannianBrowserSlotTask.ps1",
+          "sha256": "4ebd7eb509c7db9d3d8d89c47dcafe6d816d3941c75ddf2809f9e1a5b92921eb"
+        },
+        {
+          "path": "scripts/Install-NiannianDolaAgentTask.ps1",
+          "sha256": "89dff69c2b2b5217697230380b0cad072a666297543b039070d59d3f61bcaff9"
+        },
+        {
+          "path": "scripts/Install-NiannianMimoAgentTask.ps1",
+          "sha256": "55c9e9af2d8f42c2e68d9021d26081bb1b39ed1ec6ce362022619a5199e190e9"
+        },
+        {
+          "path": "scripts/Invoke-NiannianBrowserSlotLogin.ps1",
+          "sha256": "597f93b963ebb9f146901162a74f2ca8485e820e234386648e541f8782abf38b"
+        },
+        {
+          "path": "scripts/legacy-mimo-delivery-backfill.test.mjs",
+          "sha256": "e33b3a983d7cea7d6074eaf48e28a773062b58c21b03b02c312ea5698e00ad52"
+        },
+        {
+          "path": "scripts/mac-codex-worker.test.mjs",
+          "sha256": "c8b4af13f60f5c50738759d0425f1f31c3dca3cc39703412bd7d215a7720cebf"
+        },
+        {
+          "path": "scripts/mac-rollback.fixture.sh",
+          "sha256": "616d2f7f0390190ca560c602c895a68dcb6ad0ccd2afb79e481910edfb6c370a"
+        },
+        {
+          "path": "scripts/mac-skill-bundle.test.mjs",
+          "sha256": "e106277ea13b987998b35e16d1ac0e0b592c7ad319b134e548d1f98f56e85b5d"
+        },
+        {
+          "path": "scripts/mac-worker-api.integration.mjs",
+          "sha256": "64ea8c54bb4cb47716446ca769f01f09d8ed679e57b44a60667f4cf828d75883"
+        },
+        {
+          "path": "scripts/manual-task.integration.mjs",
+          "sha256": "28fc346bef62c32508849a8576eb3c75fec53c2af7157d3d20c64275ede88ea8"
+        },
+        {
+          "path": "scripts/migrate-completed-video-to-cos.mjs",
+          "sha256": "b3da0b130a2e583f4eedac6118300950cc0107cf77f2b92dcadd24eeee06f598"
+        },
+        {
+          "path": "scripts/migrate-sqlite-to-postgres.mjs",
+          "sha256": "7875f676e136f70ffe7d0d764b66962ef3a9ec0f35f6cb8b25bd5899509639c6"
+        },
+        {
+          "path": "scripts/mimo-direct.mjs",
+          "sha256": "79223a8260b57f9b626b9b963c1d7b43b0322d830505d58a1990de6bae40dc1f"
+        },
+        {
+          "path": "scripts/mimo-direct.test.mjs",
+          "sha256": "e9c9ceebf8deef150f6f24d55e0d4558e13a6bf86f829a041d2d6bcb229ba804"
+        },
+        {
+          "path": "scripts/mimo-efficiency.contract.test.mjs",
+          "sha256": "56bfc0b71f15c312a08fdf4740daa2c83ded999e725cec533c4ba56fec9dc5df"
+        },
+        {
+          "path": "scripts/mimo-existing-local-delivery-recovery.contract.test.mjs",
+          "sha256": "f31bc31168b5eae355223e89f43a7463892a43419090890154f8e96844d898a9"
+        },
+        {
+          "path": "scripts/mimo-isolated-lease-recovery.contract.test.mjs",
+          "sha256": "09eb77fec3c5c0213c7a92b4544b6d860d6a32fd6b6cd386518ef3365b489648"
+        },
+        {
+          "path": "scripts/mimo-official-client.test.mjs",
+          "sha256": "348f5a988a97766725c2a934f926fba9b893ae5a88fcd6c5f517524024fe4b9f"
+        },
+        {
+          "path": "scripts/mimo-origin-consistency.test.mjs",
+          "sha256": "7f669e4c3b40d9f82bd8aa95ecb4b1fba041c3919bc57d4494d6fc082086508b"
+        },
+        {
+          "path": "scripts/mimo-owner-authorization.contract.test.mjs",
+          "sha256": "4c4991037250c768db415f23b963bf9cb069c3db7c7f3824128ee9a40a90ad9c"
+        },
+        {
+          "path": "scripts/mimo-safari-visible-submit.test.mjs",
+          "sha256": "a6540dd8614dabe85a9ec6379db0774435e3e1c5e7386ad5370ac141d826f98b"
+        },
+        {
+          "path": "scripts/mimo-safari-visible-sync.test.mjs",
+          "sha256": "2f8c6df65360acf43bcc1807515fcd5b5de88290857884c9cfc05e2ad28cb2df"
+        },
+        {
+          "path": "scripts/mimo-text-queue.contract.test.mjs",
+          "sha256": "7e4cb4835862e027273970cc4d801006b0639b1f8cac4948ca5785ba8d3f6724"
+        },
+        {
+          "path": "scripts/mimo-user-confirmed-no-submission-recovery.contract.test.mjs",
+          "sha256": "c7c80d3c39b32de64004f28e4ed313f1b48abce985c369f80a46cb67d477085e"
+        },
+        {
+          "path": "scripts/mimo-windows-admin-overview.contract.test.mjs",
+          "sha256": "8b4092396573548e9107b70e359c53732e38c99faf73c1e604c5dd0dc6274d9c"
+        },
+        {
+          "path": "scripts/mimo-windows-agent-preflight.test.mjs",
+          "sha256": "547ab914c713ac3aeace83c66372c5dae5a533bc49180c1f27b987ba80a12a68"
+        },
+        {
+          "path": "scripts/mimo-windows-background.contract.test.mjs",
+          "sha256": "ae490002f3b1c7cb46427b698c888dcbc3f397b5457ba1381ffb9915543ed482"
+        },
+        {
+          "path": "scripts/mimo-windows-default-routing.contract.test.mjs",
+          "sha256": "cac9c38a71c6cc63ec3c3a861d0463887b1b153173536d7ea07e5eb15eb3ba77"
+        },
+        {
+          "path": "scripts/mimo-windows-reconciliation.contract.test.mjs",
+          "sha256": "050cfdbd3071a9946516ae96c55088fe14d211c1ce03a627a5550d432e91e031"
+        },
+        {
+          "path": "scripts/mimo-windows-visible-sync.contract.test.mjs",
+          "sha256": "f732cd10a05efa35866607c05e5d26eb0f4e628da0e43b571df9a0ef286c1db2"
+        },
+        {
+          "path": "scripts/miora-direct.mjs",
+          "sha256": "1c3fb8de8914f0f2381c20c749b6377462e9444d6fef65aa6e4404c5bd002402"
+        },
+        {
+          "path": "scripts/miora-direct.test.mjs",
+          "sha256": "321b57dd84684045c7b983897d8b133329226848d0e755ea0f24ec1fc6841b43"
+        },
+        {
+          "path": "scripts/miora-face-line.mjs",
+          "sha256": "c9d86add62fa821b4223f6bdab10a7fb1bac592df445974d5c47de71ef72797b"
+        },
+        {
+          "path": "scripts/miora-face-line.test.mjs",
+          "sha256": "e14dd198d92e25624b99ee57ae2e6db91463bdf4ef9dba235b2e249e8dee399c"
+        },
+        {
+          "path": "scripts/niannian-cos-local-enrollment-web.mjs",
+          "sha256": "45badc1f5abe0d325f671f6a47fe8391ea407ef50d9f38b8a9857fa3bd4ba1a1"
+        },
+        {
+          "path": "scripts/niannian-cos-local-enrollment-web.test.mjs",
+          "sha256": "beb1a93565f673f2729771a14d602a949fd62faf0d40042231765400f33820f0"
+        },
+        {
+          "path": "scripts/niannian-windows-astorie-agent.mjs",
+          "sha256": "fffc284db26de1a2055ae6b5842cb1c1fa1ea6890965fde9296a86caaed814cf"
+        },
+        {
+          "path": "scripts/niannian-windows-browser-slot-login.mjs",
+          "sha256": "6db4812efef66a7559266fa30cc0761aea002b0eb89bc85dcfe7d2a7a1e72cd6"
+        },
+        {
+          "path": "scripts/niannian-windows-browser-slot-manager.mjs",
+          "sha256": "28c91d895e53ede5eeeaa9566b41bc6fcf19426245fe371fd2ce342d677aaff4"
+        },
+        {
+          "path": "scripts/niannian-windows-dola-agent.mjs",
+          "sha256": "9a7fbe704a081df6500f4eb3261343cc99dc896d1a2fb7bf111a8121e5a60549"
+        },
+        {
+          "path": "scripts/niannian-windows-mimo-agent.mjs",
+          "sha256": "f6291fb57a041d79967c657934a7ee98adca073c1c36f298f7f51c057a8e4195"
+        },
+        {
+          "path": "scripts/postdeploy-readonly-check.mjs",
+          "sha256": "a4aa60304621c0dce8af0f54b0e2108d24afe2ce8533bd34f15d3fcd9af3d72c"
+        },
+        {
+          "path": "scripts/postdeploy-windows-mimo-readonly.test.mjs",
+          "sha256": "8e05b3133e924af3eca5d762754950b093b7003ec7db682d9a024069350ee4f7"
+        },
+        {
+          "path": "scripts/preprocess-authorized-real-i2v-reference.mjs",
+          "sha256": "5204b38db10d645711d895d583ba9ab7783a7924a56ac07b42908f42b156da7e"
+        },
+        {
+          "path": "scripts/production-compat-readonly.mjs",
+          "sha256": "ed61733722526ed62f008548a877a468d6bc8451c88d8dffc474c804eca3497f"
+        },
+        {
+          "path": "scripts/production-compat-windows-mimo.contract.test.mjs",
+          "sha256": "78992073d13d4deb0f449db1c6fdacf582443c569c75354a66fc6794e0c3d456"
+        },
+        {
+          "path": "scripts/production-task-output-path.mjs",
+          "sha256": "054d749092425ac8626afaddc862b9a07e736ef2a4bb5e098fa7d24312c8ecda"
+        },
+        {
+          "path": "scripts/real-i2v-hard-gates.test.mjs",
+          "sha256": "ba69141895ae1c9a72db462584aada7604f27a06bf051c3fd98acc47bead0f38"
+        },
+        {
+          "path": "scripts/Recover-NiannianMimoLocalDelivery.ps1",
+          "sha256": "cdbfd0284ec055b264e923f53c2426d520a9c3e11192ec29fea081a50ac56ccb"
+        },
+        {
+          "path": "scripts/redraw-cancel-race.integration.mjs",
+          "sha256": "18952d5b5c30bb51da24da20efff5d7909527add087eb97c06fa6bd132ca9bb3"
+        },
+        {
+          "path": "scripts/redraw-cos.mjs",
+          "sha256": "81c768a63002bc12fb4bd409c20979e25d8f70aae6bc1711de7c22302d6537f3"
+        },
+        {
+          "path": "scripts/redraw-harness-bundle/AGENTS.md",
+          "sha256": "07a7d5978f2f8800514a266ba53d51277abee6117e612775db6706960bbbdac2"
+        },
+        {
+          "path": "scripts/redraw-harness-bundle/prompts/01_员工Harness启动提示词.txt",
+          "sha256": "efc00ac079b50c0c8cadd3be4017993e3005707cf95c865966e407cec8de7fe8"
+        },
+        {
+          "path": "scripts/redraw-harness-bundle/prompts/02_新项目派单提示词模板.txt",
+          "sha256": "116929283d8c68f277b022170f7551109bf83f1347fa8538ea2382ce97d2321b"
+        },
+        {
+          "path": "scripts/redraw-harness-bundle/README.md",
+          "sha256": "d2154fdeeb0a88a0a93aeaae591433915a202cb556de80692884c968f9c88771"
+        },
+        {
+          "path": "scripts/redraw-runtime.mjs",
+          "sha256": "c0ccc5ed927345a7e510bb366d4781e71b212f4ae5bea8db8512d3088418cb22"
+        },
+        {
+          "path": "scripts/redraw-runtime.test.mjs",
+          "sha256": "9c6bbf632283e828686f3df8b3d771b0fa156f9ab609eee9c340b594c8ccd0f2"
+        },
+        {
+          "path": "scripts/redraw-task-worker.mjs",
+          "sha256": "feeb0550dcee7fab4caf488e0721b98cb1b0cdc13375e720ad12d334f83d348e"
+        },
+        {
+          "path": "scripts/release-candidate-audit.mjs",
+          "sha256": "9e65b447ffa85270e5260a5d3a78ca0e6e8dfcb7731afa28522ae198322803f4"
+        },
+        {
+          "path": "scripts/release-candidate-config.mjs",
+          "sha256": "0137da5191b2b7e9e3b94ab1d3bd423c3d501163ed2f1f4ed02b7e1bce723274"
+        },
+        {
+          "path": "scripts/release-candidate.test.mjs",
+          "sha256": "7c8e3e69479e73b8d5bb1a766fcd13d63f7d7edc98a85e724a54365de8ef80d9"
+        },
+        {
+          "path": "scripts/render-mineral-flow-v2.mjs",
+          "sha256": "fd440ff1bbafaad47ecf458a27da0121b0b4ef86a3f4c8375d0eee7355671e27"
+        },
+        {
+          "path": "scripts/run-real-mimo-app-task.mjs",
+          "sha256": "4ddbe4045b540a65a41c36f267cf0b67147de2fda50eea1a0214cb32ba793584"
+        },
+        {
+          "path": "scripts/server-step01-runner.mjs",
+          "sha256": "d6ac1abd8cbb3986af5689f64f61dc0d324011cd64f8f533c341dbf6474f4bf2"
+        },
+        {
+          "path": "scripts/server-step01-runner.test.mjs",
+          "sha256": "fc6ef0bae11982986eb8cb6c360473225f0392a2ec5728cf3fef392a35d77d2a"
+        },
+        {
+          "path": "scripts/Set-NiannianMimoCredential.ps1",
+          "sha256": "2189130cc97b5df90d358979753636dc93d05fddb3a7c5a6971940463e5418a5"
+        },
+        {
+          "path": "scripts/Start-NiannianAStorieBrowser.ps1",
+          "sha256": "b65f6811d3ee86e430af56efa7abd516a9f2a68ded23da0aa9004ee829f54a45"
+        },
+        {
+          "path": "scripts/Start-NiannianDolaAgent.ps1",
+          "sha256": "515d011970a775d966fe35b28dd93d588caa5a81d3e2410ad4f3eb481ffa3507"
+        },
+        {
+          "path": "scripts/Start-NiannianMimoAgent.ps1",
+          "sha256": "ca67acf73656e2abe9fe5bf1901b5f548d2e2c4a7336c0cf6567b6d4884798d8"
+        },
+        {
+          "path": "scripts/Start-NiannianMimoBrowser.ps1",
+          "sha256": "0c3128b1a31e2681ff2b8918e2b2ac69f8f17d7aa4c715cf53aab9c20642c0ca"
+        },
+        {
+          "path": "scripts/validate-face-processor-deploy.mjs",
+          "sha256": "aebd56b4af84f950828c148f9ec29bb6830312529943b38457a63ab3189cdc2e"
+        },
+        {
+          "path": "scripts/validate-video-workbench-harness.mjs",
+          "sha256": "7e89af09634530592f5aa2908f037448fefa1878d4af497a5f9bde6a3d386663"
+        },
+        {
+          "path": "scripts/verify-production-video-playback.mjs",
+          "sha256": "bac96c9a24452143e0b318f8f4ae1239f5466551a77e9dca72e9b06f5b34a2d6"
+        },
+        {
+          "path": "scripts/verify-server-step01-runtime.py",
+          "sha256": "0c82b42be8c7026a1334af4dae53331b4aa4ccad2496fe1d234c84e11133a2a6"
+        },
+        {
+          "path": "scripts/video-cos.test.mjs",
+          "sha256": "6a238b7d45cf9a0f8d9af65e15c6548f215c6384abad77e7df909ec958ec935f"
+        },
+        {
+          "path": "scripts/video-task-execution-stage.test.mjs",
+          "sha256": "4fa74e43fe26e5ce808aed90db662f3b4b19d3ebf30fb64018b408a2216b46a5"
+        },
+        {
+          "path": "scripts/video-task-public-state.test.mjs",
+          "sha256": "7700bafc204918cbbcd46ca435a436ae11f4bb3d512ddbf30700ca28ab54c5de"
+        },
+        {
+          "path": "scripts/video-task-result.schema.json",
+          "sha256": "5ca9189c6ab180b9fadcc79630ff3af9f61ab08ee704ff36ea7c59c1dcc84c60"
+        },
+        {
+          "path": "scripts/video-task-worker-codex-skill.integration.mjs",
+          "sha256": "4082a140e51a8966dddc35e9290e441d463c920d930354301d3725f24bf18635"
+        },
+        {
+          "path": "scripts/video-task-worker.integration.mjs",
+          "sha256": "6723046ec15f823969fe2e8558a278c04a297667028aaf3f23d0c41a831fc6a7"
+        },
+        {
+          "path": "scripts/video-task-worker.mjs",
+          "sha256": "86aac7cccd80f55a7966992da82fec14c7096ee683988c496e9cc6b8c145420b"
+        },
+        {
+          "path": "scripts/video-task-worker.test.mjs",
+          "sha256": "8eeccc94d969701530c105df3f4707c938e9be48ffd5c3128a6243585f6546ae"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher-repair.test.mjs",
+          "sha256": "9120f0121b2e113580172465c5f1345cc6ae84f54efbf22739c7b7f12e564cbb"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher-runner.mjs",
+          "sha256": "f906dffe9fd8f2481f26d6a74d3c55e6a21c6ccece362d84e515bafe627bd030"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher-runner.test.mjs",
+          "sha256": "020933c112b2922a4e8e930c3164a756682ea2da98ef07d76e681e548364b39b"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher.mjs",
+          "sha256": "d8337b86d90b98cfa2515996c60b0aec9fb6ebe47ffcb48afb99c4d214b4f570"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher.test.mjs",
+          "sha256": "b502ba112b79177608034decc4b092590ff67d92aae41e5295bfcf773fc49ba5"
+        },
+        {
+          "path": "scripts/video-workbench-harness-outbox-delivery.mjs",
+          "sha256": "77959479137c0908057b99b627445cc6635ad19d45e00865bbc84deb04ac9cdf"
+        },
+        {
+          "path": "scripts/video-workbench-harness-outbox-delivery.test.mjs",
+          "sha256": "744ffacb0aa8654a268f7b7b3d9094546d7a0c5dcc2d3db7a9cf50e8854d4bd0"
+        },
+        {
+          "path": "scripts/video-workbench-harness-state.mjs",
+          "sha256": "5efa3264960a4dd1318b1320d9ad1f5c82f9adb15c6a1e38273cb310d415558a"
+        },
+        {
+          "path": "scripts/video-workbench-harness.contract.test.mjs",
+          "sha256": "de781fd4d44c31023d11271b63faf8428b525304da5e2c9cfb6670ec739c1b1b"
+        },
+        {
+          "path": "scripts/windows-dola-worker-result.schema.json",
+          "sha256": "180b941bc3455be682fdea3931bb4de72527dd6576dd16f9adca126e151c5551"
+        },
+        {
+          "path": "security_best_practices_report.md",
+          "sha256": "1c4fcc174cc7986ecffdd68581f76f52dccbc81ae7be7b0cd396769bcd15e827"
+        },
+        {
+          "path": "SERVER_REDRAW_RUNTIME.md",
+          "sha256": "23f58bc0028c78b341b70564f8f3a6d8c19630b23145c8c13eb72ffced3f3a32"
+        },
+        {
+          "path": "SERVER_VIDEO_STEP01.md",
+          "sha256": "1ff8ef3e6905b47237158e72b30729a57fdcd60294a5d0dce38d44d756e1e1e2"
+        },
+        {
+          "path": "services/face-processor/Dockerfile",
+          "sha256": "c2222a47442fafac1aaa2bb734b7cc316eccc2665f38cd315b8572d7c229473d"
+        },
+        {
+          "path": "services/face-processor/processor.py",
+          "sha256": "415756f10f73d2d0f5b1bad618e22f866693ef71bf17fe6c43c4daaddb710ed1"
+        },
+        {
+          "path": "services/face-processor/README.md",
+          "sha256": "0101dab2ce5a496860c7b688a84dc216af124b066c22c1c18909a93f13da8624"
+        },
+        {
+          "path": "services/face-processor/requirements.txt",
+          "sha256": "b7c843e443f9ee9c1616ac23ac01ae23ae7bc83baac08cd738f53ad94db0aff5"
+        },
+        {
+          "path": "services/face-processor/service.py",
+          "sha256": "500bc4f70708ba485e8610b930227663a7217a8a737fbb6dc065f4a7a1f36b65"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "a6e122df99e3979a78f42c9cf87ed002753a72a7f7edf432c9547d985d34efcd"
+        },
+        {
+          "path": "types/legacy-mimo-delivery-backfill.d.ts",
+          "sha256": "f489f9f588ada2a3ad7afdfbc0878766c1406fa8e139bd63ba1a3489117caf01"
+        },
+        {
+          "path": "types/video-output-gate.d.ts",
+          "sha256": "3046ee4d5f81ee2311d695a76dfbdfb71c19a2a6e7dce4b9c572864f18d71da0"
+        },
+        {
+          "path": "windows-astorie-agent/astorie-chrome-cdp-submit.mjs",
+          "sha256": "acedc40cc269519be211cb989eaef41e843b174066937f20ab08788f25eaa5f4"
+        },
+        {
+          "path": "windows-astorie-agent/astorie-chrome-cdp-sync.mjs",
+          "sha256": "9a79e565603f529e86d0989bc9af9f9ef92a6870daaa69b3dec705413780620e"
+        },
+        {
+          "path": "windows-astorie-agent/astorie-chrome-cdp.mjs",
+          "sha256": "e8dbefd6646757e7988a258de5f265c128ff55de72a87c38fc73bd190a3cb3e4"
+        },
+        {
+          "path": "windows-mimo-agent/mimo-chrome-cdp-history.mjs",
+          "sha256": "f14038fd1c3850f5b3448023d194b113a67c4a88bd0e82fcaee570b6749915a7"
+        },
+        {
+          "path": "windows-mimo-agent/mimo-chrome-cdp-submit.mjs",
+          "sha256": "67b2a099b45e3da1a4012d29ddca87f5eb652da90ccaaced65a99c6bc5264df1"
+        },
+        {
+          "path": "windows-mimo-agent/mimo-chrome-cdp-sync.mjs",
+          "sha256": "9e131d191d35f7201d8715e6372e7583a27ebac985c52980eaf7bcd77b17caaa"
+        },
+        {
+          "path": "windows-mimo-agent/mimo-chrome-cdp.mjs",
+          "sha256": "8ebcabaa61a7c8ef4762ae6fd897b7c34e3bb1af713c6c128f9bcbb9b7610080"
+        },
+        {
+          "path": "windows-mimo-agent/mimo-media-gates.mjs",
+          "sha256": "5ccaef2aae59ca366ea5856f6452cff1b574d504844c3783b7ad64a95c254fa1"
+        },
+        {
+          "path": "windows-mimo-agent/mimo-visible-settings.mjs",
+          "sha256": "129f9bd6b48571d25609ca0efb9a1f46984fe6291a1caa1db23e187761ae48f2"
+        },
+        {
+          "path": "windows-mimo-agent/package-lock.json",
+          "sha256": "77149a28b85d11162acd17688cebcf5bc31cc1a54833051ec0e7160493b5609a"
+        },
+        {
+          "path": "windows-mimo-agent/package.json",
+          "sha256": "7f722aed98e2f02ca2b8882496fe102ae15f6650ea2e13dd209c2c53f1790c98"
+        }
+      ]
+    },
+    {
+      "name": "kaogong-runtime-roles",
+      "source": "sd2-kaogong-runtime",
+      "server": "kaogong",
+      "sourcePath": "docker:niannian-ai-video-workbench roles",
+      "relationship": "Current deployed source snapshot; runtime data excluded",
+      "excludedSensitiveAndRuntimeFiles": true,
+      "files": [
+        {
+          "path": "app/lib/legacy-mimo-delivery-backfill.mjs",
+          "sha256": "3b486388f8fc1970b002c1720834b7db3267bf1e796090aa3380e778f05a14cd"
+        },
+        {
+          "path": "app/lib/video-cos.ts",
+          "sha256": "91c4a31941243819634b653d8eee9638a013ed5d0ad5a512fbaf89c309433739"
+        },
+        {
+          "path": "app/lib/video-output-gate.mjs",
+          "sha256": "57733b7823ab30a2209e32d793c05437df6a9d0033aa746ea69d2891a2c8214e"
+        },
+        {
+          "path": "app/package-lock.json",
+          "sha256": "000e6d0888ada50129ca7ac48558d090486591f3d1e3ba461b5ff88f7b8d05cf"
+        },
+        {
+          "path": "app/package.json",
+          "sha256": "b043772220f5824f9ce038fcc06b1ae0efc694cf278102a1d79d98f42faa2ba0"
+        },
+        {
+          "path": "app/public/favicon.svg",
+          "sha256": "37b87c05137d06bbbe763fad0e41b9885304d27aa41e1b46d86d0c15287c4033"
+        },
+        {
+          "path": "app/public/niannian-ai-authority-gold.svg",
+          "sha256": "0ee4298e1eee11b9d7096b964f2c4c08005681c4c98cdcdda4786f3fbcea39fb"
+        },
+        {
+          "path": "app/public/niannian-ai-mark-transparent.svg",
+          "sha256": "3ad61ed85b488c1afb3f332ce35e3c7322ac45320ef0da3167476a372e6e3e62"
+        },
+        {
+          "path": "app/scripts/attach-face-compatible-reference.mjs",
+          "sha256": "971cd410308aa7432dcf0a4718e67e1303b77eec68525993995e6b122507c7f3"
+        },
+        {
+          "path": "app/scripts/build-redraw-skill-bundle.mjs",
+          "sha256": "d60e5b94613b20c2cab3372ddf2706685fdbccb361eeb160c695423199ec5d55"
+        },
+        {
+          "path": "app/scripts/build-release-candidate.mjs",
+          "sha256": "b2dcabb5405f23b1aa3edf0291c968f5db459f2c2d6e644d4473663fe0209ec9"
+        },
+        {
+          "path": "app/scripts/build-server-step01-bundle.mjs",
+          "sha256": "44d4ca61e91a557d9b4601e5fbb338e0a21fac80694fe216aa242b3ec061a2ee"
+        },
+        {
+          "path": "app/scripts/delivery-route.integration.mjs",
+          "sha256": "d362ae7003b08c2e1513fa780dd1f37693f226fe4b729dac2b8ef7273285bdd6"
+        },
+        {
+          "path": "app/scripts/dola-windows-agent-api.integration.mjs",
+          "sha256": "5828b2a7ddc198a87021fb699275b0d9bff61eec29a6761cd7aaa1a67e31b8b2"
+        },
+        {
+          "path": "app/scripts/generate-ldxp-credit-codes.mjs",
+          "sha256": "b555147f8a7b4a9585208ca63adfa64b4de4c4851bf5a88649cc23dc2dbcc539"
+        },
+        {
+          "path": "app/scripts/import-step01-evidence-for-web.mjs",
+          "sha256": "fe8e6e907db2f6f860875dcb50442ffdaea4e22acaedf0aa61a205f7ad3fe0d7"
+        },
+        {
+          "path": "app/scripts/Install-NiannianDolaAgentTask.ps1",
+          "sha256": "1e85aef5702a7398e507791bad3b71f79e804b96603471fe350718ec30ef0f73"
+        },
+        {
+          "path": "app/scripts/mac-codex-worker.test.mjs",
+          "sha256": "e2b0d0ebd1d081fa71178b185fa6c214ba43a2febddfd2a1c3f1baebd4d7e2c0"
+        },
+        {
+          "path": "app/scripts/mac-rollback.fixture.sh",
+          "sha256": "f3465b316396fbcc4254e01459d12fb39445a6e33d3c6185cc85c37b70fdad7e"
+        },
+        {
+          "path": "app/scripts/mac-skill-bundle.test.mjs",
+          "sha256": "782d21b735649057dfd2395dd2a24fd4658a2feea7a78c64c8571cd2c289f149"
+        },
+        {
+          "path": "app/scripts/mac-worker-api.integration.mjs",
+          "sha256": "c25949046672003b7e3340896a7aaed9a5f4821a1860f1530be1b16bf0b96f71"
+        },
+        {
+          "path": "app/scripts/manual-task.integration.mjs",
+          "sha256": "6a83b16daa12f2d7c6c50b1570385d1db7f932dafe21ca2ddf8b5965662c6dfe"
+        },
+        {
+          "path": "app/scripts/migrate-sqlite-to-postgres.mjs",
+          "sha256": "cadd89f77576b3abc46c4128396f3f0fd4d57c92d5467d5c46a94ff8e2eb40e8"
+        },
+        {
+          "path": "app/scripts/mimo-direct.mjs",
+          "sha256": "c933fc9e97c5b1bd6aa90e67abe447ede355b95a59fc725f9536327566aa2a76"
+        },
+        {
+          "path": "app/scripts/mimo-direct.test.mjs",
+          "sha256": "793ea15b01a354e15ec4ebb56ef7f84b270923349a38a1f0c95f116c7072412b"
+        },
+        {
+          "path": "app/scripts/mimo-official-client.test.mjs",
+          "sha256": "9b2bdd283ef64410879db153a598cbe97c16c8d88ab1482a0cc7deefe4d329da"
+        },
+        {
+          "path": "app/scripts/mimo-origin-consistency.test.mjs",
+          "sha256": "c55cd348ca2f54f4aeb769e94f1e83eef2349d3281ef5a5f09bf676910732510"
+        },
+        {
+          "path": "app/scripts/mimo-safari-visible-submit.test.mjs",
+          "sha256": "6a482c1f94f080fe94e4948d3795a9b28e03f98a8d191ebd5fa5077221abe8ef"
+        },
+        {
+          "path": "app/scripts/mimo-safari-visible-sync.test.mjs",
+          "sha256": "f68384a2cfd5eebeff88d0a3c536a303390a29994cff38aeefd8b9b2b3ed3a75"
+        },
+        {
+          "path": "app/scripts/niannian-windows-dola-agent.mjs",
+          "sha256": "9d35e225ff6b6caee5b1b28da0c77c6ce311c17599e0208618293c87aecc8d52"
+        },
+        {
+          "path": "app/scripts/postdeploy-readonly-check.mjs",
+          "sha256": "adeeed3f10513ac9619ae73a35248c610fe79aea6a0babe75ce6b4234a676c2a"
+        },
+        {
+          "path": "app/scripts/production-compat-readonly.mjs",
+          "sha256": "cd6df3c89dbf380960e200add84eb507d5d4e14a0276e0dfcd3c1964855ad50d"
+        },
+        {
+          "path": "app/scripts/redraw-cancel-race.integration.mjs",
+          "sha256": "698e0e643087dcbdcf33411af24078d78d58ab338a8c4a4e4dd999731493f11a"
+        },
+        {
+          "path": "app/scripts/redraw-cos.mjs",
+          "sha256": "6d84516323321a674b42e5ed5f6386dcbcec2c8e181b528f4ecf70797dd58702"
+        },
+        {
+          "path": "app/scripts/redraw-runtime.mjs",
+          "sha256": "27a451728e276b2311c959d6eccc24e7655d096b517eafcd687670481313347c"
+        },
+        {
+          "path": "app/scripts/redraw-runtime.test.mjs",
+          "sha256": "2e6e534a307ed43089856112c86ab2efd8de583393a6dfdfe08a17abf36f12e1"
+        },
+        {
+          "path": "app/scripts/redraw-task-worker.mjs",
+          "sha256": "d07f312583b59b3c70894d7016e93934b990654b989c9ee854881bc6d9be341f"
+        },
+        {
+          "path": "app/scripts/release-candidate-audit.mjs",
+          "sha256": "0e6a2f5f43704f865a944b377159af031903045b1b3db3f2e0c370340048d273"
+        },
+        {
+          "path": "app/scripts/release-candidate-config.mjs",
+          "sha256": "1aa7ef2ef03af400f5b00ec68bf00b1dd137a703a00202d2d99f2cf00f6ec993"
+        },
+        {
+          "path": "app/scripts/release-candidate.test.mjs",
+          "sha256": "a60f8cd1d4d647c6658ddbaac7f090cd839368ec28a0e32594dca085328c0059"
+        },
+        {
+          "path": "app/scripts/render-mineral-flow-v2.mjs",
+          "sha256": "8ada612c0810dae258be6bda412d197c9bd0c0427ed15cbca48ca6a7c09c2056"
+        },
+        {
+          "path": "app/scripts/run-real-mimo-app-task.mjs",
+          "sha256": "8bf08913465d5caf5f044ea75729abb2926dcd1ed88d2e5460563af9e54a45df"
+        },
+        {
+          "path": "app/scripts/Start-NiannianDolaAgent.ps1",
+          "sha256": "991eba90a757cef336100b180cc3a53936a4d45870ba4d1d86c71fe7939a699d"
+        },
+        {
+          "path": "app/scripts/verify-server-step01-runtime.py",
+          "sha256": "89db115d6d6d75d49ee3e1f258a55377db74a6dffe66fe905fa2f0ed607b6255"
+        },
+        {
+          "path": "app/scripts/video-task-result.schema.json",
+          "sha256": "e60bd72a35a092ec428a481cd32eb5ed9db99067348c77c04dcdca198c7988cd"
+        },
+        {
+          "path": "app/scripts/video-task-worker-codex-skill.integration.mjs",
+          "sha256": "bda2a6af0feeaddcac684a5c905f9153b455a5c864a76da6fea3dfd62578c037"
+        },
+        {
+          "path": "app/scripts/video-task-worker.integration.mjs",
+          "sha256": "73183cc6837185ea1e19ad90ec92faafa4e791637a16b63bc7d0da32d736f7dc"
+        },
+        {
+          "path": "app/scripts/video-task-worker.mjs",
+          "sha256": "cce4caf683961108ffdcd8ecb698bc9b927eac97b1d021897953ce763f837883"
+        },
+        {
+          "path": "app/scripts/video-task-worker.test.mjs",
+          "sha256": "df9dac8e4d4ad34f86885d23f9d3a07696cfeb944e0213660e5085b08c3453b8"
+        },
+        {
+          "path": "app/scripts/windows-dola-worker-result.schema.json",
+          "sha256": "56b3c0677cb7bfda71f0f84423a7fa0f0a5d66e953699d98eb80a61e416be17e"
+        },
+        {
+          "path": "harness-dispatcher/lib/legacy-mimo-delivery-backfill.mjs",
+          "sha256": "3b486388f8fc1970b002c1720834b7db3267bf1e796090aa3380e778f05a14cd"
+        },
+        {
+          "path": "harness-dispatcher/lib/video-cos.ts",
+          "sha256": "91c4a31941243819634b653d8eee9638a013ed5d0ad5a512fbaf89c309433739"
+        },
+        {
+          "path": "harness-dispatcher/lib/video-output-gate.mjs",
+          "sha256": "57733b7823ab30a2209e32d793c05437df6a9d0033aa746ea69d2891a2c8214e"
+        },
+        {
+          "path": "harness-dispatcher/package-lock.json",
+          "sha256": "000e6d0888ada50129ca7ac48558d090486591f3d1e3ba461b5ff88f7b8d05cf"
+        },
+        {
+          "path": "harness-dispatcher/package.json",
+          "sha256": "a82805f46b92cc99f491317416c429648f990f16f10a552113a85adf0e9177b1"
+        },
+        {
+          "path": "harness-dispatcher/scripts/video-workbench-harness-dispatcher-runner.mjs",
+          "sha256": "657cd09ae113bd88c76cb0149c4449adc6a33fb4f2962b4655555821cda50477"
+        },
+        {
+          "path": "harness-dispatcher/scripts/video-workbench-harness-dispatcher.mjs",
+          "sha256": "02c56753649154d5142e121239e552446ee9c4521238c981e7d190c1b5dc31bc"
+        },
+        {
+          "path": "harness-dispatcher/scripts/video-workbench-harness-outbox-delivery.mjs",
+          "sha256": "d0258928e32262b78b674f65cc7d3c9c4de9b5f7998982a14328044d7c9ea9b5"
+        },
+        {
+          "path": "harness-dispatcher/scripts/video-workbench-harness-state.mjs",
+          "sha256": "51876ca26f6d29c5fe66cd1682e92dc068d1f54276e141576cbcc6ea22f97bc0"
+        },
+        {
+          "path": "manifest.json",
+          "sha256": "71b9414fdcd0e133d1bdd55a0dd3d5cf07db3e068cd37ffbeeb22191412f9636"
+        },
+        {
+          "path": "redraw-worker/lib/video-output-gate.mjs",
+          "sha256": "a198737c67413314dea76523e9574eccbdcea2b13a0c9a39b5dac53ab11d4f87"
+        },
+        {
+          "path": "redraw-worker/package-lock.json",
+          "sha256": "000e6d0888ada50129ca7ac48558d090486591f3d1e3ba461b5ff88f7b8d05cf"
+        },
+        {
+          "path": "redraw-worker/package.json",
+          "sha256": "7159820d1b627824d79b24b1bb6d6ddcc9bbed4e9bdddf3cbca668af6f4f3067"
+        },
+        {
+          "path": "redraw-worker/scripts/attach-face-compatible-reference.mjs",
+          "sha256": "971cd410308aa7432dcf0a4718e67e1303b77eec68525993995e6b122507c7f3"
+        },
+        {
+          "path": "redraw-worker/scripts/build-redraw-skill-bundle.mjs",
+          "sha256": "d60e5b94613b20c2cab3372ddf2706685fdbccb361eeb160c695423199ec5d55"
+        },
+        {
+          "path": "redraw-worker/scripts/build-release-candidate.mjs",
+          "sha256": "b2dcabb5405f23b1aa3edf0291c968f5db459f2c2d6e644d4473663fe0209ec9"
+        },
+        {
+          "path": "redraw-worker/scripts/build-server-step01-bundle.mjs",
+          "sha256": "44d4ca61e91a557d9b4601e5fbb338e0a21fac80694fe216aa242b3ec061a2ee"
+        },
+        {
+          "path": "redraw-worker/scripts/delivery-route.integration.mjs",
+          "sha256": "d362ae7003b08c2e1513fa780dd1f37693f226fe4b729dac2b8ef7273285bdd6"
+        },
+        {
+          "path": "redraw-worker/scripts/dola-windows-agent-api.integration.mjs",
+          "sha256": "5828b2a7ddc198a87021fb699275b0d9bff61eec29a6761cd7aaa1a67e31b8b2"
+        },
+        {
+          "path": "redraw-worker/scripts/generate-ldxp-credit-codes.mjs",
+          "sha256": "b555147f8a7b4a9585208ca63adfa64b4de4c4851bf5a88649cc23dc2dbcc539"
+        },
+        {
+          "path": "redraw-worker/scripts/import-step01-evidence-for-web.mjs",
+          "sha256": "fe8e6e907db2f6f860875dcb50442ffdaea4e22acaedf0aa61a205f7ad3fe0d7"
+        },
+        {
+          "path": "redraw-worker/scripts/mac-codex-worker.test.mjs",
+          "sha256": "e2b0d0ebd1d081fa71178b185fa6c214ba43a2febddfd2a1c3f1baebd4d7e2c0"
+        },
+        {
+          "path": "redraw-worker/scripts/mac-rollback.fixture.sh",
+          "sha256": "f3465b316396fbcc4254e01459d12fb39445a6e33d3c6185cc85c37b70fdad7e"
+        },
+        {
+          "path": "redraw-worker/scripts/mac-skill-bundle.test.mjs",
+          "sha256": "782d21b735649057dfd2395dd2a24fd4658a2feea7a78c64c8571cd2c289f149"
+        },
+        {
+          "path": "redraw-worker/scripts/mac-worker-api.integration.mjs",
+          "sha256": "c25949046672003b7e3340896a7aaed9a5f4821a1860f1530be1b16bf0b96f71"
+        },
+        {
+          "path": "redraw-worker/scripts/manual-task.integration.mjs",
+          "sha256": "6a83b16daa12f2d7c6c50b1570385d1db7f932dafe21ca2ddf8b5965662c6dfe"
+        },
+        {
+          "path": "redraw-worker/scripts/migrate-sqlite-to-postgres.mjs",
+          "sha256": "cadd89f77576b3abc46c4128396f3f0fd4d57c92d5467d5c46a94ff8e2eb40e8"
+        },
+        {
+          "path": "redraw-worker/scripts/mimo-direct.mjs",
+          "sha256": "c933fc9e97c5b1bd6aa90e67abe447ede355b95a59fc725f9536327566aa2a76"
+        },
+        {
+          "path": "redraw-worker/scripts/mimo-direct.test.mjs",
+          "sha256": "793ea15b01a354e15ec4ebb56ef7f84b270923349a38a1f0c95f116c7072412b"
+        },
+        {
+          "path": "redraw-worker/scripts/mimo-official-client.test.mjs",
+          "sha256": "9b2bdd283ef64410879db153a598cbe97c16c8d88ab1482a0cc7deefe4d329da"
+        },
+        {
+          "path": "redraw-worker/scripts/mimo-origin-consistency.test.mjs",
+          "sha256": "c55cd348ca2f54f4aeb769e94f1e83eef2349d3281ef5a5f09bf676910732510"
+        },
+        {
+          "path": "redraw-worker/scripts/mimo-safari-visible-submit.test.mjs",
+          "sha256": "6a482c1f94f080fe94e4948d3795a9b28e03f98a8d191ebd5fa5077221abe8ef"
+        },
+        {
+          "path": "redraw-worker/scripts/mimo-safari-visible-sync.test.mjs",
+          "sha256": "f68384a2cfd5eebeff88d0a3c536a303390a29994cff38aeefd8b9b2b3ed3a75"
+        },
+        {
+          "path": "redraw-worker/scripts/niannian-windows-dola-agent.mjs",
+          "sha256": "5ccafc0043e0f1a5c40c34f6baf7147235895bdd5442b6ef54cc414f5c3107e8"
+        },
+        {
+          "path": "redraw-worker/scripts/postdeploy-readonly-check.mjs",
+          "sha256": "adeeed3f10513ac9619ae73a35248c610fe79aea6a0babe75ce6b4234a676c2a"
+        },
+        {
+          "path": "redraw-worker/scripts/production-compat-readonly.mjs",
+          "sha256": "cd6df3c89dbf380960e200add84eb507d5d4e14a0276e0dfcd3c1964855ad50d"
+        },
+        {
+          "path": "redraw-worker/scripts/redraw-cancel-race.integration.mjs",
+          "sha256": "698e0e643087dcbdcf33411af24078d78d58ab338a8c4a4e4dd999731493f11a"
+        },
+        {
+          "path": "redraw-worker/scripts/redraw-cos.mjs",
+          "sha256": "6d84516323321a674b42e5ed5f6386dcbcec2c8e181b528f4ecf70797dd58702"
+        },
+        {
+          "path": "redraw-worker/scripts/redraw-runtime.mjs",
+          "sha256": "27a451728e276b2311c959d6eccc24e7655d096b517eafcd687670481313347c"
+        },
+        {
+          "path": "redraw-worker/scripts/redraw-runtime.test.mjs",
+          "sha256": "2e6e534a307ed43089856112c86ab2efd8de583393a6dfdfe08a17abf36f12e1"
+        },
+        {
+          "path": "redraw-worker/scripts/redraw-task-worker.mjs",
+          "sha256": "d07f312583b59b3c70894d7016e93934b990654b989c9ee854881bc6d9be341f"
+        },
+        {
+          "path": "redraw-worker/scripts/release-candidate-audit.mjs",
+          "sha256": "0e6a2f5f43704f865a944b377159af031903045b1b3db3f2e0c370340048d273"
+        },
+        {
+          "path": "redraw-worker/scripts/release-candidate-config.mjs",
+          "sha256": "1aa7ef2ef03af400f5b00ec68bf00b1dd137a703a00202d2d99f2cf00f6ec993"
+        },
+        {
+          "path": "redraw-worker/scripts/release-candidate.test.mjs",
+          "sha256": "a60f8cd1d4d647c6658ddbaac7f090cd839368ec28a0e32594dca085328c0059"
+        },
+        {
+          "path": "redraw-worker/scripts/render-mineral-flow-v2.mjs",
+          "sha256": "8ada612c0810dae258be6bda412d197c9bd0c0427ed15cbca48ca6a7c09c2056"
+        },
+        {
+          "path": "redraw-worker/scripts/run-real-mimo-app-task.mjs",
+          "sha256": "8bf08913465d5caf5f044ea75729abb2926dcd1ed88d2e5460563af9e54a45df"
+        },
+        {
+          "path": "redraw-worker/scripts/verify-server-step01-runtime.py",
+          "sha256": "89db115d6d6d75d49ee3e1f258a55377db74a6dffe66fe905fa2f0ed607b6255"
+        },
+        {
+          "path": "redraw-worker/scripts/video-task-result.schema.json",
+          "sha256": "e60bd72a35a092ec428a481cd32eb5ed9db99067348c77c04dcdca198c7988cd"
+        },
+        {
+          "path": "redraw-worker/scripts/video-task-worker-codex-skill.integration.mjs",
+          "sha256": "bda2a6af0feeaddcac684a5c905f9153b455a5c864a76da6fea3dfd62578c037"
+        },
+        {
+          "path": "redraw-worker/scripts/video-task-worker.integration.mjs",
+          "sha256": "73183cc6837185ea1e19ad90ec92faafa4e791637a16b63bc7d0da32d736f7dc"
+        },
+        {
+          "path": "redraw-worker/scripts/video-task-worker.mjs",
+          "sha256": "cce4caf683961108ffdcd8ecb698bc9b927eac97b1d021897953ce763f837883"
+        },
+        {
+          "path": "redraw-worker/scripts/video-task-worker.test.mjs",
+          "sha256": "df9dac8e4d4ad34f86885d23f9d3a07696cfeb944e0213660e5085b08c3453b8"
+        },
+        {
+          "path": "redraw-worker/scripts/windows-dola-worker-result.schema.json",
+          "sha256": "56b3c0677cb7bfda71f0f84423a7fa0f0a5d66e953699d98eb80a61e416be17e"
+        },
+        {
+          "path": "video-worker/lib/legacy-mimo-delivery-backfill.mjs",
+          "sha256": "3b486388f8fc1970b002c1720834b7db3267bf1e796090aa3380e778f05a14cd"
+        },
+        {
+          "path": "video-worker/lib/video-cos.ts",
+          "sha256": "91c4a31941243819634b653d8eee9638a013ed5d0ad5a512fbaf89c309433739"
+        },
+        {
+          "path": "video-worker/lib/video-output-gate.mjs",
+          "sha256": "57733b7823ab30a2209e32d793c05437df6a9d0033aa746ea69d2891a2c8214e"
+        },
+        {
+          "path": "video-worker/package-lock.json",
+          "sha256": "000e6d0888ada50129ca7ac48558d090486591f3d1e3ba461b5ff88f7b8d05cf"
+        },
+        {
+          "path": "video-worker/package.json",
+          "sha256": "ee2520b09b484d920d27ea6cbeb783b166eeb16159e879b148db896473c576e1"
+        },
+        {
+          "path": "video-worker/scripts/attach-face-compatible-reference.mjs",
+          "sha256": "971cd410308aa7432dcf0a4718e67e1303b77eec68525993995e6b122507c7f3"
+        },
+        {
+          "path": "video-worker/scripts/build-employee-redraw-harness-bundle.mjs",
+          "sha256": "d137ff72090abf388e38f9d75070b732a292d21809e84bf24d5c6eb6cda4adfa"
+        },
+        {
+          "path": "video-worker/scripts/build-employee-redraw-video-bundle.mjs",
+          "sha256": "7b214f772c9b9b49454a32281abd4270deaf7a02a8a636965b426dd69897c968"
+        },
+        {
+          "path": "video-worker/scripts/build-redraw-skill-bundle.mjs",
+          "sha256": "d60e5b94613b20c2cab3372ddf2706685fdbccb361eeb160c695423199ec5d55"
+        },
+        {
+          "path": "video-worker/scripts/build-release-candidate.mjs",
+          "sha256": "af88f16c206c259fea858db64d90e942f8f7abed2be51665757fb1e9ae2aa644"
+        },
+        {
+          "path": "video-worker/scripts/build-server-step01-bundle.mjs",
+          "sha256": "44d4ca61e91a557d9b4601e5fbb338e0a21fac80694fe216aa242b3ec061a2ee"
+        },
+        {
+          "path": "video-worker/scripts/build-windows-mimo-agent-candidate.mjs",
+          "sha256": "3885655d0c4050d1e4280b946569076b641fda0e5ad8f028f80f4656ea5d4d0c"
+        },
+        {
+          "path": "video-worker/scripts/date-display.test.mjs",
+          "sha256": "9d987c962dde73f1ebaeca69782cc0307a3c450df862c0f934db45ebba7aa5b7"
+        },
+        {
+          "path": "video-worker/scripts/delivery-route.integration.mjs",
+          "sha256": "d362ae7003b08c2e1513fa780dd1f37693f226fe4b729dac2b8ef7273285bdd6"
+        },
+        {
+          "path": "video-worker/scripts/dola-windows-agent-api.integration.mjs",
+          "sha256": "5828b2a7ddc198a87021fb699275b0d9bff61eec29a6761cd7aaa1a67e31b8b2"
+        },
+        {
+          "path": "video-worker/scripts/employee-redraw-bundle/prompts/01_员工启动提示词.txt",
+          "sha256": "09a0ba6787f4e81b2a4439c49c80c8a18d02f121c7aac06073fd26b889e4e278"
+        },
+        {
+          "path": "video-worker/scripts/employee-redraw-bundle/prompts/02_商品带货转绘提示词模板.txt",
+          "sha256": "5226fa7a8dc12d2020f86ea50ae4124d9794113932c2087f18e6003251044de3"
+        },
+        {
+          "path": "video-worker/scripts/employee-redraw-bundle/prompts/03_汽车带货转绘提示词模板.txt",
+          "sha256": "c9f86f0a7dcb524913a3c1a68edded03a49a971acd3da1dc72000b402bb3d63f"
+        },
+        {
+          "path": "video-worker/scripts/employee-redraw-bundle/README.md",
+          "sha256": "3371455630b0fa2b64b126bcb0994085f47955a106c75423dc82fd7bd981cf41"
+        },
+        {
+          "path": "video-worker/scripts/face-processor-deploy.contract.test.mjs",
+          "sha256": "1d7495aa4c249ff5346f27a3f9f105e66227a4fe147a6cb453454767b01f4bf6"
+        },
+        {
+          "path": "video-worker/scripts/generate-ldxp-credit-codes.mjs",
+          "sha256": "b555147f8a7b4a9585208ca63adfa64b4de4c4851bf5a88649cc23dc2dbcc539"
+        },
+        {
+          "path": "video-worker/scripts/higgsfield-direct.mjs",
+          "sha256": "0792f35e06bba072b0ea0f0583e3f918eb2d2a08afa48ccee7f4a1844bca3304"
+        },
+        {
+          "path": "video-worker/scripts/import-step01-evidence-for-web.mjs",
+          "sha256": "fe8e6e907db2f6f860875dcb50442ffdaea4e22acaedf0aa61a205f7ad3fe0d7"
+        },
+        {
+          "path": "video-worker/scripts/Install-NiannianDolaAgentTask.ps1",
+          "sha256": "1e85aef5702a7398e507791bad3b71f79e804b96603471fe350718ec30ef0f73"
+        },
+        {
+          "path": "video-worker/scripts/Install-NiannianMimoAgentTask.ps1",
+          "sha256": "9a43b8f07123d97880ef6583cf13d34479dc473a840c85e20f0b6ec6e3efd6df"
+        },
+        {
+          "path": "video-worker/scripts/legacy-mimo-delivery-backfill.test.mjs",
+          "sha256": "d2b5b581efa46818c2197eb8c2ae298ad26911cee68ba6b85b4bad67d9bd75ca"
+        },
+        {
+          "path": "video-worker/scripts/mac-codex-worker.test.mjs",
+          "sha256": "e2b0d0ebd1d081fa71178b185fa6c214ba43a2febddfd2a1c3f1baebd4d7e2c0"
+        },
+        {
+          "path": "video-worker/scripts/mac-rollback.fixture.sh",
+          "sha256": "f3465b316396fbcc4254e01459d12fb39445a6e33d3c6185cc85c37b70fdad7e"
+        },
+        {
+          "path": "video-worker/scripts/mac-skill-bundle.test.mjs",
+          "sha256": "782d21b735649057dfd2395dd2a24fd4658a2feea7a78c64c8571cd2c289f149"
+        },
+        {
+          "path": "video-worker/scripts/mac-worker-api.integration.mjs",
+          "sha256": "c25949046672003b7e3340896a7aaed9a5f4821a1860f1530be1b16bf0b96f71"
+        },
+        {
+          "path": "video-worker/scripts/manual-task.integration.mjs",
+          "sha256": "36ba2a66771144c7c4646d3b0b7903a03a0d5407e5ca3c7c5eb2086e8c6fec72"
+        },
+        {
+          "path": "video-worker/scripts/migrate-completed-video-to-cos.mjs",
+          "sha256": "5a3b97c503032e92c342331326b835aad2ae04b510f5a8a6a3877bc96778be5b"
+        },
+        {
+          "path": "video-worker/scripts/migrate-sqlite-to-postgres.mjs",
+          "sha256": "cadd89f77576b3abc46c4128396f3f0fd4d57c92d5467d5c46a94ff8e2eb40e8"
+        },
+        {
+          "path": "video-worker/scripts/mimo-direct.mjs",
+          "sha256": "c933fc9e97c5b1bd6aa90e67abe447ede355b95a59fc725f9536327566aa2a76"
+        },
+        {
+          "path": "video-worker/scripts/mimo-direct.test.mjs",
+          "sha256": "793ea15b01a354e15ec4ebb56ef7f84b270923349a38a1f0c95f116c7072412b"
+        },
+        {
+          "path": "video-worker/scripts/mimo-efficiency.contract.test.mjs",
+          "sha256": "d78a24aceaad9b22b532da60943ba440e0974b167a724b25a325e7088c0a3236"
+        },
+        {
+          "path": "video-worker/scripts/mimo-isolated-lease-recovery.contract.test.mjs",
+          "sha256": "b34a06a33a51ba9d57bb851fbcc6a0ccecfffa02f46a3462b72965b1302c30b7"
+        },
+        {
+          "path": "video-worker/scripts/mimo-official-client.test.mjs",
+          "sha256": "9b2bdd283ef64410879db153a598cbe97c16c8d88ab1482a0cc7deefe4d329da"
+        },
+        {
+          "path": "video-worker/scripts/mimo-origin-consistency.test.mjs",
+          "sha256": "c55cd348ca2f54f4aeb769e94f1e83eef2349d3281ef5a5f09bf676910732510"
+        },
+        {
+          "path": "video-worker/scripts/mimo-owner-authorization.contract.test.mjs",
+          "sha256": "1e33b5e9fb3425d3c151fdd163988409f402bdf80ea55ac6504a345276e8e192"
+        },
+        {
+          "path": "video-worker/scripts/mimo-safari-visible-submit.test.mjs",
+          "sha256": "6a482c1f94f080fe94e4948d3795a9b28e03f98a8d191ebd5fa5077221abe8ef"
+        },
+        {
+          "path": "video-worker/scripts/mimo-safari-visible-sync.test.mjs",
+          "sha256": "f68384a2cfd5eebeff88d0a3c536a303390a29994cff38aeefd8b9b2b3ed3a75"
+        },
+        {
+          "path": "video-worker/scripts/mimo-text-queue.contract.test.mjs",
+          "sha256": "f68eda31f4e0ddd8281454330f7c39006c9f376081af55fb1993e7df2f4ca67c"
+        },
+        {
+          "path": "video-worker/scripts/mimo-user-confirmed-no-submission-recovery.contract.test.mjs",
+          "sha256": "7481a6aeb3b67bfa57f340c88b9616446f9561a50a33e2e36e0adf0f3df3f574"
+        },
+        {
+          "path": "video-worker/scripts/mimo-windows-admin-overview.contract.test.mjs",
+          "sha256": "5c4cc21e6f26eb333cc163d9be14782721370d58c92df2d8071002fdb45718e3"
+        },
+        {
+          "path": "video-worker/scripts/mimo-windows-agent-preflight.test.mjs",
+          "sha256": "06a9e397475da0085fda15bd3a90ed1c80b1b00fb66eb76665ead061e5419400"
+        },
+        {
+          "path": "video-worker/scripts/mimo-windows-background.contract.test.mjs",
+          "sha256": "73569f535b55e7c4c9f9c5f8d9b493c6af9e5abc008fe1b6ded4629a17daba71"
+        },
+        {
+          "path": "video-worker/scripts/mimo-windows-default-routing.contract.test.mjs",
+          "sha256": "45bc96b6e3c65b575b39f62382004401f1cbceda331f2d72c5cb873b4ad05b81"
+        },
+        {
+          "path": "video-worker/scripts/mimo-windows-reconciliation.contract.test.mjs",
+          "sha256": "b1495e9771a708b105f9f98705294ec06a7f3d40933c9d7a3882993f0fb50b7c"
+        },
+        {
+          "path": "video-worker/scripts/mimo-windows-visible-sync.contract.test.mjs",
+          "sha256": "eb01467df852004e01f2f0a20c6112bc5c97fb2aeb6a78bb6112c12b040775f2"
+        },
+        {
+          "path": "video-worker/scripts/miora-direct.mjs",
+          "sha256": "8d69043ec072474be517fab5df56904f53b3088fb2c07af40c103788f75acc14"
+        },
+        {
+          "path": "video-worker/scripts/miora-direct.test.mjs",
+          "sha256": "263f02b73d5001085c1f9cd01233595facc35a3e000d0e2e333a33dcef8a9699"
+        },
+        {
+          "path": "video-worker/scripts/miora-face-line.mjs",
+          "sha256": "9ce047bb4ad5967367de937b32aaaee744c26e3cd926a8e41638b705af5bd9d3"
+        },
+        {
+          "path": "video-worker/scripts/miora-face-line.test.mjs",
+          "sha256": "519ea0e936e89a57317adb5366a9f715a6e07afe855909cda5a8b645fd975c51"
+        },
+        {
+          "path": "video-worker/scripts/niannian-cos-local-enrollment-web.mjs",
+          "sha256": "343926089a7e1826f09e21e2f03885987510fa16bf3c9ee20783dc68f2da87ea"
+        },
+        {
+          "path": "video-worker/scripts/niannian-cos-local-enrollment-web.test.mjs",
+          "sha256": "147e1981b407f10ea732bc234ac37b09c29bffeffd739098e13bdfc4a99e057a"
+        },
+        {
+          "path": "video-worker/scripts/niannian-windows-dola-agent.mjs",
+          "sha256": "9d35e225ff6b6caee5b1b28da0c77c6ce311c17599e0208618293c87aecc8d52"
+        },
+        {
+          "path": "video-worker/scripts/niannian-windows-mimo-agent.mjs",
+          "sha256": "df61e7fe5a81563c552931f449580a6953c6946623b15345a7cd7c2a193385a8"
+        },
+        {
+          "path": "video-worker/scripts/postdeploy-readonly-check.mjs",
+          "sha256": "b24918a9eddfae195e5f9830f11451b6158a7bdc17e238041ae3d74f6647288e"
+        },
+        {
+          "path": "video-worker/scripts/postdeploy-windows-mimo-readonly.test.mjs",
+          "sha256": "792f1a38985eb92b73909e01a8fc81f8d87e2117ba7d192a6712ba6e213b2ac6"
+        },
+        {
+          "path": "video-worker/scripts/preprocess-authorized-real-i2v-reference.mjs",
+          "sha256": "9d131dbdb829491dac52c1c42fe54114e276f99ec1604d126a58a948f77f0041"
+        },
+        {
+          "path": "video-worker/scripts/production-compat-readonly.mjs",
+          "sha256": "a2e20b81fcbce744ef77e06471cd8e9b2b974df4d98a20b471ae1e0ab376ad37"
+        },
+        {
+          "path": "video-worker/scripts/production-compat-windows-mimo.contract.test.mjs",
+          "sha256": "81c98f2ebdede39006c9b5ccc54a5241cd2f95bd2778db204631e7e8b6469455"
+        },
+        {
+          "path": "video-worker/scripts/real-i2v-hard-gates.test.mjs",
+          "sha256": "ed756b019f0ffce73b8a4d0d82bea5097258728aa7e77e22bc6bfd7ed3902a7d"
+        },
+        {
+          "path": "video-worker/scripts/redraw-cancel-race.integration.mjs",
+          "sha256": "698e0e643087dcbdcf33411af24078d78d58ab338a8c4a4e4dd999731493f11a"
+        },
+        {
+          "path": "video-worker/scripts/redraw-cos.mjs",
+          "sha256": "edd6721ba7b6a6bf76f4dcfe7c2f59338ffa71e2a82838d258721aefb5753aa6"
+        },
+        {
+          "path": "video-worker/scripts/redraw-harness-bundle/AGENTS.md",
+          "sha256": "d42460f041f1144e7a0aa0d4b353f5a9ef097c360ca22e58f0221bb003db4eb7"
+        },
+        {
+          "path": "video-worker/scripts/redraw-harness-bundle/prompts/01_员工Harness启动提示词.txt",
+          "sha256": "474eb13f8f166f3751e9717fbc73dcc6f1f2f987e0e4246ff46463e02bf096c4"
+        },
+        {
+          "path": "video-worker/scripts/redraw-harness-bundle/prompts/02_新项目派单提示词模板.txt",
+          "sha256": "7b91d444ec86e1b761c006d399175dacb582544b6f5b7e168fc371a13e30665b"
+        },
+        {
+          "path": "video-worker/scripts/redraw-harness-bundle/README.md",
+          "sha256": "0f652fa2972e1b395f9afb6e8eeaac33e2ad249c5f7deac3fee225ca4223c017"
+        },
+        {
+          "path": "video-worker/scripts/redraw-harness-bundle/tools/init_redraw_project_harness.js",
+          "sha256": "564a6366ea1f533bb755c4daa9193629e58235a40903163cb7e3fff6ba7191f3"
+        },
+        {
+          "path": "video-worker/scripts/redraw-runtime.mjs",
+          "sha256": "27a451728e276b2311c959d6eccc24e7655d096b517eafcd687670481313347c"
+        },
+        {
+          "path": "video-worker/scripts/redraw-runtime.test.mjs",
+          "sha256": "f532e9e78d7ba8299c61e02bc65f931f0e2b9a401614ddc65c198894d0e93a5b"
+        },
+        {
+          "path": "video-worker/scripts/redraw-task-worker.mjs",
+          "sha256": "6b7c3114fb60c251bb63c720eca2d569771596f772b728297dc303d844d64027"
+        },
+        {
+          "path": "video-worker/scripts/release-candidate-audit.mjs",
+          "sha256": "527ceb5e582d48f1aacb36c7cb078246e88d62856779e927ca2fa8e9b4d7931d"
+        },
+        {
+          "path": "video-worker/scripts/release-candidate-config.mjs",
+          "sha256": "37b96f97d7fdd1a54c028f35eea460c6144de81953f03c055b2ad015d26b1854"
+        },
+        {
+          "path": "video-worker/scripts/release-candidate.test.mjs",
+          "sha256": "63b3f5c847666f601da96b932ea1f9ce61a93b558ecded7c089355315a2be594"
+        },
+        {
+          "path": "video-worker/scripts/render-mineral-flow-v2.mjs",
+          "sha256": "8ada612c0810dae258be6bda412d197c9bd0c0427ed15cbca48ca6a7c09c2056"
+        },
+        {
+          "path": "video-worker/scripts/run-real-mimo-app-task.mjs",
+          "sha256": "8bf08913465d5caf5f044ea75729abb2926dcd1ed88d2e5460563af9e54a45df"
+        },
+        {
+          "path": "video-worker/scripts/server-step01-runner.mjs",
+          "sha256": "094eaf9c9e66ccdf92dca2ba5665ccc03b5757972de046ada12c1b1a16174712"
+        },
+        {
+          "path": "video-worker/scripts/server-step01-runner.test.mjs",
+          "sha256": "c1f4612da7098a4c58d2763d64d46424e5530b4ceebb27ebccb31b489dbfbdd7"
+        },
+        {
+          "path": "video-worker/scripts/Set-NiannianMimoCredential.ps1",
+          "sha256": "4b95b6f4c278ddfad79d1d9782683d6f4531bfadb7b878b88efd1b304c0fa885"
+        },
+        {
+          "path": "video-worker/scripts/Start-NiannianDolaAgent.ps1",
+          "sha256": "991eba90a757cef336100b180cc3a53936a4d45870ba4d1d86c71fe7939a699d"
+        },
+        {
+          "path": "video-worker/scripts/Start-NiannianMimoAgent.ps1",
+          "sha256": "97f959d2e6ce06ef11728a4279d519787401c61b66c16984f6a559c6107d1bb7"
+        },
+        {
+          "path": "video-worker/scripts/Start-NiannianMimoBrowser.ps1",
+          "sha256": "ad26a81174649f1b0a1a3046753df60246ca01a55843890072d8e69c3643bf75"
+        },
+        {
+          "path": "video-worker/scripts/validate-face-processor-deploy.mjs",
+          "sha256": "c13a6c5f9c752e71e85e331a0046b76114f38dfd930f15cf619b28cf8d7dc1ea"
+        },
+        {
+          "path": "video-worker/scripts/validate-video-workbench-harness.mjs",
+          "sha256": "a8d45b218e81b3198b71d9dee987edf1d7d0f1ab9fdec17ad69f094a5f13b979"
+        },
+        {
+          "path": "video-worker/scripts/verify-server-step01-runtime.py",
+          "sha256": "89db115d6d6d75d49ee3e1f258a55377db74a6dffe66fe905fa2f0ed607b6255"
+        },
+        {
+          "path": "video-worker/scripts/video-cos.test.mjs",
+          "sha256": "91dcf495f5677c40067091b5f6e9eff6f66c93456f606c17a41c1f606a1345eb"
+        },
+        {
+          "path": "video-worker/scripts/video-task-execution-stage.test.mjs",
+          "sha256": "7803e1a7b55ef5cd582132c9d3f9299f14f5610f5a4b5d7918988c1db427ec0c"
+        },
+        {
+          "path": "video-worker/scripts/video-task-public-state.test.mjs",
+          "sha256": "fcc113e9c0af170e6ab2a6baf5ad248abe1fa1fd7449532a5e8c90fb7e97ad72"
+        },
+        {
+          "path": "video-worker/scripts/video-task-result.schema.json",
+          "sha256": "e60bd72a35a092ec428a481cd32eb5ed9db99067348c77c04dcdca198c7988cd"
+        },
+        {
+          "path": "video-worker/scripts/video-task-worker-codex-skill.integration.mjs",
+          "sha256": "bda2a6af0feeaddcac684a5c905f9153b455a5c864a76da6fea3dfd62578c037"
+        },
+        {
+          "path": "video-worker/scripts/video-task-worker.integration.mjs",
+          "sha256": "73183cc6837185ea1e19ad90ec92faafa4e791637a16b63bc7d0da32d736f7dc"
+        },
+        {
+          "path": "video-worker/scripts/video-task-worker.mjs",
+          "sha256": "984c744b1e375b87e337bec274a2dfd23cbe6776a43c1e2cf7f4ee0412b267fa"
+        },
+        {
+          "path": "video-worker/scripts/video-task-worker.test.mjs",
+          "sha256": "53a219795df00407b0a8df1d2b2e856d2b1c7a1f3a41c111d7aaba6cb74d79dd"
+        },
+        {
+          "path": "video-worker/scripts/video-workbench-harness-dispatcher-repair.test.mjs",
+          "sha256": "3ccd86764efd38ea9e361ddd08a7b15dd1141ccbba4b9a8ca28927b8f3fbace2"
+        },
+        {
+          "path": "video-worker/scripts/video-workbench-harness-dispatcher-runner.mjs",
+          "sha256": "657cd09ae113bd88c76cb0149c4449adc6a33fb4f2962b4655555821cda50477"
+        },
+        {
+          "path": "video-worker/scripts/video-workbench-harness-dispatcher-runner.test.mjs",
+          "sha256": "fefeb6895cb78c95ea7b384289591844c390215acac100e910ba0117aa9550c4"
+        },
+        {
+          "path": "video-worker/scripts/video-workbench-harness-dispatcher.mjs",
+          "sha256": "02c56753649154d5142e121239e552446ee9c4521238c981e7d190c1b5dc31bc"
+        },
+        {
+          "path": "video-worker/scripts/video-workbench-harness-dispatcher.test.mjs",
+          "sha256": "2f7d3a4ab9065c2625d1c650f24db7e8cb2669c4f06183daeac5007067865c91"
+        },
+        {
+          "path": "video-worker/scripts/video-workbench-harness-outbox-delivery.mjs",
+          "sha256": "d0258928e32262b78b674f65cc7d3c9c4de9b5f7998982a14328044d7c9ea9b5"
+        },
+        {
+          "path": "video-worker/scripts/video-workbench-harness-outbox-delivery.test.mjs",
+          "sha256": "37c17fa208f369422893dafcd66c8ce0f7c9dc53226ae51797da1bf83aba065c"
+        },
+        {
+          "path": "video-worker/scripts/video-workbench-harness-state.mjs",
+          "sha256": "51876ca26f6d29c5fe66cd1682e92dc068d1f54276e141576cbcc6ea22f97bc0"
+        },
+        {
+          "path": "video-worker/scripts/video-workbench-harness.contract.test.mjs",
+          "sha256": "37704c49c7fe343fec56b60de294d6045fcb4a7d602f0373ed6bc1867ffb3854"
+        },
+        {
+          "path": "video-worker/scripts/windows-dola-worker-result.schema.json",
+          "sha256": "56b3c0677cb7bfda71f0f84423a7fa0f0a5d66e953699d98eb80a61e416be17e"
+        }
+      ]
+    },
+    {
+      "name": "dispatcher-revision54",
+      "source": "sd2-dispatcher",
+      "server": "kaogong",
+      "sourcePath": "/opt/niannian-ai-video-workbench/dispatcher-candidates/revision-54",
+      "relationship": "Current deployed source snapshot; runtime data excluded",
+      "excludedSensitiveAndRuntimeFiles": true,
+      "files": [
+        {
+          "path": "harness/contract.json",
+          "sha256": "9d9bd0d560b833c3f3ebf21d41c42618492df14e13c255c42d2833c5bf9afbca"
+        },
+        {
+          "path": "harness/task-packet.schema.json",
+          "sha256": "abae454e196b1ff5315f0aa5574bedcf1c3bcf61054ffc8e0a8be366b51dc546"
+        },
+        {
+          "path": "harness/task-packets/NIANNIAN-WB-REAL-I2V-4S-20260728-01.json",
+          "sha256": "a3aa959e832535d191e4f5c9c184b7b8befb02d015f8e3ee1f2a1c09a90d8fe9"
+        },
+        {
+          "path": "harness/video-workbench-dispatcher-cutover-control-packet-20260728.json",
+          "sha256": "5140cff7bbd813984893abd8f5b37781378fb5eb128cf0a3c90a510853bda708"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher-runner.mjs",
+          "sha256": "657cd09ae113bd88c76cb0149c4449adc6a33fb4f2962b4655555821cda50477"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher.mjs",
+          "sha256": "02c56753649154d5142e121239e552446ee9c4521238c981e7d190c1b5dc31bc"
+        },
+        {
+          "path": "scripts/video-workbench-harness-outbox-delivery.mjs",
+          "sha256": "d0258928e32262b78b674f65cc7d3c9c4de9b5f7998982a14328044d7c9ea9b5"
+        },
+        {
+          "path": "scripts/video-workbench-harness-state.mjs",
+          "sha256": "51876ca26f6d29c5fe66cd1682e92dc068d1f54276e141576cbcc6ea22f97bc0"
+        }
+      ]
+    },
+    {
+      "name": "reborn-static",
+      "source": "sd2-reborn-static",
+      "server": "kaogong",
+      "sourcePath": "/opt/reborn/index.html",
+      "relationship": "Running static landing HTML verified by SHA256; generated/user videos excluded.",
+      "excludedSensitiveAndRuntimeFiles": true,
+      "files": [
+        {
+          "path": "index.html",
+          "sha256": "ece6fc737c291b80b61e12426de745906d7772f66b98d9f2d0a3d3904438062b"
+        }
+      ]
+    }
+  ]
+}

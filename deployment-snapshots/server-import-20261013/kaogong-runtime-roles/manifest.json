@@ -1,0 +1,1486 @@
+{
+  "date": "2026-10-13",
+  "host": "kaogong",
+  "sourceReadOnly": true,
+  "excludedPatterns": [
+    "*/node_modules",
+    "*/.next",
+    "*/.git",
+    "*/data",
+    "*/runtime",
+    "*/uploads",
+    "*/media",
+    "*/logs",
+    "*/log",
+    "*/.env*",
+    "*.log",
+    "*.sqlite*",
+    "*.db",
+    "*.pem",
+    "*.key",
+    "*.crt",
+    "*.cer",
+    "*.p12",
+    "*.pfx",
+    "*.bak*",
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+    "*.webp",
+    "*.gif",
+    "*.avif",
+    "*.mp4",
+    "*.mov",
+    "*.mp3",
+    "*.wav",
+    "*.ogg",
+    "*.flac",
+    "*.woff",
+    "*.woff2",
+    "*.ttf",
+    "*.pdf",
+    "*.docx",
+    "*.zip",
+    "*.gz",
+    "*.tar",
+    "*.tgz",
+    "*.onnx",
+    "*.pt",
+    "*.pth",
+    "*.safetensors",
+    "*/rollback",
+    "*/credentials*",
+    "*/secrets*"
+  ],
+  "secretScan": "pending",
+  "roles": [
+    {
+      "role": "app",
+      "container": "niannian-ai-video-workbench_app_1",
+      "source": "/app",
+      "selectedEntries": [
+        "lib",
+        "scripts",
+        "public",
+        "package.json",
+        "package-lock.json"
+      ],
+      "files": [
+        {
+          "path": "lib/video-output-gate.mjs",
+          "bytes": 3195,
+          "sha256": "57733b7823ab30a2209e32d793c05437df6a9d0033aa746ea69d2891a2c8214e",
+          "gitBlob": "a5be01e3fda00be1b92b218f175db10ed8d77cdb"
+        },
+        {
+          "path": "lib/video-cos.ts",
+          "bytes": 9759,
+          "sha256": "91c4a31941243819634b653d8eee9638a013ed5d0ad5a512fbaf89c309433739",
+          "gitBlob": "bf587259b51e2d5fe6d574bf69b4a03e45d12df3"
+        },
+        {
+          "path": "lib/legacy-mimo-delivery-backfill.mjs",
+          "bytes": 2907,
+          "sha256": "3b486388f8fc1970b002c1720834b7db3267bf1e796090aa3380e778f05a14cd",
+          "gitBlob": "5930b0b79c11be792c1e83fde1ff486511e14e5c"
+        },
+        {
+          "path": "scripts/redraw-task-worker.mjs",
+          "bytes": 17453,
+          "sha256": "d07f312583b59b3c70894d7016e93934b990654b989c9ee854881bc6d9be341f",
+          "gitBlob": "c71f5a0a77336572a7a78f464b055ca775008174"
+        },
+        {
+          "path": "scripts/import-step01-evidence-for-web.mjs",
+          "bytes": 4909,
+          "sha256": "fe8e6e907db2f6f860875dcb50442ffdaea4e22acaedf0aa61a205f7ad3fe0d7",
+          "gitBlob": "91a20fb110512ad5407f270ddba7cc97c072d7d3"
+        },
+        {
+          "path": "scripts/mac-rollback.fixture.sh",
+          "bytes": 2108,
+          "sha256": "f3465b316396fbcc4254e01459d12fb39445a6e33d3c6185cc85c37b70fdad7e",
+          "gitBlob": "fe6ed7c5d539e9b45952060429e3c1731b01764f"
+        },
+        {
+          "path": "scripts/mimo-safari-visible-sync.test.mjs",
+          "bytes": 5312,
+          "sha256": "f68384a2cfd5eebeff88d0a3c536a303390a29994cff38aeefd8b9b2b3ed3a75",
+          "gitBlob": "8ac2ab0dc154787801e9ea939be8717cbd0c283a"
+        },
+        {
+          "path": "scripts/redraw-runtime.mjs",
+          "bytes": 17178,
+          "sha256": "27a451728e276b2311c959d6eccc24e7655d096b517eafcd687670481313347c",
+          "gitBlob": "44759fc180b62b571b5390b3f8aeb7f3726e70b0"
+        },
+        {
+          "path": "scripts/build-server-step01-bundle.mjs",
+          "bytes": 1933,
+          "sha256": "44d4ca61e91a557d9b4601e5fbb338e0a21fac80694fe216aa242b3ec061a2ee",
+          "gitBlob": "d1e20cd570b2bf50826ef880af2064fe7d83eff7"
+        },
+        {
+          "path": "scripts/Install-NiannianDolaAgentTask.ps1",
+          "bytes": 1846,
+          "sha256": "1e85aef5702a7398e507791bad3b71f79e804b96603471fe350718ec30ef0f73",
+          "gitBlob": "688e16edfc3bfe30df2b9eeb9e200b14113181e3"
+        },
+        {
+          "path": "scripts/mac-skill-bundle.test.mjs",
+          "bytes": 2923,
+          "sha256": "782d21b735649057dfd2395dd2a24fd4658a2feea7a78c64c8571cd2c289f149",
+          "gitBlob": "726d49f29077d2a95c3e58df471ffe07e9b81b24"
+        },
+        {
+          "path": "scripts/redraw-cancel-race.integration.mjs",
+          "bytes": 4403,
+          "sha256": "698e0e643087dcbdcf33411af24078d78d58ab338a8c4a4e4dd999731493f11a",
+          "gitBlob": "2c3bae2be9a15f40a377d6385ba638e0c338feeb"
+        },
+        {
+          "path": "scripts/release-candidate-config.mjs",
+          "bytes": 748,
+          "sha256": "1aa7ef2ef03af400f5b00ec68bf00b1dd137a703a00202d2d99f2cf00f6ec993",
+          "gitBlob": "56e3f7061b705bc4599d1f2e07d8c95169fc72a9"
+        },
+        {
+          "path": "scripts/generate-ldxp-credit-codes.mjs",
+          "bytes": 1459,
+          "sha256": "b555147f8a7b4a9585208ca63adfa64b4de4c4851bf5a88649cc23dc2dbcc539",
+          "gitBlob": "ff7ad523068605bb2563faa618310717cd887e7b"
+        },
+        {
+          "path": "scripts/production-compat-readonly.mjs",
+          "bytes": 4893,
+          "sha256": "cd6df3c89dbf380960e200add84eb507d5d4e14a0276e0dfcd3c1964855ad50d",
+          "gitBlob": "2a1c10ec39b44475f79a269583592f61fbc88252"
+        },
+        {
+          "path": "scripts/release-candidate-audit.mjs",
+          "bytes": 7513,
+          "sha256": "0e6a2f5f43704f865a944b377159af031903045b1b3db3f2e0c370340048d273",
+          "gitBlob": "e2fac819a4eb1237476bb0819c293f51d7dcff19"
+        },
+        {
+          "path": "scripts/video-task-worker.mjs",
+          "bytes": 26478,
+          "sha256": "cce4caf683961108ffdcd8ecb698bc9b927eac97b1d021897953ce763f837883",
+          "gitBlob": "12a4db34937d857efa32f0f82a528e8ada69b997"
+        },
+        {
+          "path": "scripts/niannian-windows-dola-agent.mjs",
+          "bytes": 29624,
+          "sha256": "9d35e225ff6b6caee5b1b28da0c77c6ce311c17599e0208618293c87aecc8d52",
+          "gitBlob": "43ffa1c1a211a67fbdd686c3d0d79498c55e9ed9"
+        },
+        {
+          "path": "scripts/redraw-cos.mjs",
+          "bytes": 437,
+          "sha256": "6d84516323321a674b42e5ed5f6386dcbcec2c8e181b528f4ecf70797dd58702",
+          "gitBlob": "fce22f8d496a010c43aad32d06ba222ef229d07f"
+        },
+        {
+          "path": "scripts/mac-codex-worker.test.mjs",
+          "bytes": 18227,
+          "sha256": "e2b0d0ebd1d081fa71178b185fa6c214ba43a2febddfd2a1c3f1baebd4d7e2c0",
+          "gitBlob": "0055753644e70ad98bcda575eb5449c65d445c4a"
+        },
+        {
+          "path": "scripts/manual-task.integration.mjs",
+          "bytes": 24383,
+          "sha256": "6a83b16daa12f2d7c6c50b1570385d1db7f932dafe21ca2ddf8b5965662c6dfe",
+          "gitBlob": "391bf4c85b2e6b6fb77ce195bc628ecdbf5f0f13"
+        },
+        {
+          "path": "scripts/run-real-mimo-app-task.mjs",
+          "bytes": 13118,
+          "sha256": "8bf08913465d5caf5f044ea75729abb2926dcd1ed88d2e5460563af9e54a45df",
+          "gitBlob": "8af36a8046e9df813c823d67c1c30fefeea908c0"
+        },
+        {
+          "path": "scripts/attach-face-compatible-reference.mjs",
+          "bytes": 8893,
+          "sha256": "971cd410308aa7432dcf0a4718e67e1303b77eec68525993995e6b122507c7f3",
+          "gitBlob": "16b627d86fbe09ddbdec924f52e195e9e02849d5"
+        },
+        {
+          "path": "scripts/mac-worker-api.integration.mjs",
+          "bytes": 16511,
+          "sha256": "c25949046672003b7e3340896a7aaed9a5f4821a1860f1530be1b16bf0b96f71",
+          "gitBlob": "7bb1854c552e7cda462eaf9b4a33f2c37549936d"
+        },
+        {
+          "path": "scripts/video-task-worker.test.mjs",
+          "bytes": 4358,
+          "sha256": "df9dac8e4d4ad34f86885d23f9d3a07696cfeb944e0213660e5085b08c3453b8",
+          "gitBlob": "9832357f58b35bc16a469d427d30a1bfbc2ac1d2"
+        },
+        {
+          "path": "scripts/render-mineral-flow-v2.mjs",
+          "bytes": 13157,
+          "sha256": "8ada612c0810dae258be6bda412d197c9bd0c0427ed15cbca48ca6a7c09c2056",
+          "gitBlob": "ac116754c56a0aa97a8d1d85e0a7cdbb610b0875"
+        },
+        {
+          "path": "scripts/release-candidate.test.mjs",
+          "bytes": 4581,
+          "sha256": "a60f8cd1d4d647c6658ddbaac7f090cd839368ec28a0e32594dca085328c0059",
+          "gitBlob": "a1bd46a9785b7f3137f8d43ff688fe712a53c22e"
+        },
+        {
+          "path": "scripts/delivery-route.integration.mjs",
+          "bytes": 5854,
+          "sha256": "d362ae7003b08c2e1513fa780dd1f37693f226fe4b729dac2b8ef7273285bdd6",
+          "gitBlob": "8bc5e3a027f645dd618c49b975311373d782cc7d"
+        },
+        {
+          "path": "scripts/video-task-result.schema.json",
+          "bytes": 765,
+          "sha256": "e60bd72a35a092ec428a481cd32eb5ed9db99067348c77c04dcdca198c7988cd",
+          "gitBlob": "f722e8b61ac37fc3961c6e7c1eac910fa1a9c014"
+        },
+        {
+          "path": "scripts/verify-server-step01-runtime.py",
+          "bytes": 498,
+          "sha256": "89db115d6d6d75d49ee3e1f258a55377db74a6dffe66fe905fa2f0ed607b6255",
+          "gitBlob": "673c974e5c37e5eddaa0367587be7122a3e79694"
+        },
+        {
+          "path": "scripts/video-task-worker-codex-skill.integration.mjs",
+          "bytes": 8236,
+          "sha256": "bda2a6af0feeaddcac684a5c905f9153b455a5c864a76da6fea3dfd62578c037",
+          "gitBlob": "418db2184ededf4678594edf44be74f830e675cd"
+        },
+        {
+          "path": "scripts/video-task-worker.integration.mjs",
+          "bytes": 11469,
+          "sha256": "73183cc6837185ea1e19ad90ec92faafa4e791637a16b63bc7d0da32d736f7dc",
+          "gitBlob": "b7ecbe908497f5ef58ad54ad488d6e15ae2107b1"
+        },
+        {
+          "path": "scripts/build-redraw-skill-bundle.mjs",
+          "bytes": 2764,
+          "sha256": "d60e5b94613b20c2cab3372ddf2706685fdbccb361eeb160c695423199ec5d55",
+          "gitBlob": "0b9a6bd4665b46d827d6203d878b71aecdf51517"
+        },
+        {
+          "path": "scripts/windows-dola-worker-result.schema.json",
+          "bytes": 721,
+          "sha256": "56b3c0677cb7bfda71f0f84423a7fa0f0a5d66e953699d98eb80a61e416be17e",
+          "gitBlob": "a104a14164691dc1e264a877486a1beba2e8c7ea"
+        },
+        {
+          "path": "scripts/redraw-runtime.test.mjs",
+          "bytes": 16670,
+          "sha256": "2e6e534a307ed43089856112c86ab2efd8de583393a6dfdfe08a17abf36f12e1",
+          "gitBlob": "507fb0e08b117a385fa755c6866058b0bcf5b7e1"
+        },
+        {
+          "path": "scripts/mimo-safari-visible-submit.test.mjs",
+          "bytes": 6652,
+          "sha256": "6a482c1f94f080fe94e4948d3795a9b28e03f98a8d191ebd5fa5077221abe8ef",
+          "gitBlob": "e562909ac6460f485c78ae28e897ebcbefb68756"
+        },
+        {
+          "path": "scripts/mimo-origin-consistency.test.mjs",
+          "bytes": 3197,
+          "sha256": "c55cd348ca2f54f4aeb769e94f1e83eef2349d3281ef5a5f09bf676910732510",
+          "gitBlob": "677460d233af1b74e7466d7694803feda9a9452f"
+        },
+        {
+          "path": "scripts/mimo-official-client.test.mjs",
+          "bytes": 4625,
+          "sha256": "9b2bdd283ef64410879db153a598cbe97c16c8d88ab1482a0cc7deefe4d329da",
+          "gitBlob": "3c87d7aefe9a0a85f37aec200e71e622d04c675e"
+        },
+        {
+          "path": "scripts/dola-windows-agent-api.integration.mjs",
+          "bytes": 18077,
+          "sha256": "5828b2a7ddc198a87021fb699275b0d9bff61eec29a6761cd7aaa1a67e31b8b2",
+          "gitBlob": "405e522b79a3ec4456d2452eaff2b9859d724c31"
+        },
+        {
+          "path": "scripts/build-release-candidate.mjs",
+          "bytes": 6526,
+          "sha256": "b2dcabb5405f23b1aa3edf0291c968f5db459f2c2d6e644d4473663fe0209ec9",
+          "gitBlob": "1af942ea21a7931951645aaec2dfa42b3d9a7d9f"
+        },
+        {
+          "path": "scripts/mimo-direct.test.mjs",
+          "bytes": 5297,
+          "sha256": "793ea15b01a354e15ec4ebb56ef7f84b270923349a38a1f0c95f116c7072412b",
+          "gitBlob": "c4e211438ce7acc6888a64d945767d243892f32a"
+        },
+        {
+          "path": "scripts/migrate-sqlite-to-postgres.mjs",
+          "bytes": 3156,
+          "sha256": "cadd89f77576b3abc46c4128396f3f0fd4d57c92d5467d5c46a94ff8e2eb40e8",
+          "gitBlob": "e9386620ea80d9a979fb404b1d6313ee95400cd0"
+        },
+        {
+          "path": "scripts/mimo-direct.mjs",
+          "bytes": 13027,
+          "sha256": "c933fc9e97c5b1bd6aa90e67abe447ede355b95a59fc725f9536327566aa2a76",
+          "gitBlob": "a48ca52c202091e1151855006e4793e7506ef997"
+        },
+        {
+          "path": "scripts/Start-NiannianDolaAgent.ps1",
+          "bytes": 2016,
+          "sha256": "991eba90a757cef336100b180cc3a53936a4d45870ba4d1d86c71fe7939a699d",
+          "gitBlob": "bca1538dd626b7deeb1cd3a17162626426a52087"
+        },
+        {
+          "path": "scripts/postdeploy-readonly-check.mjs",
+          "bytes": 3406,
+          "sha256": "adeeed3f10513ac9619ae73a35248c610fe79aea6a0babe75ce6b4234a676c2a",
+          "gitBlob": "83239c0f73e54600cc40543a19afe4b03307f684"
+        },
+        {
+          "path": "public/niannian-ai-mark-transparent.svg",
+          "bytes": 587,
+          "sha256": "3ad61ed85b488c1afb3f332ce35e3c7322ac45320ef0da3167476a372e6e3e62",
+          "gitBlob": "a41b96c718a023970f53c6bf201ba59024ac4a66"
+        },
+        {
+          "path": "public/niannian-ai-authority-gold.svg",
+          "bytes": 890,
+          "sha256": "0ee4298e1eee11b9d7096b964f2c4c08005681c4c98cdcdda4786f3fbcea39fb",
+          "gitBlob": "5d07fb9ec276b3f6b78ea62dc38189bddf3298c4"
+        },
+        {
+          "path": "public/favicon.svg",
+          "bytes": 576,
+          "sha256": "37b87c05137d06bbbe763fad0e41b9885304d27aa41e1b46d86d0c15287c4033",
+          "gitBlob": "ca5ea9ffc6ccc61cce77b7ee4ba18483f4e84590"
+        },
+        {
+          "path": "package.json",
+          "bytes": 4260,
+          "sha256": "b043772220f5824f9ce038fcc06b1ae0efc694cf278102a1d79d98f42faa2ba0",
+          "gitBlob": "91a7cc631ff18f48f0e8c441a170c28f0dc12791"
+        },
+        {
+          "path": "package-lock.json",
+          "bytes": 80591,
+          "sha256": "000e6d0888ada50129ca7ac48558d090486591f3d1e3ba461b5ff88f7b8d05cf",
+          "gitBlob": "bc0899b8aed80495d657d33b5e8fa3b1d26cc463"
+        }
+      ],
+      "fileCount": 50,
+      "bytes": 448166,
+      "sshReturnCode": 0,
+      "warning": ""
+    },
+    {
+      "role": "video-worker",
+      "container": "niannian-ai-video-workbench-video-worker-1",
+      "source": "/app",
+      "selectedEntries": [
+        "lib",
+        "scripts",
+        "public",
+        "package.json",
+        "package-lock.json"
+      ],
+      "files": [
+        {
+          "path": "lib/video-output-gate.mjs",
+          "bytes": 3195,
+          "sha256": "57733b7823ab30a2209e32d793c05437df6a9d0033aa746ea69d2891a2c8214e",
+          "gitBlob": "a5be01e3fda00be1b92b218f175db10ed8d77cdb"
+        },
+        {
+          "path": "lib/video-cos.ts",
+          "bytes": 9759,
+          "sha256": "91c4a31941243819634b653d8eee9638a013ed5d0ad5a512fbaf89c309433739",
+          "gitBlob": "bf587259b51e2d5fe6d574bf69b4a03e45d12df3"
+        },
+        {
+          "path": "lib/legacy-mimo-delivery-backfill.mjs",
+          "bytes": 2907,
+          "sha256": "3b486388f8fc1970b002c1720834b7db3267bf1e796090aa3380e778f05a14cd",
+          "gitBlob": "5930b0b79c11be792c1e83fde1ff486511e14e5c"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher.test.mjs",
+          "bytes": 14234,
+          "sha256": "2f7d3a4ab9065c2625d1c650f24db7e8cb2669c4f06183daeac5007067865c91",
+          "gitBlob": "4be84ca2f61bbd9805fff97dba8347057d1d907b"
+        },
+        {
+          "path": "scripts/redraw-task-worker.mjs",
+          "bytes": 17473,
+          "sha256": "6b7c3114fb60c251bb63c720eca2d569771596f772b728297dc303d844d64027",
+          "gitBlob": "4075a64425824e5340e9d02cb649b83d49b54cba"
+        },
+        {
+          "path": "scripts/Install-NiannianMimoAgentTask.ps1",
+          "bytes": 1920,
+          "sha256": "9a43b8f07123d97880ef6583cf13d34479dc473a840c85e20f0b6ec6e3efd6df",
+          "gitBlob": "bb9e1d058baacdf4f6506a99309a022f5468ec93"
+        },
+        {
+          "path": "scripts/import-step01-evidence-for-web.mjs",
+          "bytes": 4909,
+          "sha256": "fe8e6e907db2f6f860875dcb50442ffdaea4e22acaedf0aa61a205f7ad3fe0d7",
+          "gitBlob": "91a20fb110512ad5407f270ddba7cc97c072d7d3"
+        },
+        {
+          "path": "scripts/mac-rollback.fixture.sh",
+          "bytes": 2108,
+          "sha256": "f3465b316396fbcc4254e01459d12fb39445a6e33d3c6185cc85c37b70fdad7e",
+          "gitBlob": "fe6ed7c5d539e9b45952060429e3c1731b01764f"
+        },
+        {
+          "path": "scripts/mimo-safari-visible-sync.test.mjs",
+          "bytes": 5312,
+          "sha256": "f68384a2cfd5eebeff88d0a3c536a303390a29994cff38aeefd8b9b2b3ed3a75",
+          "gitBlob": "8ac2ab0dc154787801e9ea939be8717cbd0c283a"
+        },
+        {
+          "path": "scripts/redraw-runtime.mjs",
+          "bytes": 17178,
+          "sha256": "27a451728e276b2311c959d6eccc24e7655d096b517eafcd687670481313347c",
+          "gitBlob": "44759fc180b62b571b5390b3f8aeb7f3726e70b0"
+        },
+        {
+          "path": "scripts/face-processor-deploy.contract.test.mjs",
+          "bytes": 6268,
+          "sha256": "1d7495aa4c249ff5346f27a3f9f105e66227a4fe147a6cb453454767b01f4bf6",
+          "gitBlob": "4d8f4094f1e78ecc14f69cfbfde7bd1f44517743"
+        },
+        {
+          "path": "scripts/server-step01-runner.test.mjs",
+          "bytes": 4847,
+          "sha256": "c1f4612da7098a4c58d2763d64d46424e5530b4ceebb27ebccb31b489dbfbdd7",
+          "gitBlob": "e539ff23f0ace897f5c79e6dc3739b17518c970b"
+        },
+        {
+          "path": "scripts/build-server-step01-bundle.mjs",
+          "bytes": 1933,
+          "sha256": "44d4ca61e91a557d9b4601e5fbb338e0a21fac80694fe216aa242b3ec061a2ee",
+          "gitBlob": "d1e20cd570b2bf50826ef880af2064fe7d83eff7"
+        },
+        {
+          "path": "scripts/Install-NiannianDolaAgentTask.ps1",
+          "bytes": 1846,
+          "sha256": "1e85aef5702a7398e507791bad3b71f79e804b96603471fe350718ec30ef0f73",
+          "gitBlob": "688e16edfc3bfe30df2b9eeb9e200b14113181e3"
+        },
+        {
+          "path": "scripts/video-workbench-harness-state.mjs",
+          "bytes": 38090,
+          "sha256": "51876ca26f6d29c5fe66cd1682e92dc068d1f54276e141576cbcc6ea22f97bc0",
+          "gitBlob": "3e91060503c5ad59539b1d21db758ccf11fe5941"
+        },
+        {
+          "path": "scripts/mimo-windows-visible-sync.contract.test.mjs",
+          "bytes": 4934,
+          "sha256": "eb01467df852004e01f2f0a20c6112bc5c97fb2aeb6a78bb6112c12b040775f2",
+          "gitBlob": "a817e7e15caf282ac6e2b3138cc3148050a12053"
+        },
+        {
+          "path": "scripts/mac-skill-bundle.test.mjs",
+          "bytes": 2923,
+          "sha256": "782d21b735649057dfd2395dd2a24fd4658a2feea7a78c64c8571cd2c289f149",
+          "gitBlob": "726d49f29077d2a95c3e58df471ffe07e9b81b24"
+        },
+        {
+          "path": "scripts/redraw-cancel-race.integration.mjs",
+          "bytes": 4403,
+          "sha256": "698e0e643087dcbdcf33411af24078d78d58ab338a8c4a4e4dd999731493f11a",
+          "gitBlob": "2c3bae2be9a15f40a377d6385ba638e0c338feeb"
+        },
+        {
+          "path": "scripts/validate-video-workbench-harness.mjs",
+          "bytes": 10176,
+          "sha256": "a8d45b218e81b3198b71d9dee987edf1d7d0f1ab9fdec17ad69f094a5f13b979",
+          "gitBlob": "59c3df25e3bc86045801ceb920335a5a7fb4b3db"
+        },
+        {
+          "path": "scripts/mimo-user-confirmed-no-submission-recovery.contract.test.mjs",
+          "bytes": 6946,
+          "sha256": "7481a6aeb3b67bfa57f340c88b9616446f9561a50a33e2e36e0adf0f3df3f574",
+          "gitBlob": "ad0ac9fb8953ef5adbfceab935182ca33b891ada"
+        },
+        {
+          "path": "scripts/video-cos.test.mjs",
+          "bytes": 3643,
+          "sha256": "91dcf495f5677c40067091b5f6e9eff6f66c93456f606c17a41c1f606a1345eb",
+          "gitBlob": "87aa9f10a48e9df4b5d65654e92059a458a44a24"
+        },
+        {
+          "path": "scripts/release-candidate-config.mjs",
+          "bytes": 1231,
+          "sha256": "37b96f97d7fdd1a54c028f35eea460c6144de81953f03c055b2ad015d26b1854",
+          "gitBlob": "42035a9208cbe017805da9c0cd3886e3b5e6dabd"
+        },
+        {
+          "path": "scripts/niannian-stage-cos-runtime-env.sh",
+          "bytes": 1156,
+          "sha256": "e589aec5ff74cd1ff2c88ec6c73ec317a93f06aed2468bd247058ea9af737bde",
+          "gitBlob": "b4a39e2a6cca5a04308de2ac4f91421f4f703e20"
+        },
+        {
+          "path": "scripts/Start-NiannianMimoBrowser.ps1",
+          "bytes": 1895,
+          "sha256": "ad26a81174649f1b0a1a3046753df60246ca01a55843890072d8e69c3643bf75",
+          "gitBlob": "33aa904fe90a44e9c5928326bafd2cb6688bb8b2"
+        },
+        {
+          "path": "scripts/server-step01-runner.mjs",
+          "bytes": 3946,
+          "sha256": "094eaf9c9e66ccdf92dca2ba5665ccc03b5757972de046ada12c1b1a16174712",
+          "gitBlob": "eeada3dc0a7636284752a03b2fac5f744e5e6036"
+        },
+        {
+          "path": "scripts/miora-direct.mjs",
+          "bytes": 34511,
+          "sha256": "8d69043ec072474be517fab5df56904f53b3088fb2c07af40c103788f75acc14",
+          "gitBlob": "8b488040937756eee3043268fb1163759b6f27b9"
+        },
+        {
+          "path": "scripts/generate-ldxp-credit-codes.mjs",
+          "bytes": 1459,
+          "sha256": "b555147f8a7b4a9585208ca63adfa64b4de4c4851bf5a88649cc23dc2dbcc539",
+          "gitBlob": "ff7ad523068605bb2563faa618310717cd887e7b"
+        },
+        {
+          "path": "scripts/higgsfield-direct.mjs",
+          "bytes": 4661,
+          "sha256": "0792f35e06bba072b0ea0f0583e3f918eb2d2a08afa48ccee7f4a1844bca3304",
+          "gitBlob": "c6972a0735dbfe5571dbddd4262bbb0bb66388c0"
+        },
+        {
+          "path": "scripts/video-task-public-state.test.mjs",
+          "bytes": 1105,
+          "sha256": "fcc113e9c0af170e6ab2a6baf5ad248abe1fa1fd7449532a5e8c90fb7e97ad72",
+          "gitBlob": "ea634de1ff7ff38feb7f9da9fe6d4d8569e2198b"
+        },
+        {
+          "path": "scripts/production-compat-readonly.mjs",
+          "bytes": 5467,
+          "sha256": "a2e20b81fcbce744ef77e06471cd8e9b2b974df4d98a20b471ae1e0ab376ad37",
+          "gitBlob": "1e205c18873b73cbb34bcdbc21255b90d5cbe0dc"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher-runner.mjs",
+          "bytes": 12130,
+          "sha256": "657cd09ae113bd88c76cb0149c4449adc6a33fb4f2962b4655555821cda50477",
+          "gitBlob": "8c1f3a6677783b6cc85a32bfcee7fb4716859e76"
+        },
+        {
+          "path": "scripts/release-candidate-audit.mjs",
+          "bytes": 10250,
+          "sha256": "527ceb5e582d48f1aacb36c7cb078246e88d62856779e927ca2fa8e9b4d7931d",
+          "gitBlob": "40475016ff08412bd94a0bdb5c3ae4d17193905d"
+        },
+        {
+          "path": "scripts/video-task-worker.mjs",
+          "bytes": 36926,
+          "sha256": "984c744b1e375b87e337bec274a2dfd23cbe6776a43c1e2cf7f4ee0412b267fa",
+          "gitBlob": "889bfe8e21744cda19e8cc1b17e868f9dbbfd227"
+        },
+        {
+          "path": "scripts/preprocess-authorized-real-i2v-reference.mjs",
+          "bytes": 1724,
+          "sha256": "9d131dbdb829491dac52c1c42fe54114e276f99ec1604d126a58a948f77f0041",
+          "gitBlob": "d20afb0d8683d468f8c1b97184de0487c139124d"
+        },
+        {
+          "path": "scripts/video-workbench-harness-outbox-delivery.mjs",
+          "bytes": 4054,
+          "sha256": "d0258928e32262b78b674f65cc7d3c9c4de9b5f7998982a14328044d7c9ea9b5",
+          "gitBlob": "6e4a16ad0be09a7e022857fb25f07340e650ed3d"
+        },
+        {
+          "path": "scripts/mimo-windows-reconciliation.contract.test.mjs",
+          "bytes": 1956,
+          "sha256": "b1495e9771a708b105f9f98705294ec06a7f3d40933c9d7a3882993f0fb50b7c",
+          "gitBlob": "283e71a6463e1f22224334d336a85f5d42e533b7"
+        },
+        {
+          "path": "scripts/niannian-windows-dola-agent.mjs",
+          "bytes": 29624,
+          "sha256": "9d35e225ff6b6caee5b1b28da0c77c6ce311c17599e0208618293c87aecc8d52",
+          "gitBlob": "43ffa1c1a211a67fbdd686c3d0d79498c55e9ed9"
+        },
+        {
+          "path": "scripts/redraw-cos.mjs",
+          "bytes": 1007,
+          "sha256": "edd6721ba7b6a6bf76f4dcfe7c2f59338ffa71e2a82838d258721aefb5753aa6",
+          "gitBlob": "2eac6ea3b3d5a7ede1df622c98de61febbdd1569"
+        },
+        {
+          "path": "scripts/mimo-owner-authorization.contract.test.mjs",
+          "bytes": 2091,
+          "sha256": "1e33b5e9fb3425d3c151fdd163988409f402bdf80ea55ac6504a345276e8e192",
+          "gitBlob": "8ae51db26eb416e280fe032f5ac37764439ba9de"
+        },
+        {
+          "path": "scripts/niannian-enroll-cos-credentials.sh",
+          "bytes": 2137,
+          "sha256": "53102ebb293e5d94dbd54b5489be5fd48f4168d0deb9457d1a93769392c09a1b",
+          "gitBlob": "71daa3a92373ab7791a77a545bda20f314e9725e"
+        },
+        {
+          "path": "scripts/mac-codex-worker.test.mjs",
+          "bytes": 18227,
+          "sha256": "e2b0d0ebd1d081fa71178b185fa6c214ba43a2febddfd2a1c3f1baebd4d7e2c0",
+          "gitBlob": "0055753644e70ad98bcda575eb5449c65d445c4a"
+        },
+        {
+          "path": "scripts/niannian-cos-local-enrollment-web.mjs",
+          "bytes": 9291,
+          "sha256": "343926089a7e1826f09e21e2f03885987510fa16bf3c9ee20783dc68f2da87ea",
+          "gitBlob": "f02468415b6585bdbe8a63fa9fcf7563c080dd23"
+        },
+        {
+          "path": "scripts/build-windows-mimo-agent-candidate.mjs",
+          "bytes": 4365,
+          "sha256": "3885655d0c4050d1e4280b946569076b641fda0e5ad8f028f80f4656ea5d4d0c",
+          "gitBlob": "997d9f74436628786ae323e3bdaa340e4b5e3613"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher-repair.test.mjs",
+          "bytes": 13599,
+          "sha256": "3ccd86764efd38ea9e361ddd08a7b15dd1141ccbba4b9a8ca28927b8f3fbace2",
+          "gitBlob": "f4f585d11f88e6fc4f047a0b439499f483e72d3c"
+        },
+        {
+          "path": "scripts/postdeploy-windows-mimo-readonly.test.mjs",
+          "bytes": 3969,
+          "sha256": "792f1a38985eb92b73909e01a8fc81f8d87e2117ba7d192a6712ba6e213b2ac6",
+          "gitBlob": "eb3f61509a5de4c8c382119b5eb4fa3ef2457d16"
+        },
+        {
+          "path": "scripts/manual-task.integration.mjs",
+          "bytes": 24387,
+          "sha256": "36ba2a66771144c7c4646d3b0b7903a03a0d5407e5ca3c7c5eb2086e8c6fec72",
+          "gitBlob": "02c50bc6ea1f16eb7b240c7e7f88341be8545a8f"
+        },
+        {
+          "path": "scripts/run-real-mimo-app-task.mjs",
+          "bytes": 13118,
+          "sha256": "8bf08913465d5caf5f044ea75729abb2926dcd1ed88d2e5460563af9e54a45df",
+          "gitBlob": "8af36a8046e9df813c823d67c1c30fefeea908c0"
+        },
+        {
+          "path": "scripts/attach-face-compatible-reference.mjs",
+          "bytes": 8893,
+          "sha256": "971cd410308aa7432dcf0a4718e67e1303b77eec68525993995e6b122507c7f3",
+          "gitBlob": "16b627d86fbe09ddbdec924f52e195e9e02849d5"
+        },
+        {
+          "path": "scripts/niannian-cos-local-enrollment-web.test.mjs",
+          "bytes": 4408,
+          "sha256": "147e1981b407f10ea732bc234ac37b09c29bffeffd739098e13bdfc4a99e057a",
+          "gitBlob": "f9b8a14183bb33f9d039016b544efccdee975f39"
+        },
+        {
+          "path": "scripts/video-workbench-harness-outbox-delivery.test.mjs",
+          "bytes": 13001,
+          "sha256": "37c17fa208f369422893dafcd66c8ce0f7c9dc53226ae51797da1bf83aba065c",
+          "gitBlob": "29dd6a0e1b2b943cc82a4cf07236515b136ed057"
+        },
+        {
+          "path": "scripts/mac-worker-api.integration.mjs",
+          "bytes": 16511,
+          "sha256": "c25949046672003b7e3340896a7aaed9a5f4821a1860f1530be1b16bf0b96f71",
+          "gitBlob": "7bb1854c552e7cda462eaf9b4a33f2c37549936d"
+        },
+        {
+          "path": "scripts/video-workbench-harness.contract.test.mjs",
+          "bytes": 13271,
+          "sha256": "37704c49c7fe343fec56b60de294d6045fcb4a7d602f0373ed6bc1867ffb3854",
+          "gitBlob": "63c368464f09d771136b5275ddca6cfd8d219ad0"
+        },
+        {
+          "path": "scripts/video-task-worker.test.mjs",
+          "bytes": 8000,
+          "sha256": "53a219795df00407b0a8df1d2b2e856d2b1c7a1f3a41c111d7aaba6cb74d79dd",
+          "gitBlob": "ea041c7394b8199d315799218f7e9434c9c381ba"
+        },
+        {
+          "path": "scripts/legacy-mimo-delivery-backfill.test.mjs",
+          "bytes": 3131,
+          "sha256": "d2b5b581efa46818c2197eb8c2ae298ad26911cee68ba6b85b4bad67d9bd75ca",
+          "gitBlob": "9ff8b6a78f3c158c74d4c565d9f632353a650408"
+        },
+        {
+          "path": "scripts/build-employee-redraw-harness-bundle.mjs",
+          "bytes": 4764,
+          "sha256": "d137ff72090abf388e38f9d75070b732a292d21809e84bf24d5c6eb6cda4adfa",
+          "gitBlob": "db347558a91f0a01d5a20c8a286da780a17acaf7"
+        },
+        {
+          "path": "scripts/date-display.test.mjs",
+          "bytes": 443,
+          "sha256": "9d987c962dde73f1ebaeca69782cc0307a3c450df862c0f934db45ebba7aa5b7",
+          "gitBlob": "23f810778caf0478cd5df0398b2a5e36cc893e3e"
+        },
+        {
+          "path": "scripts/Start-NiannianMimoAgent.ps1",
+          "bytes": 2314,
+          "sha256": "97f959d2e6ce06ef11728a4279d519787401c61b66c16984f6a559c6107d1bb7",
+          "gitBlob": "123e525d27597370e3a5e4f3b99ae55c20ba2dfb"
+        },
+        {
+          "path": "scripts/miora-face-line.test.mjs",
+          "bytes": 3633,
+          "sha256": "519ea0e936e89a57317adb5366a9f715a6e07afe855909cda5a8b645fd975c51",
+          "gitBlob": "0a22573c66d4d6eb87086b351792c71f6113846c"
+        },
+        {
+          "path": "scripts/render-mineral-flow-v2.mjs",
+          "bytes": 13157,
+          "sha256": "8ada612c0810dae258be6bda412d197c9bd0c0427ed15cbca48ca6a7c09c2056",
+          "gitBlob": "ac116754c56a0aa97a8d1d85e0a7cdbb610b0875"
+        },
+        {
+          "path": "scripts/miora-face-line.mjs",
+          "bytes": 5740,
+          "sha256": "9ce047bb4ad5967367de937b32aaaee744c26e3cd926a8e41638b705af5bd9d3",
+          "gitBlob": "52b5ba3a88be1ba80d75a6b8d4477bd2496772a0"
+        },
+        {
+          "path": "scripts/mimo-windows-agent-preflight.test.mjs",
+          "bytes": 3260,
+          "sha256": "06a9e397475da0085fda15bd3a90ed1c80b1b00fb66eb76665ead061e5419400",
+          "gitBlob": "9bb1239754ebbad3dcae3ef2ef5649198b785b42"
+        },
+        {
+          "path": "scripts/mimo-windows-background.contract.test.mjs",
+          "bytes": 4517,
+          "sha256": "73569f535b55e7c4c9f9c5f8d9b493c6af9e5abc008fe1b6ded4629a17daba71",
+          "gitBlob": "6affa7165a856fc4578bf4a454dff28dc1391cb1"
+        },
+        {
+          "path": "scripts/release-candidate.test.mjs",
+          "bytes": 6192,
+          "sha256": "63b3f5c847666f601da96b932ea1f9ce61a93b558ecded7c089355315a2be594",
+          "gitBlob": "4dc9d71cbf8b8556dc0301b5890d1fc7f0c02115"
+        },
+        {
+          "path": "scripts/mimo-windows-admin-overview.contract.test.mjs",
+          "bytes": 1343,
+          "sha256": "5c4cc21e6f26eb333cc163d9be14782721370d58c92df2d8071002fdb45718e3",
+          "gitBlob": "777b6b7fd9ff3a4c5f89a2acd2ab601b237a8a4b"
+        },
+        {
+          "path": "scripts/validate-face-processor-deploy.mjs",
+          "bytes": 2801,
+          "sha256": "c13a6c5f9c752e71e85e331a0046b76114f38dfd930f15cf619b28cf8d7dc1ea",
+          "gitBlob": "eb2a44e7459386b2e91dac30ad8927beae26fc74"
+        },
+        {
+          "path": "scripts/redraw-harness-bundle/tools/init_redraw_project_harness.js",
+          "bytes": 3556,
+          "sha256": "564a6366ea1f533bb755c4daa9193629e58235a40903163cb7e3fff6ba7191f3",
+          "gitBlob": "59d6d05da2826b54ff5b909909ef59bb7684eb87"
+        },
+        {
+          "path": "scripts/redraw-harness-bundle/prompts/01_员工Harness启动提示词.txt",
+          "bytes": 1946,
+          "sha256": "474eb13f8f166f3751e9717fbc73dcc6f1f2f987e0e4246ff46463e02bf096c4",
+          "gitBlob": "c29027ef0b6df4362d7122dcf039822dba290b81"
+        },
+        {
+          "path": "scripts/redraw-harness-bundle/prompts/02_新项目派单提示词模板.txt",
+          "bytes": 1314,
+          "sha256": "7b91d444ec86e1b761c006d399175dacb582544b6f5b7e168fc371a13e30665b",
+          "gitBlob": "7a4c17ffcceca0465d457de018322681d11f7121"
+        },
+        {
+          "path": "scripts/redraw-harness-bundle/README.md",
+          "bytes": 1733,
+          "sha256": "0f652fa2972e1b395f9afb6e8eeaac33e2ad249c5f7deac3fee225ca4223c017",
+          "gitBlob": "e655b2176fcfca7dcf87c59d3590484dd65c160c"
+        },
+        {
+          "path": "scripts/redraw-harness-bundle/AGENTS.md",
+          "bytes": 1933,
+          "sha256": "d42460f041f1144e7a0aa0d4b353f5a9ef097c360ca22e58f0221bb003db4eb7",
+          "gitBlob": "d2a16b6b0b631997894ee153a3ce789ceb066124"
+        },
+        {
+          "path": "scripts/delivery-route.integration.mjs",
+          "bytes": 5854,
+          "sha256": "d362ae7003b08c2e1513fa780dd1f37693f226fe4b729dac2b8ef7273285bdd6",
+          "gitBlob": "8bc5e3a027f645dd618c49b975311373d782cc7d"
+        },
+        {
+          "path": "scripts/build-employee-redraw-video-bundle.mjs",
+          "bytes": 3709,
+          "sha256": "7b214f772c9b9b49454a32281abd4270deaf7a02a8a636965b426dd69897c968",
+          "gitBlob": "6acb94a5207eca4a4102206e5074dd8b65834ad1"
+        },
+        {
+          "path": "scripts/video-task-result.schema.json",
+          "bytes": 765,
+          "sha256": "e60bd72a35a092ec428a481cd32eb5ed9db99067348c77c04dcdca198c7988cd",
+          "gitBlob": "f722e8b61ac37fc3961c6e7c1eac910fa1a9c014"
+        },
+        {
+          "path": "scripts/niannian-windows-mimo-agent.mjs",
+          "bytes": 27902,
+          "sha256": "df61e7fe5a81563c552931f449580a6953c6946623b15345a7cd7c2a193385a8",
+          "gitBlob": "c050b94bb22a4160d8e1f2ff4f0804b35b19efd8"
+        },
+        {
+          "path": "scripts/verify-server-step01-runtime.py",
+          "bytes": 498,
+          "sha256": "89db115d6d6d75d49ee3e1f258a55377db74a6dffe66fe905fa2f0ed607b6255",
+          "gitBlob": "673c974e5c37e5eddaa0367587be7122a3e79694"
+        },
+        {
+          "path": "scripts/video-task-worker-codex-skill.integration.mjs",
+          "bytes": 8236,
+          "sha256": "bda2a6af0feeaddcac684a5c905f9153b455a5c864a76da6fea3dfd62578c037",
+          "gitBlob": "418db2184ededf4678594edf44be74f830e675cd"
+        },
+        {
+          "path": "scripts/mimo-text-queue.contract.test.mjs",
+          "bytes": 6615,
+          "sha256": "f68eda31f4e0ddd8281454330f7c39006c9f376081af55fb1993e7df2f4ca67c",
+          "gitBlob": "c3e565e51a9e35854115aca5d27a527cf19b067b"
+        },
+        {
+          "path": "scripts/video-task-worker.integration.mjs",
+          "bytes": 11469,
+          "sha256": "73183cc6837185ea1e19ad90ec92faafa4e791637a16b63bc7d0da32d736f7dc",
+          "gitBlob": "b7ecbe908497f5ef58ad54ad488d6e15ae2107b1"
+        },
+        {
+          "path": "scripts/build-redraw-skill-bundle.mjs",
+          "bytes": 2764,
+          "sha256": "d60e5b94613b20c2cab3372ddf2706685fdbccb361eeb160c695423199ec5d55",
+          "gitBlob": "0b9a6bd4665b46d827d6203d878b71aecdf51517"
+        },
+        {
+          "path": "scripts/windows-dola-worker-result.schema.json",
+          "bytes": 721,
+          "sha256": "56b3c0677cb7bfda71f0f84423a7fa0f0a5d66e953699d98eb80a61e416be17e",
+          "gitBlob": "a104a14164691dc1e264a877486a1beba2e8c7ea"
+        },
+        {
+          "path": "scripts/redraw-runtime.test.mjs",
+          "bytes": 17285,
+          "sha256": "f532e9e78d7ba8299c61e02bc65f931f0e2b9a401614ddc65c198894d0e93a5b",
+          "gitBlob": "3109c5cd3c7bed404d8b106eddbc7ad766d67ced"
+        },
+        {
+          "path": "scripts/mimo-safari-visible-submit.test.mjs",
+          "bytes": 6652,
+          "sha256": "6a482c1f94f080fe94e4948d3795a9b28e03f98a8d191ebd5fa5077221abe8ef",
+          "gitBlob": "e562909ac6460f485c78ae28e897ebcbefb68756"
+        },
+        {
+          "path": "scripts/mimo-origin-consistency.test.mjs",
+          "bytes": 3197,
+          "sha256": "c55cd348ca2f54f4aeb769e94f1e83eef2349d3281ef5a5f09bf676910732510",
+          "gitBlob": "677460d233af1b74e7466d7694803feda9a9452f"
+        },
+        {
+          "path": "scripts/mimo-windows-default-routing.contract.test.mjs",
+          "bytes": 1431,
+          "sha256": "45bc96b6e3c65b575b39f62382004401f1cbceda331f2d72c5cb873b4ad05b81",
+          "gitBlob": "6fc247f3eeecd361ab36120d692bb8ccdf82d017"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher.mjs",
+          "bytes": 24024,
+          "sha256": "02c56753649154d5142e121239e552446ee9c4521238c981e7d190c1b5dc31bc",
+          "gitBlob": "26f06a1cbcac46cc08bf7b4463c78faee92cd9e5"
+        },
+        {
+          "path": "scripts/migrate-completed-video-to-cos.mjs",
+          "bytes": 2447,
+          "sha256": "5a3b97c503032e92c342331326b835aad2ae04b510f5a8a6a3877bc96778be5b",
+          "gitBlob": "1f1323d6023d4b5a14879c2ae7a4e94e651b0338"
+        },
+        {
+          "path": "scripts/mimo-official-client.test.mjs",
+          "bytes": 4625,
+          "sha256": "9b2bdd283ef64410879db153a598cbe97c16c8d88ab1482a0cc7deefe4d329da",
+          "gitBlob": "3c87d7aefe9a0a85f37aec200e71e622d04c675e"
+        },
+        {
+          "path": "scripts/mimo-isolated-lease-recovery.contract.test.mjs",
+          "bytes": 1681,
+          "sha256": "b34a06a33a51ba9d57bb851fbcc6a0ccecfffa02f46a3462b72965b1302c30b7",
+          "gitBlob": "b484f1fc4251f9d4b76258158b7ff0cdae5f677b"
+        },
+        {
+          "path": "scripts/dola-windows-agent-api.integration.mjs",
+          "bytes": 18077,
+          "sha256": "5828b2a7ddc198a87021fb699275b0d9bff61eec29a6761cd7aaa1a67e31b8b2",
+          "gitBlob": "405e522b79a3ec4456d2452eaff2b9859d724c31"
+        },
+        {
+          "path": "scripts/build-release-candidate.mjs",
+          "bytes": 7877,
+          "sha256": "af88f16c206c259fea858db64d90e942f8f7abed2be51665757fb1e9ae2aa644",
+          "gitBlob": "78332e9bb778c530ad964b0422fad95aa72380bb"
+        },
+        {
+          "path": "scripts/mimo-direct.test.mjs",
+          "bytes": 5297,
+          "sha256": "793ea15b01a354e15ec4ebb56ef7f84b270923349a38a1f0c95f116c7072412b",
+          "gitBlob": "c4e211438ce7acc6888a64d945767d243892f32a"
+        },
+        {
+          "path": "scripts/miora-direct.test.mjs",
+          "bytes": 2349,
+          "sha256": "263f02b73d5001085c1f9cd01233595facc35a3e000d0e2e333a33dcef8a9699",
+          "gitBlob": "32e3c59b842156a2bd49f418c0d072d73c1990c2"
+        },
+        {
+          "path": "scripts/video-task-execution-stage.test.mjs",
+          "bytes": 1370,
+          "sha256": "7803e1a7b55ef5cd582132c9d3f9299f14f5610f5a4b5d7918988c1db427ec0c",
+          "gitBlob": "bc626101d007b623469ff6ad0b74ba023e35bb5b"
+        },
+        {
+          "path": "scripts/migrate-sqlite-to-postgres.mjs",
+          "bytes": 3156,
+          "sha256": "cadd89f77576b3abc46c4128396f3f0fd4d57c92d5467d5c46a94ff8e2eb40e8",
+          "gitBlob": "e9386620ea80d9a979fb404b1d6313ee95400cd0"
+        },
+        {
+          "path": "scripts/mimo-direct.mjs",
+          "bytes": 13027,
+          "sha256": "c933fc9e97c5b1bd6aa90e67abe447ede355b95a59fc725f9536327566aa2a76",
+          "gitBlob": "a48ca52c202091e1151855006e4793e7506ef997"
+        },
+        {
+          "path": "scripts/Start-NiannianDolaAgent.ps1",
+          "bytes": 2016,
+          "sha256": "991eba90a757cef336100b180cc3a53936a4d45870ba4d1d86c71fe7939a699d",
+          "gitBlob": "bca1538dd626b7deeb1cd3a17162626426a52087"
+        },
+        {
+          "path": "scripts/Set-NiannianMimoCredential.ps1",
+          "bytes": 2367,
+          "sha256": "4b95b6f4c278ddfad79d1d9782683d6f4531bfadb7b878b88efd1b304c0fa885",
+          "gitBlob": "f328aa5167bf63bf97267c7a1eed6779178886e5"
+        },
+        {
+          "path": "scripts/production-compat-windows-mimo.contract.test.mjs",
+          "bytes": 1004,
+          "sha256": "81c98f2ebdede39006c9b5ccc54a5241cd2f95bd2778db204631e7e8b6469455",
+          "gitBlob": "b162c8853c461b3e73dc7ee70287d2a3940d233c"
+        },
+        {
+          "path": "scripts/postdeploy-readonly-check.mjs",
+          "bytes": 4659,
+          "sha256": "b24918a9eddfae195e5f9830f11451b6158a7bdc17e238041ae3d74f6647288e",
+          "gitBlob": "ef1a26311ee170ecb99aa387902a630b1f0bc898"
+        },
+        {
+          "path": "scripts/mimo-efficiency.contract.test.mjs",
+          "bytes": 9615,
+          "sha256": "d78a24aceaad9b22b532da60943ba440e0974b167a724b25a325e7088c0a3236",
+          "gitBlob": "6b426c9eda979cc345bd111bca14611dce902f54"
+        },
+        {
+          "path": "scripts/real-i2v-hard-gates.test.mjs",
+          "bytes": 12370,
+          "sha256": "ed756b019f0ffce73b8a4d0d82bea5097258728aa7e77e22bc6bfd7ed3902a7d",
+          "gitBlob": "36548435bc0cfd9ad59a495b6a32a150a1bdf1cc"
+        },
+        {
+          "path": "scripts/employee-redraw-bundle/prompts/02_商品带货转绘提示词模板.txt",
+          "bytes": 1844,
+          "sha256": "5226fa7a8dc12d2020f86ea50ae4124d9794113932c2087f18e6003251044de3",
+          "gitBlob": "263c5a99abfc5668cf26940ff841bf4b6d86d505"
+        },
+        {
+          "path": "scripts/employee-redraw-bundle/prompts/03_汽车带货转绘提示词模板.txt",
+          "bytes": 1289,
+          "sha256": "c9f86f0a7dcb524913a3c1a68edded03a49a971acd3da1dc72000b402bb3d63f",
+          "gitBlob": "33d65607ad2b4b9fce0c929c0f2b202dde2b9211"
+        },
+        {
+          "path": "scripts/employee-redraw-bundle/prompts/01_员工启动提示词.txt",
+          "bytes": 1904,
+          "sha256": "09a0ba6787f4e81b2a4439c49c80c8a18d02f121c7aac06073fd26b889e4e278",
+          "gitBlob": "7f6b8bab64d944cc8da4c4f615090d567c3f9608"
+        },
+        {
+          "path": "scripts/employee-redraw-bundle/README.md",
+          "bytes": 1685,
+          "sha256": "3371455630b0fa2b64b126bcb0994085f47955a106c75423dc82fd7bd981cf41",
+          "gitBlob": "4de751f4db21fd6d04238ef8f70794d0e0caf865"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher-runner.test.mjs",
+          "bytes": 5753,
+          "sha256": "fefeb6895cb78c95ea7b384289591844c390215acac100e910ba0117aa9550c4",
+          "gitBlob": "15b94852569066a44d478304430c320e3d2841c3"
+        },
+        {
+          "path": "package.json",
+          "bytes": 7120,
+          "sha256": "ee2520b09b484d920d27ea6cbeb783b166eeb16159e879b148db896473c576e1",
+          "gitBlob": "87a5d324c676827bc5a6fb2b5db4ab00369dbf44"
+        },
+        {
+          "path": "package-lock.json",
+          "bytes": 80591,
+          "sha256": "000e6d0888ada50129ca7ac48558d090486591f3d1e3ba461b5ff88f7b8d05cf",
+          "gitBlob": "bc0899b8aed80495d657d33b5e8fa3b1d26cc463"
+        }
+      ],
+      "fileCount": 108,
+      "bytes": 848396,
+      "sshReturnCode": 0,
+      "warning": "",
+      "sameAsAppCount": 34,
+      "differentFromApp": [
+        "scripts/redraw-task-worker.mjs",
+        "scripts/release-candidate-config.mjs",
+        "scripts/production-compat-readonly.mjs",
+        "scripts/release-candidate-audit.mjs",
+        "scripts/video-task-worker.mjs",
+        "scripts/redraw-cos.mjs",
+        "scripts/manual-task.integration.mjs",
+        "scripts/video-task-worker.test.mjs",
+        "scripts/release-candidate.test.mjs",
+        "scripts/redraw-runtime.test.mjs",
+        "scripts/build-release-candidate.mjs",
+        "scripts/postdeploy-readonly-check.mjs",
+        "package.json"
+      ],
+      "notInApp": [
+        "scripts/video-workbench-harness-dispatcher.test.mjs",
+        "scripts/Install-NiannianMimoAgentTask.ps1",
+        "scripts/face-processor-deploy.contract.test.mjs",
+        "scripts/server-step01-runner.test.mjs",
+        "scripts/video-workbench-harness-state.mjs",
+        "scripts/mimo-windows-visible-sync.contract.test.mjs",
+        "scripts/validate-video-workbench-harness.mjs",
+        "scripts/mimo-user-confirmed-no-submission-recovery.contract.test.mjs",
+        "scripts/video-cos.test.mjs",
+        "scripts/niannian-stage-cos-runtime-env.sh",
+        "scripts/Start-NiannianMimoBrowser.ps1",
+        "scripts/server-step01-runner.mjs",
+        "scripts/miora-direct.mjs",
+        "scripts/higgsfield-direct.mjs",
+        "scripts/video-task-public-state.test.mjs",
+        "scripts/video-workbench-harness-dispatcher-runner.mjs",
+        "scripts/preprocess-authorized-real-i2v-reference.mjs",
+        "scripts/video-workbench-harness-outbox-delivery.mjs",
+        "scripts/mimo-windows-reconciliation.contract.test.mjs",
+        "scripts/mimo-owner-authorization.contract.test.mjs",
+        "scripts/niannian-enroll-cos-credentials.sh",
+        "scripts/niannian-cos-local-enrollment-web.mjs",
+        "scripts/build-windows-mimo-agent-candidate.mjs",
+        "scripts/video-workbench-harness-dispatcher-repair.test.mjs",
+        "scripts/postdeploy-windows-mimo-readonly.test.mjs",
+        "scripts/niannian-cos-local-enrollment-web.test.mjs",
+        "scripts/video-workbench-harness-outbox-delivery.test.mjs",
+        "scripts/video-workbench-harness.contract.test.mjs",
+        "scripts/legacy-mimo-delivery-backfill.test.mjs",
+        "scripts/build-employee-redraw-harness-bundle.mjs",
+        "scripts/date-display.test.mjs",
+        "scripts/Start-NiannianMimoAgent.ps1",
+        "scripts/miora-face-line.test.mjs",
+        "scripts/miora-face-line.mjs",
+        "scripts/mimo-windows-agent-preflight.test.mjs",
+        "scripts/mimo-windows-background.contract.test.mjs",
+        "scripts/mimo-windows-admin-overview.contract.test.mjs",
+        "scripts/validate-face-processor-deploy.mjs",
+        "scripts/redraw-harness-bundle/tools/init_redraw_project_harness.js",
+        "scripts/redraw-harness-bundle/prompts/01_员工Harness启动提示词.txt",
+        "scripts/redraw-harness-bundle/prompts/02_新项目派单提示词模板.txt",
+        "scripts/redraw-harness-bundle/README.md",
+        "scripts/redraw-harness-bundle/AGENTS.md",
+        "scripts/build-employee-redraw-video-bundle.mjs",
+        "scripts/niannian-windows-mimo-agent.mjs",
+        "scripts/mimo-text-queue.contract.test.mjs",
+        "scripts/mimo-windows-default-routing.contract.test.mjs",
+        "scripts/video-workbench-harness-dispatcher.mjs",
+        "scripts/migrate-completed-video-to-cos.mjs",
+        "scripts/mimo-isolated-lease-recovery.contract.test.mjs",
+        "scripts/miora-direct.test.mjs",
+        "scripts/video-task-execution-stage.test.mjs",
+        "scripts/Set-NiannianMimoCredential.ps1",
+        "scripts/production-compat-windows-mimo.contract.test.mjs",
+        "scripts/mimo-efficiency.contract.test.mjs",
+        "scripts/real-i2v-hard-gates.test.mjs",
+        "scripts/employee-redraw-bundle/prompts/02_商品带货转绘提示词模板.txt",
+        "scripts/employee-redraw-bundle/prompts/03_汽车带货转绘提示词模板.txt",
+        "scripts/employee-redraw-bundle/prompts/01_员工启动提示词.txt",
+        "scripts/employee-redraw-bundle/README.md",
+        "scripts/video-workbench-harness-dispatcher-runner.test.mjs"
+      ]
+    },
+    {
+      "role": "redraw-worker",
+      "container": "niannian-ai-video-workbench_redraw-worker_1",
+      "source": "/app",
+      "selectedEntries": [
+        "lib",
+        "scripts",
+        "public",
+        "package.json",
+        "package-lock.json"
+      ],
+      "files": [
+        {
+          "path": "lib/video-output-gate.mjs",
+          "bytes": 2774,
+          "sha256": "a198737c67413314dea76523e9574eccbdcea2b13a0c9a39b5dac53ab11d4f87",
+          "gitBlob": "032d171f9057dccfcf79ed6115aa7a869705c914"
+        },
+        {
+          "path": "scripts/redraw-task-worker.mjs",
+          "bytes": 17453,
+          "sha256": "d07f312583b59b3c70894d7016e93934b990654b989c9ee854881bc6d9be341f",
+          "gitBlob": "c71f5a0a77336572a7a78f464b055ca775008174"
+        },
+        {
+          "path": "scripts/import-step01-evidence-for-web.mjs",
+          "bytes": 4909,
+          "sha256": "fe8e6e907db2f6f860875dcb50442ffdaea4e22acaedf0aa61a205f7ad3fe0d7",
+          "gitBlob": "91a20fb110512ad5407f270ddba7cc97c072d7d3"
+        },
+        {
+          "path": "scripts/mac-rollback.fixture.sh",
+          "bytes": 2108,
+          "sha256": "f3465b316396fbcc4254e01459d12fb39445a6e33d3c6185cc85c37b70fdad7e",
+          "gitBlob": "fe6ed7c5d539e9b45952060429e3c1731b01764f"
+        },
+        {
+          "path": "scripts/mimo-safari-visible-sync.test.mjs",
+          "bytes": 5312,
+          "sha256": "f68384a2cfd5eebeff88d0a3c536a303390a29994cff38aeefd8b9b2b3ed3a75",
+          "gitBlob": "8ac2ab0dc154787801e9ea939be8717cbd0c283a"
+        },
+        {
+          "path": "scripts/redraw-runtime.mjs",
+          "bytes": 17178,
+          "sha256": "27a451728e276b2311c959d6eccc24e7655d096b517eafcd687670481313347c",
+          "gitBlob": "44759fc180b62b571b5390b3f8aeb7f3726e70b0"
+        },
+        {
+          "path": "scripts/build-server-step01-bundle.mjs",
+          "bytes": 1933,
+          "sha256": "44d4ca61e91a557d9b4601e5fbb338e0a21fac80694fe216aa242b3ec061a2ee",
+          "gitBlob": "d1e20cd570b2bf50826ef880af2064fe7d83eff7"
+        },
+        {
+          "path": "scripts/mac-skill-bundle.test.mjs",
+          "bytes": 2923,
+          "sha256": "782d21b735649057dfd2395dd2a24fd4658a2feea7a78c64c8571cd2c289f149",
+          "gitBlob": "726d49f29077d2a95c3e58df471ffe07e9b81b24"
+        },
+        {
+          "path": "scripts/redraw-cancel-race.integration.mjs",
+          "bytes": 4403,
+          "sha256": "698e0e643087dcbdcf33411af24078d78d58ab338a8c4a4e4dd999731493f11a",
+          "gitBlob": "2c3bae2be9a15f40a377d6385ba638e0c338feeb"
+        },
+        {
+          "path": "scripts/release-candidate-config.mjs",
+          "bytes": 748,
+          "sha256": "1aa7ef2ef03af400f5b00ec68bf00b1dd137a703a00202d2d99f2cf00f6ec993",
+          "gitBlob": "56e3f7061b705bc4599d1f2e07d8c95169fc72a9"
+        },
+        {
+          "path": "scripts/generate-ldxp-credit-codes.mjs",
+          "bytes": 1459,
+          "sha256": "b555147f8a7b4a9585208ca63adfa64b4de4c4851bf5a88649cc23dc2dbcc539",
+          "gitBlob": "ff7ad523068605bb2563faa618310717cd887e7b"
+        },
+        {
+          "path": "scripts/production-compat-readonly.mjs",
+          "bytes": 4893,
+          "sha256": "cd6df3c89dbf380960e200add84eb507d5d4e14a0276e0dfcd3c1964855ad50d",
+          "gitBlob": "2a1c10ec39b44475f79a269583592f61fbc88252"
+        },
+        {
+          "path": "scripts/release-candidate-audit.mjs",
+          "bytes": 7513,
+          "sha256": "0e6a2f5f43704f865a944b377159af031903045b1b3db3f2e0c370340048d273",
+          "gitBlob": "e2fac819a4eb1237476bb0819c293f51d7dcff19"
+        },
+        {
+          "path": "scripts/video-task-worker.mjs",
+          "bytes": 26478,
+          "sha256": "cce4caf683961108ffdcd8ecb698bc9b927eac97b1d021897953ce763f837883",
+          "gitBlob": "12a4db34937d857efa32f0f82a528e8ada69b997"
+        },
+        {
+          "path": "scripts/niannian-windows-dola-agent.mjs",
+          "bytes": 55902,
+          "sha256": "5ccafc0043e0f1a5c40c34f6baf7147235895bdd5442b6ef54cc414f5c3107e8",
+          "gitBlob": "22748c5daa2d8ec31b67ef8b334ddce69baeb0b4"
+        },
+        {
+          "path": "scripts/redraw-cos.mjs",
+          "bytes": 437,
+          "sha256": "6d84516323321a674b42e5ed5f6386dcbcec2c8e181b528f4ecf70797dd58702",
+          "gitBlob": "fce22f8d496a010c43aad32d06ba222ef229d07f"
+        },
+        {
+          "path": "scripts/mac-codex-worker.test.mjs",
+          "bytes": 18227,
+          "sha256": "e2b0d0ebd1d081fa71178b185fa6c214ba43a2febddfd2a1c3f1baebd4d7e2c0",
+          "gitBlob": "0055753644e70ad98bcda575eb5449c65d445c4a"
+        },
+        {
+          "path": "scripts/manual-task.integration.mjs",
+          "bytes": 24383,
+          "sha256": "6a83b16daa12f2d7c6c50b1570385d1db7f932dafe21ca2ddf8b5965662c6dfe",
+          "gitBlob": "391bf4c85b2e6b6fb77ce195bc628ecdbf5f0f13"
+        },
+        {
+          "path": "scripts/run-real-mimo-app-task.mjs",
+          "bytes": 13118,
+          "sha256": "8bf08913465d5caf5f044ea75729abb2926dcd1ed88d2e5460563af9e54a45df",
+          "gitBlob": "8af36a8046e9df813c823d67c1c30fefeea908c0"
+        },
+        {
+          "path": "scripts/attach-face-compatible-reference.mjs",
+          "bytes": 8893,
+          "sha256": "971cd410308aa7432dcf0a4718e67e1303b77eec68525993995e6b122507c7f3",
+          "gitBlob": "16b627d86fbe09ddbdec924f52e195e9e02849d5"
+        },
+        {
+          "path": "scripts/mac-worker-api.integration.mjs",
+          "bytes": 16511,
+          "sha256": "c25949046672003b7e3340896a7aaed9a5f4821a1860f1530be1b16bf0b96f71",
+          "gitBlob": "7bb1854c552e7cda462eaf9b4a33f2c37549936d"
+        },
+        {
+          "path": "scripts/video-task-worker.test.mjs",
+          "bytes": 4358,
+          "sha256": "df9dac8e4d4ad34f86885d23f9d3a07696cfeb944e0213660e5085b08c3453b8",
+          "gitBlob": "9832357f58b35bc16a469d427d30a1bfbc2ac1d2"
+        },
+        {
+          "path": "scripts/render-mineral-flow-v2.mjs",
+          "bytes": 13157,
+          "sha256": "8ada612c0810dae258be6bda412d197c9bd0c0427ed15cbca48ca6a7c09c2056",
+          "gitBlob": "ac116754c56a0aa97a8d1d85e0a7cdbb610b0875"
+        },
+        {
+          "path": "scripts/release-candidate.test.mjs",
+          "bytes": 4581,
+          "sha256": "a60f8cd1d4d647c6658ddbaac7f090cd839368ec28a0e32594dca085328c0059",
+          "gitBlob": "a1bd46a9785b7f3137f8d43ff688fe712a53c22e"
+        },
+        {
+          "path": "scripts/delivery-route.integration.mjs",
+          "bytes": 5854,
+          "sha256": "d362ae7003b08c2e1513fa780dd1f37693f226fe4b729dac2b8ef7273285bdd6",
+          "gitBlob": "8bc5e3a027f645dd618c49b975311373d782cc7d"
+        },
+        {
+          "path": "scripts/video-task-result.schema.json",
+          "bytes": 765,
+          "sha256": "e60bd72a35a092ec428a481cd32eb5ed9db99067348c77c04dcdca198c7988cd",
+          "gitBlob": "f722e8b61ac37fc3961c6e7c1eac910fa1a9c014"
+        },
+        {
+          "path": "scripts/verify-server-step01-runtime.py",
+          "bytes": 498,
+          "sha256": "89db115d6d6d75d49ee3e1f258a55377db74a6dffe66fe905fa2f0ed607b6255",
+          "gitBlob": "673c974e5c37e5eddaa0367587be7122a3e79694"
+        },
+        {
+          "path": "scripts/video-task-worker-codex-skill.integration.mjs",
+          "bytes": 8236,
+          "sha256": "bda2a6af0feeaddcac684a5c905f9153b455a5c864a76da6fea3dfd62578c037",
+          "gitBlob": "418db2184ededf4678594edf44be74f830e675cd"
+        },
+        {
+          "path": "scripts/video-task-worker.integration.mjs",
+          "bytes": 11469,
+          "sha256": "73183cc6837185ea1e19ad90ec92faafa4e791637a16b63bc7d0da32d736f7dc",
+          "gitBlob": "b7ecbe908497f5ef58ad54ad488d6e15ae2107b1"
+        },
+        {
+          "path": "scripts/build-redraw-skill-bundle.mjs",
+          "bytes": 2764,
+          "sha256": "d60e5b94613b20c2cab3372ddf2706685fdbccb361eeb160c695423199ec5d55",
+          "gitBlob": "0b9a6bd4665b46d827d6203d878b71aecdf51517"
+        },
+        {
+          "path": "scripts/windows-dola-worker-result.schema.json",
+          "bytes": 721,
+          "sha256": "56b3c0677cb7bfda71f0f84423a7fa0f0a5d66e953699d98eb80a61e416be17e",
+          "gitBlob": "a104a14164691dc1e264a877486a1beba2e8c7ea"
+        },
+        {
+          "path": "scripts/redraw-runtime.test.mjs",
+          "bytes": 16670,
+          "sha256": "2e6e534a307ed43089856112c86ab2efd8de583393a6dfdfe08a17abf36f12e1",
+          "gitBlob": "507fb0e08b117a385fa755c6866058b0bcf5b7e1"
+        },
+        {
+          "path": "scripts/mimo-safari-visible-submit.test.mjs",
+          "bytes": 6652,
+          "sha256": "6a482c1f94f080fe94e4948d3795a9b28e03f98a8d191ebd5fa5077221abe8ef",
+          "gitBlob": "e562909ac6460f485c78ae28e897ebcbefb68756"
+        },
+        {
+          "path": "scripts/mimo-origin-consistency.test.mjs",
+          "bytes": 3197,
+          "sha256": "c55cd348ca2f54f4aeb769e94f1e83eef2349d3281ef5a5f09bf676910732510",
+          "gitBlob": "677460d233af1b74e7466d7694803feda9a9452f"
+        },
+        {
+          "path": "scripts/mimo-official-client.test.mjs",
+          "bytes": 4625,
+          "sha256": "9b2bdd283ef64410879db153a598cbe97c16c8d88ab1482a0cc7deefe4d329da",
+          "gitBlob": "3c87d7aefe9a0a85f37aec200e71e622d04c675e"
+        },
+        {
+          "path": "scripts/dola-windows-agent-api.integration.mjs",
+          "bytes": 18077,
+          "sha256": "5828b2a7ddc198a87021fb699275b0d9bff61eec29a6761cd7aaa1a67e31b8b2",
+          "gitBlob": "405e522b79a3ec4456d2452eaff2b9859d724c31"
+        },
+        {
+          "path": "scripts/build-release-candidate.mjs",
+          "bytes": 6526,
+          "sha256": "b2dcabb5405f23b1aa3edf0291c968f5db459f2c2d6e644d4473663fe0209ec9",
+          "gitBlob": "1af942ea21a7931951645aaec2dfa42b3d9a7d9f"
+        },
+        {
+          "path": "scripts/mimo-direct.test.mjs",
+          "bytes": 5297,
+          "sha256": "793ea15b01a354e15ec4ebb56ef7f84b270923349a38a1f0c95f116c7072412b",
+          "gitBlob": "c4e211438ce7acc6888a64d945767d243892f32a"
+        },
+        {
+          "path": "scripts/migrate-sqlite-to-postgres.mjs",
+          "bytes": 3156,
+          "sha256": "cadd89f77576b3abc46c4128396f3f0fd4d57c92d5467d5c46a94ff8e2eb40e8",
+          "gitBlob": "e9386620ea80d9a979fb404b1d6313ee95400cd0"
+        },
+        {
+          "path": "scripts/mimo-direct.mjs",
+          "bytes": 13027,
+          "sha256": "c933fc9e97c5b1bd6aa90e67abe447ede355b95a59fc725f9536327566aa2a76",
+          "gitBlob": "a48ca52c202091e1151855006e4793e7506ef997"
+        },
+        {
+          "path": "scripts/postdeploy-readonly-check.mjs",
+          "bytes": 3406,
+          "sha256": "adeeed3f10513ac9619ae73a35248c610fe79aea6a0babe75ce6b4234a676c2a",
+          "gitBlob": "83239c0f73e54600cc40543a19afe4b03307f684"
+        },
+        {
+          "path": "package.json",
+          "bytes": 4123,
+          "sha256": "7159820d1b627824d79b24b1bb6d6ddcc9bbed4e9bdddf3cbca668af6f4f3067",
+          "gitBlob": "3dd79df023003946d21dd7f5f86b65de6fcba378"
+        },
+        {
+          "path": "package-lock.json",
+          "bytes": 80591,
+          "sha256": "000e6d0888ada50129ca7ac48558d090486591f3d1e3ba461b5ff88f7b8d05cf",
+          "gitBlob": "bc0899b8aed80495d657d33b5e8fa3b1d26cc463"
+        }
+      ],
+      "fileCount": 43,
+      "bytes": 455305,
+      "sshReturnCode": 0,
+      "warning": "",
+      "sameAsAppCount": 40,
+      "differentFromApp": [
+        "lib/video-output-gate.mjs",
+        "scripts/niannian-windows-dola-agent.mjs",
+        "package.json"
+      ],
+      "notInApp": []
+    },
+    {
+      "role": "harness-dispatcher",
+      "container": "niannian-ai-video-workbench_harness-dispatcher_1",
+      "source": "/app",
+      "selectedEntries": [
+        "lib",
+        "scripts",
+        "public",
+        "package.json",
+        "package-lock.json"
+      ],
+      "files": [
+        {
+          "path": "lib/video-output-gate.mjs",
+          "bytes": 3195,
+          "sha256": "57733b7823ab30a2209e32d793c05437df6a9d0033aa746ea69d2891a2c8214e",
+          "gitBlob": "a5be01e3fda00be1b92b218f175db10ed8d77cdb"
+        },
+        {
+          "path": "lib/video-cos.ts",
+          "bytes": 9759,
+          "sha256": "91c4a31941243819634b653d8eee9638a013ed5d0ad5a512fbaf89c309433739",
+          "gitBlob": "bf587259b51e2d5fe6d574bf69b4a03e45d12df3"
+        },
+        {
+          "path": "lib/legacy-mimo-delivery-backfill.mjs",
+          "bytes": 2907,
+          "sha256": "3b486388f8fc1970b002c1720834b7db3267bf1e796090aa3380e778f05a14cd",
+          "gitBlob": "5930b0b79c11be792c1e83fde1ff486511e14e5c"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher-runner.mjs",
+          "bytes": 12130,
+          "sha256": "657cd09ae113bd88c76cb0149c4449adc6a33fb4f2962b4655555821cda50477",
+          "gitBlob": "8c1f3a6677783b6cc85a32bfcee7fb4716859e76"
+        },
+        {
+          "path": "scripts/video-workbench-harness-outbox-delivery.mjs",
+          "bytes": 4054,
+          "sha256": "d0258928e32262b78b674f65cc7d3c9c4de9b5f7998982a14328044d7c9ea9b5",
+          "gitBlob": "6e4a16ad0be09a7e022857fb25f07340e650ed3d"
+        },
+        {
+          "path": "scripts/video-workbench-harness-state.mjs",
+          "bytes": 38090,
+          "sha256": "51876ca26f6d29c5fe66cd1682e92dc068d1f54276e141576cbcc6ea22f97bc0",
+          "gitBlob": "3e91060503c5ad59539b1d21db758ccf11fe5941"
+        },
+        {
+          "path": "scripts/video-workbench-harness-dispatcher.mjs",
+          "bytes": 24024,
+          "sha256": "02c56753649154d5142e121239e552446ee9c4521238c981e7d190c1b5dc31bc",
+          "gitBlob": "26f06a1cbcac46cc08bf7b4463c78faee92cd9e5"
+        },
+        {
+          "path": "package.json",
+          "bytes": 6854,
+          "sha256": "a82805f46b92cc99f491317416c429648f990f16f10a552113a85adf0e9177b1",
+          "gitBlob": "52300a89404f3d0177e1f06d4218820102740e0e"
+        },
+        {
+          "path": "package-lock.json",
+          "bytes": 80591,
+          "sha256": "000e6d0888ada50129ca7ac48558d090486591f3d1e3ba461b5ff88f7b8d05cf",
+          "gitBlob": "bc0899b8aed80495d657d33b5e8fa3b1d26cc463"
+        }
+      ],
+      "fileCount": 9,
+      "bytes": 181604,
+      "sshReturnCode": 0,
+      "warning": "",
+      "sameAsAppCount": 4,
+      "differentFromApp": [
+        "package.json"
+      ],
+      "notInApp": [
+        "scripts/video-workbench-harness-dispatcher-runner.mjs",
+        "scripts/video-workbench-harness-outbox-delivery.mjs",
+        "scripts/video-workbench-harness-state.mjs",
+        "scripts/video-workbench-harness-dispatcher.mjs"
+      ]
+    }
+  ]
+}
