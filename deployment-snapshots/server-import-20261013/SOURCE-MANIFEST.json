@@ -2888,6 +2888,20 @@
           "sha256": "51876ca26f6d29c5fe66cd1682e92dc068d1f54276e141576cbcc6ea22f97bc0"
         }
       ]
+    },
+    {
+      "name": "reborn-static",
+      "source": "sd2-reborn-static",
+      "server": "kaogong",
+      "sourcePath": "/opt/reborn/index.html",
+      "relationship": "Running static landing HTML verified by SHA256; generated/user videos excluded.",
+      "excludedSensitiveAndRuntimeFiles": true,
+      "files": [
+        {
+          "path": "index.html",
+          "sha256": "ece6fc737c291b80b61e12426de745906d7772f66b98d9f2d0a3d3904438062b"
+        }
+      ]
     }
   ]
 }
